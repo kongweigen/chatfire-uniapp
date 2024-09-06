@@ -1,68 +1,43 @@
 <template>
-  <div class="chat_container px-4">
-    <div
-      v-if="chatStore.messageList?.length > 0"
-      class="body _message_list pt-10"
-    >
-      <MsgItem
-        :item="{
-          role: 'system',
-          content: '您好，我是火宝，快来提问试试吧！',
-        }"
-        role="gpt"
-        position="left"
-      ></MsgItem>
-      <MsgItem
-        v-for="item in chatStore.messageList"
-        :key="item"
-        :item="item"
-        :position="item.role == 'user' ? 'right' : 'left'"
-        role="gpt"
-      ></MsgItem>
-      <!-- v-if="sendRef?.running" -->
-      <u-button
-        v-if="sendRef?.running"
-        class="mb-4"
-        size="small"
-        round
-        @click="sendRef?.handleStop"
-      >
-        停止接收
-      </u-button>
-    </div>
-    <div
-      v-else
-      class="homepage py-20 flex flex-col justify-center items-center"
-    >
-      <img src="@/assets/logo.png" alt="" />
-    </div>
-    <div class="footer">
-      <!-- <AgentPanel ref="agentPanelRef"></AgentPanel> -->
-      <Send
-        class="w-full"
-        ref="sendRef"
-        @change="msgChange"
-        @on-before="beforeSend"
-        @on-end="endSend"
-        @on-error="onError"
-        @switch-agent-panel="switchAgentPanel"
-      ></Send>
-    </div>
-  </div>
+	<div class="chat_container">
+		<div v-if="showLogo" class="body _message_list pt-10">
+			<MsgItem
+				:item="{
+					role: 'system',
+					content: '您好，我是火宝，快来提问试试吧！'
+				}"
+				role="gpt"
+				position="left"
+			></MsgItem>
+			<MsgItem v-for="item in chatStore.messageList" :key="item" :item="item" :position="item.role == 'user' ? 'right' : 'left'" role="gpt"></MsgItem>
+			<!-- v-if="sendRef?.running" -->
+			<div class="actions">
+				<u-button class="mb-4" width="100rpx" size="small" shape="circle" @click="sendRef?.handleStop">停止接收</u-button>
+			</div>
+		</div>
+		<div v-else class="homepage py-20 flex flex-col justify-center items-center">
+			<img src="@/assets/logo.png" alt="" />
+		</div>
+		<div class="footer">
+			<!-- <AgentPanel ref="agentPanelRef"></AgentPanel> -->
+			<Send class="w-full" ref="sendRef" @change="msgChange" @on-before="beforeSend" @on-end="endSend" @on-error="onError" @switch-agent-panel="switchAgentPanel"></Send>
+		</div>
+	</div>
 </template>
 
 <script setup>
-import { ref, watchEffect, onMounted, onUnmounted } from "vue"
-import Send from "./Send.vue"
-import MsgItem from "./MsgItem.vue"
-import { positionDomViewBottom } from "@/utils"
-import { useChatStore } from "@/stores"
+import { ref, watchEffect, onMounted, onUnmounted, computed } from 'vue';
+import Send from './Send.vue';
+import MsgItem from './MsgItem.vue';
+import { positionDomViewBottom } from '@/utils';
+import { useChatStore } from '@/stores';
 // import AgentPanel from "./AgentPanel.vue"
-import { useAgent } from "./useAgent"
+import { useAgent } from './useAgent';
 
-const chatStore = useChatStore()
-const sendRef = ref()
-const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef)
+const showLogo = computed(() => !chatStore.messageList || chatStore.messageList?.length == 0);
+const chatStore = useChatStore();
+const sendRef = ref();
+const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef);
 
 // watchEffect(() => {
 //   const { id } = route.params
@@ -70,69 +45,76 @@ const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef)
 //   positionDomViewBottom()
 // })
 
-
 const selectPrompt = (val) => {
-  sendRef.value.setContent(val)
-}
+	sendRef.value.setContent(val);
+};
 
-let newId = ""
+let newId = '';
 const beforeSend = async (val) => {
-  // 首页问答需要先新增
-  // let { id } = route.params
-  // if (!id) {
-  //   id = chatStore.createChat()
-  //   newId = id
-  // }
-  chatStore.addMessage(val)
-  positionDomViewBottom()
-}
+	// 首页问答需要先新增
+	// let { id } = route.params
+	// if (!id) {
+	//   id = chatStore.createChat()
+	//   newId = id
+	// }
+	chatStore.addMessage(val);
+	positionDomViewBottom();
+};
 const onError = () => {
-  chatStore.updateLastMessage("", "success")
-}
+	chatStore.updateLastMessage('', 'success');
+};
 const endSend = () => {
-  chatStore.updateLastMessage("", "success")
-  // if (newId) {
-  //   router.push({ name: "chat", params: { id: newId } })
-  //   newId = undefined
-  // }
-}
+	chatStore.updateLastMessage('', 'success');
+	// if (newId) {
+	//   router.push({ name: "chat", params: { id: newId } })
+	//   newId = undefined
+	// }
+};
 
 const msgChange = (val) => {
-  sendContent.value = val
-  chatStore.updateLastMessage(val)
-  positionDomViewBottom()
-}
+	sendContent.value = val;
+	chatStore.updateLastMessage(val);
+	positionDomViewBottom();
+};
 
-let handleStop
+let handleStop;
 onMounted(() => {
-  console.log("加载")
-  handleStop = sendRef.value?.handleStop
-})
+	console.log('加载');
+	handleStop = sendRef.value?.handleStop;
+});
 onUnmounted(() => {
-  console.log("卸载")
-  // 切换问答，终止流
-  endSend()
-  handleStop?.()
-})
+	console.log('卸载');
+	// 切换问答，终止流
+	endSend();
+	handleStop?.();
+});
 </script>
 <style lang="scss" scoped>
 .chat_container {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	justify-content: space-between;
-  height: 100vh;
-	.homepage{
+	box-sizing: border-box;
+	height: 100vh;
+	padding: 20rpx 32rpx;
+	background-color: #eff0f6;
+	.homepage {
 		display: flex;
 		justify-content: center;
 	}
 
-  .body {
-    flex: 1;
-    overflow: auto;
-  }
-  .footer {
-    position: relative;
-    max-height: 145px;
-  }
+	.body {
+		flex: 1;
+		overflow: auto;
+	}
+	.actions {
+		margin-left: 40rpx;
+		display: flex;
+		width: 100rpx;
+	}
+	.footer {
+		position: relative;
+		max-height: 145px;
+	}
 }
 </style>

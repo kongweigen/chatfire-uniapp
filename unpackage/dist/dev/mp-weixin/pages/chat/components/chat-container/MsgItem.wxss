@@ -37,35 +37,35 @@
 .msg-item.data-v-7837332f {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
-}
-.msg-item img.data-v-7837332f {
-  width: 30px;
-  height: 30px;
-  border-radius: 4px;
-  object-fit: cover;
+  margin-bottom: 20rpx;
 }
 .msg-item .msg-item__box.data-v-7837332f {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 14px;
+  gap: 10rpx;
   max-width: 70%;
+  border-radius: 20rpx;
+  font-size: 24rpx;
 }
 .msg-item .msg-item__box .content.data-v-7837332f {
-  padding: 10px 16px;
-  border-radius: 10px;
+  padding: 20rpx;
+  border-radius: 20rpx;
   word-break: break-all;
-  min-height: 37px;
-  min-width: 60px;
+  min-height: 40rpx;
+  min-width: 60rpx;
 }
 .msg-item .msg-item__box.msg-item__left.data-v-7837332f {
   align-self: flex-start;
 }
+.msg-item .msg-item__box.msg-item__left .content.data-v-7837332f {
+  background-color: #ffffff;
+}
 .msg-item .msg-item__box.msg-item__right.data-v-7837332f {
   align-self: flex-end;
-  border-radius: 10px;
-  background-color: #28499d;
+}
+.msg-item .msg-item__box.msg-item__right .content.data-v-7837332f {
+  color: #ffffff;
+  background-color: #316dfd;
 }
 .stop-btn.data-v-7837332f {
   margin-top: 10px;

@@ -18,6 +18,10 @@ const MsgItem = () => "./MsgItem.js";
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const showLogo = common_vendor.computed(() => {
+      var _a;
+      return !chatStore.messageList || ((_a = chatStore.messageList) == null ? void 0 : _a.length) == 0;
+    });
     const chatStore = stores_chatStore.useChatStore();
     const sendRef = common_vendor.ref();
     const { sendContent, agentPanelRef, switchAgentPanel } = pages_chat_components_chatContainer_useAgent.useAgent(sendRef);
@@ -48,10 +52,10 @@ const _sfc_main = {
       handleStop == null ? void 0 : handleStop();
     });
     return (_ctx, _cache) => {
-      var _a, _b, _c, _d, _e;
+      var _a;
       return common_vendor.e({
-        a: ((_a = common_vendor.unref(chatStore).messageList) == null ? void 0 : _a.length) > 0
-      }, ((_b = common_vendor.unref(chatStore).messageList) == null ? void 0 : _b.length) > 0 ? common_vendor.e({
+        a: showLogo.value
+      }, showLogo.value ? {
         b: common_vendor.p({
           item: {
             role: "system",
@@ -71,24 +75,23 @@ const _sfc_main = {
             })
           };
         }),
-        d: (_c = sendRef.value) == null ? void 0 : _c.running
-      }, ((_d = sendRef.value) == null ? void 0 : _d.running) ? {
-        e: common_vendor.o((_e = sendRef.value) == null ? void 0 : _e.handleStop),
-        f: common_vendor.p({
+        d: common_vendor.o((_a = sendRef.value) == null ? void 0 : _a.handleStop),
+        e: common_vendor.p({
+          width: "100rpx",
           size: "small",
-          round: true
+          shape: "circle"
         })
-      } : {}) : {
-        g: common_assets._imports_0$1
+      } : {
+        f: common_assets._imports_0$1
       }, {
-        h: common_vendor.sr(sendRef, "670f4c4d-3", {
+        g: common_vendor.sr(sendRef, "670f4c4d-3", {
           "k": "sendRef"
         }),
-        i: common_vendor.o(msgChange),
-        j: common_vendor.o(beforeSend),
-        k: common_vendor.o(endSend),
-        l: common_vendor.o(onError),
-        m: common_vendor.o(common_vendor.unref(switchAgentPanel))
+        h: common_vendor.o(msgChange),
+        i: common_vendor.o(beforeSend),
+        j: common_vendor.o(endSend),
+        k: common_vendor.o(onError),
+        l: common_vendor.o(common_vendor.unref(switchAgentPanel))
       });
     };
   }

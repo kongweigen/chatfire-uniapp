@@ -5,14 +5,13 @@ require("../../../../stores/index.js");
 const stores_chatStore = require("../../../../stores/chatStore.js");
 if (!Array) {
   const _easycom_u_button2 = common_vendor.resolveComponent("u-button");
-  const _component_template = common_vendor.resolveComponent("template");
-  const _easycom_u__input2 = common_vendor.resolveComponent("u--input");
-  (_easycom_u_button2 + _component_template + _easycom_u__input2)();
+  const _easycom_u_input2 = common_vendor.resolveComponent("u-input");
+  (_easycom_u_button2 + _easycom_u_input2)();
 }
 const _easycom_u_button = () => "../../../../node-modules/uview-plus/components/u-button/u-button.js";
-const _easycom_u__input = () => "../../../../node-modules/uview-plus/components/u-input/u-input.js";
+const _easycom_u_input = () => "../../../../node-modules/uview-plus/components/u-input/u-input.js";
 if (!Math) {
-  (_easycom_u_button + _easycom_u__input)();
+  (_easycom_u_button + _easycom_u_input)();
 }
 const _sfc_main = {
   __name: "Send",
@@ -94,13 +93,8 @@ const _sfc_main = {
         }),
         d: common_vendor.o(($event) => sendContent.value = $event),
         e: common_vendor.p({
-          placeholder: "placeholder",
+          placeholder: "请传递你的想法",
           modelValue: sendContent.value
-        }),
-        f: common_vendor.o(submit),
-        g: common_vendor.p({
-          type: "success",
-          size: "mini"
         })
       };
     };

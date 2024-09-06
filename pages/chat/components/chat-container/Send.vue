@@ -1,12 +1,11 @@
 <template>
 	<div class="send-box flex flex-col">
 		<!-- <Plugins ref="pluginRef"></Plugins> -->
-		<u--input ref="inputInstRef" v-model="sendContent" placeholder="placeholder">
-			<template slot="suffix">
-				<u-button @tap="submit" type="success" size="mini">发送</u-button>
+		<u-input ref="inputInstRef" v-model="sendContent" placeholder="请传递你的想法">
+			<template #suffix>
+				<u-button @tap="submit" type="success" size="mini" >发送</u-button>
 			</template>
-		</u--input>
-		<u-button @tap="submit" type="success" size="mini">发送</u-button>
+		</u-input>
 		<!-- div class="footer w-full px-3 pb-2">
       <div></div>
       <div class="flex gap-2">
@@ -150,12 +149,9 @@ defineExpose({
 <style lang="scss" scoped>
 .send-box {
 	position: relative;
-	border: 1px solid #595965;
-	overflow: hidden;
 	border-radius: 16px;
 	box-shadow: none;
 	// background-color: #3a3a44;
-
 	.footer {
 		display: flex;
 		justify-content: space-between;
@@ -178,8 +174,5 @@ defineExpose({
 			}
 		}
 	}
-}
-:deep(.n-input) {
-	background-color: unset !important;
 }
 </style>

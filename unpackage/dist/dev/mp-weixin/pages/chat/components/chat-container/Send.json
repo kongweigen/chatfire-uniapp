@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "u-button": "../../../../node-modules/uview-plus/components/u-button/u-button",
-    "u--input": "../../../../node-modules/uview-plus/components/u-input/u-input"
+    "u-input": "../../../../node-modules/uview-plus/components/u-input/u-input"
   }
 }

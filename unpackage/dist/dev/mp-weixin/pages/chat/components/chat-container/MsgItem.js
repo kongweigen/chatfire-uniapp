@@ -98,7 +98,12 @@ const _sfc_main = {
       }) : {}, {
         l: __props.position == "right"
       }, __props.position == "right" ? {
-        m: contentHtml.value
+        m: contentHtml.value,
+        n: common_vendor.p({
+          width: "40rpx",
+          height: "40rpx",
+          src: common_assets._imports_0$1
+        })
       } : {});
     };
   }

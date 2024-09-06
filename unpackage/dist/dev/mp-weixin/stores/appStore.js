@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-var define_import_meta_env_default = { VITE_CJS_IGNORE_WARNING: "true", VITE_USER_NODE_ENV: "development", VITE_ROOT_DIR: "/Users/peigen/Desktop/code/zhihe/chatfire-uniapp/chatFire", BASE_URL: "/", MODE: "development", DEV: true, PROD: false, SSR: false };
+var define_import_meta_env_default = { VITE_CJS_IGNORE_WARNING: "true", VITE_USER_NODE_ENV: "development", VITE_ROOT_DIR: "/Users/peigen/Desktop/code/zhihe/mini/chatfire-uniapp", BASE_URL: "/", MODE: "development", DEV: true, PROD: false, SSR: false };
 common_vendor.defineStore({
   id: "app",
   state: () => {

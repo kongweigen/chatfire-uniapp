@@ -86,10 +86,10 @@ const _sfc_main = {
                 a: common_vendor.t(subItem.label),
                 b: listIndex,
                 c: common_vendor.o(($event) => common_vendor.unref(toPage)(subItem), listIndex),
-                d: "de2836d8-3-" + i0 + "-" + i1 + "," + ("de2836d8-2-" + i0)
+                d: "44e3a1e9-3-" + i0 + "-" + i1 + "," + ("44e3a1e9-2-" + i0)
               };
             }),
-            c: "de2836d8-2-" + i0 + ",de2836d8-0",
+            c: "44e3a1e9-2-" + i0 + ",44e3a1e9-0",
             d: item
           };
         }),

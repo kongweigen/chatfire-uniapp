@@ -25,8 +25,6 @@
 /* 文章场景相关 */
 .send-box.data-v-f17a0bac {
   position: relative;
-  border: 1px solid #595965;
-  overflow: hidden;
   border-radius: 16px;
   box-shadow: none;
 }
@@ -51,7 +49,4 @@
 }
 .send-box .footer .item.submit.data-v-f17a0bac:hover {
   background-color: #5280fd99;
-}
-.data-v-f17a0bac .n-input {
-  background-color: unset !important;
 }
