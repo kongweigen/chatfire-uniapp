@@ -7,7 +7,7 @@ const request = (vm) => {
   });
   common_vendor.index.$u.http.interceptors.request.use((config) => {
     config.data = config.data || {};
-    let token = "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjgyMTIxYjdhLWU3MjMtNDYwMC1hMTlhLTAxYmIzODUzMWY0YSIsInVzZXJuYW1lIjoidGVzdCJ9.QckzY4WTJRTe9E0CGdlrzpL_DuQBBJnT7DYOjAJVmVhsLotGKnP597A-jBqid8H7UnMFiwG1JFRSf63PzvBvuQ";
+    let token = "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjMyMWEzMDRmLTdlZjktNDljMS1hYmE4LTBhOTBhMDdjZTgzOSIsInVzZXJuYW1lIjoidGVzdCJ9.9nLbW-MPMr42Y8em5BPSpXXoJkK6kxU3-ajFnYNfoMaHeg5fQ4AWyFJRSnsrUEMkNCULAQJraAb8c2833v9-lw";
     config.header["Authorization"] = `Bearer ${token}`;
     return config;
   }, (config) => {
@@ -17,7 +17,6 @@ const request = (vm) => {
     var _a;
     const data = response.data;
     const custom = (_a = response.config) == null ? void 0 : _a.custom;
-    debugger;
     if (data.code !== 200) {
       if (custom.toast !== false) {
         common_vendor.index.$u.toast(data.message);

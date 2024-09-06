@@ -12,7 +12,6 @@ export const createSSERequset = ({
 	onerror,
 	controller
 }) => {
-	debugger
 	const createTimer = () => {
 		return setTimeout(() => {
 			console.log("============SSE超时自动关闭============");
@@ -24,7 +23,7 @@ export const createSSERequset = ({
 		}, autoCloseDuration);
 	};
 	let token =
-		'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjgyMTIxYjdhLWU3MjMtNDYwMC1hMTlhLTAxYmIzODUzMWY0YSIsInVzZXJuYW1lIjoidGVzdCJ9.QckzY4WTJRTe9E0CGdlrzpL_DuQBBJnT7DYOjAJVmVhsLotGKnP597A-jBqid8H7UnMFiwG1JFRSf63PzvBvuQ'
+		'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjMyMWEzMDRmLTdlZjktNDljMS1hYmE4LTBhOTBhMDdjZTgzOSIsInVzZXJuYW1lIjoidGVzdCJ9.9nLbW-MPMr42Y8em5BPSpXXoJkK6kxU3-ajFnYNfoMaHeg5fQ4AWyFJRSnsrUEMkNCULAQJraAb8c2833v9-lw'
 
 	// let timer = createTimer();
 	fetchEventSource(url, {
@@ -38,7 +37,6 @@ export const createSSERequset = ({
 		openWhenHidden: true,
 		body: JSON.stringify(data),
 		onmessage: msg => {
-			debugger
 			console.log(msg)
 			onmessage({ state: "ing", data: msg });
 			// if (timer) clearTimeout(timer);

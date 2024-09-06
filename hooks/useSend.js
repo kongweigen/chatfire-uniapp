@@ -20,6 +20,13 @@ export const useSend = () => {
 		const streamTask = chat2gpt({
 			data,
 			signal: controller.signal,
+		}, () => {
+			// 结束回调
+			console.log('结束')
+			running.value = false
+		},() => {
+			//  失败回调
+			console.log('失败')
 		})
 		streamTask.onChunkReceived((res) => {
 			const arrayBuffer = res.data;

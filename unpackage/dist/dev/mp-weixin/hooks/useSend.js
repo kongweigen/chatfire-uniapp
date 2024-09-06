@@ -12,6 +12,9 @@ const useSend = () => {
     const streamTask = api_chat_index.chat2gpt({
       data,
       signal: controller2.signal
+    }, () => {
+      console.log("结束");
+      running.value = false;
     });
     streamTask.onChunkReceived((res) => {
       const arrayBuffer = res.data;

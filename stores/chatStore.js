@@ -151,7 +151,6 @@ export const useChatStore = defineStore({
     },
     // 更新最后一条回复的状态、信息
     updateLastMessage(content, status) {
-			debugger
       if (!this.messageList[this.messageList.length - 1]) return
       if (status) this.messageList[this.messageList.length - 1].status = status
       if (content)

@@ -1,6 +1,12 @@
 "use strict";
+const common_vendor = require("../common/vendor.js");
 const positionDomViewBottom = (className = "_message_list") => {
   setTimeout(() => {
+    common_vendor.index.pageScrollTo({
+      selector: "._message_list",
+      scrollTop: 1e3,
+      duration: 300
+    });
   });
 };
 const generateUUID = () => {

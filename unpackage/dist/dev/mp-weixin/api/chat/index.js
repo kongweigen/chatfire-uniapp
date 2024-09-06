@@ -4,8 +4,8 @@ common_vendor.index.$u.http;
 const chat2gpt = ({
   data,
   signal
-}, config = {}) => {
-  let token = "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjgyMTIxYjdhLWU3MjMtNDYwMC1hMTlhLTAxYmIzODUzMWY0YSIsInVzZXJuYW1lIjoidGVzdCJ9.QckzY4WTJRTe9E0CGdlrzpL_DuQBBJnT7DYOjAJVmVhsLotGKnP597A-jBqid8H7UnMFiwG1JFRSf63PzvBvuQ";
+}, successCall) => {
+  let token = "eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjMyMWEzMDRmLTdlZjktNDljMS1hYmE4LTBhOTBhMDdjZTgzOSIsInVzZXJuYW1lIjoidGVzdCJ9.9nLbW-MPMr42Y8em5BPSpXXoJkK6kxU3-ajFnYNfoMaHeg5fQ4AWyFJRSnsrUEMkNCULAQJraAb8c2833v9-lw";
   return common_vendor.index.request({
     method: "POST",
     url: "https://agi.chatfire.cn/box/chat/ask",
@@ -19,7 +19,7 @@ const chat2gpt = ({
       Authorization: `Bearer ${token}`
     },
     success: (res) => {
-      console.log(res);
+      successCall();
     }
   });
 };

@@ -32,10 +32,7 @@ import ChatContainer from "./components/chat-container/index.vue"
   // background-color: #292932;
   .chat-content {
     transition: all 0.2s ease;
-    margin: 0 auto;
-    height: calc(100% - 46px);
-    padding-bottom: 10px;
-    max-width: 792px;
+    width: 750rpx;
   }
 }
 </style>

@@ -1,17 +1,18 @@
 "use strict";
 const common_vendor = require("../../../../common/vendor.js");
+const common_assets = require("../../../../common/assets.js");
 const hooks_useSend = require("../../../../hooks/useSend.js");
 require("../../../../stores/index.js");
 const stores_chatStore = require("../../../../stores/chatStore.js");
 if (!Array) {
-  const _easycom_u_button2 = common_vendor.resolveComponent("u-button");
+  const _easycom_u_image2 = common_vendor.resolveComponent("u-image");
   const _easycom_u_input2 = common_vendor.resolveComponent("u-input");
-  (_easycom_u_button2 + _easycom_u_input2)();
+  (_easycom_u_image2 + _easycom_u_input2)();
 }
-const _easycom_u_button = () => "../../../../node-modules/uview-plus/components/u-button/u-button.js";
+const _easycom_u_image = () => "../../../../node-modules/uview-plus/components/u-image/u-image.js";
 const _easycom_u_input = () => "../../../../node-modules/uview-plus/components/u-input/u-input.js";
 if (!Math) {
-  (_easycom_u_button + _easycom_u_input)();
+  (_easycom_u_image + _easycom_u_input)();
 }
 const _sfc_main = {
   __name: "Send",
@@ -83,16 +84,18 @@ const _sfc_main = {
     });
     return (_ctx, _cache) => {
       return {
-        a: common_vendor.o(submit),
-        b: common_vendor.p({
-          type: "success",
-          size: "mini"
+        a: common_vendor.p({
+          width: "50rpx",
+          height: "50rpx",
+          src: common_assets._imports_0$2
         }),
+        b: common_vendor.o(submit),
         c: common_vendor.sr(inputInstRef, "f17a0bac-0", {
           "k": "inputInstRef"
         }),
         d: common_vendor.o(($event) => sendContent.value = $event),
         e: common_vendor.p({
+          border: "none",
           placeholder: "请传递你的想法",
           modelValue: sendContent.value
         })

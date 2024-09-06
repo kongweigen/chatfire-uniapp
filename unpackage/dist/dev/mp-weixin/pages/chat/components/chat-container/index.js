@@ -7,21 +7,20 @@ const pages_chat_components_chatContainer_useAgent = require("./useAgent.js");
 const stores_chatStore = require("../../../../stores/chatStore.js");
 if (!Array) {
   const _easycom_u_button2 = common_vendor.resolveComponent("u-button");
-  _easycom_u_button2();
+  const _easycom_u_image2 = common_vendor.resolveComponent("u-image");
+  (_easycom_u_button2 + _easycom_u_image2)();
 }
 const _easycom_u_button = () => "../../../../node-modules/uview-plus/components/u-button/u-button.js";
+const _easycom_u_image = () => "../../../../node-modules/uview-plus/components/u-image/u-image.js";
 if (!Math) {
-  (MsgItem + _easycom_u_button + Send)();
+  (MsgItem + _easycom_u_button + _easycom_u_image + Send)();
 }
 const Send = () => "./Send.js";
 const MsgItem = () => "./MsgItem.js";
 const _sfc_main = {
   __name: "index",
   setup(__props) {
-    const showLogo = common_vendor.computed(() => {
-      var _a;
-      return !chatStore.messageList || ((_a = chatStore.messageList) == null ? void 0 : _a.length) == 0;
-    });
+    const showLogo = common_vendor.computed(() => !chatStore.messageList || chatStore.messageList.length == 0);
     const chatStore = stores_chatStore.useChatStore();
     const sendRef = common_vendor.ref();
     const { sendContent, agentPanelRef, switchAgentPanel } = pages_chat_components_chatContainer_useAgent.useAgent(sendRef);
@@ -52,10 +51,10 @@ const _sfc_main = {
       handleStop == null ? void 0 : handleStop();
     });
     return (_ctx, _cache) => {
-      var _a;
+      var _a, _b, _c;
       return common_vendor.e({
-        a: showLogo.value
-      }, showLogo.value ? {
+        a: !showLogo.value
+      }, !showLogo.value ? common_vendor.e({
         b: common_vendor.p({
           item: {
             role: "system",
@@ -75,23 +74,28 @@ const _sfc_main = {
             })
           };
         }),
-        d: common_vendor.o((_a = sendRef.value) == null ? void 0 : _a.handleStop),
-        e: common_vendor.p({
+        d: (_a = sendRef.value) == null ? void 0 : _a.running
+      }, ((_b = sendRef.value) == null ? void 0 : _b.running) ? {
+        e: common_vendor.o((_c = sendRef.value) == null ? void 0 : _c.handleStop),
+        f: common_vendor.p({
           width: "100rpx",
           size: "small",
           shape: "circle"
         })
-      } : {
-        f: common_assets._imports_0$1
+      } : {}) : {
+        g: common_vendor.p({
+          src: common_assets._imports_0$1,
+          height: "500rpx"
+        })
       }, {
-        g: common_vendor.sr(sendRef, "670f4c4d-3", {
+        h: common_vendor.sr(sendRef, "670f4c4d-4", {
           "k": "sendRef"
         }),
-        h: common_vendor.o(msgChange),
-        i: common_vendor.o(beforeSend),
-        j: common_vendor.o(endSend),
-        k: common_vendor.o(onError),
-        l: common_vendor.o(common_vendor.unref(switchAgentPanel))
+        i: common_vendor.o(msgChange),
+        j: common_vendor.o(beforeSend),
+        k: common_vendor.o(endSend),
+        l: common_vendor.o(onError),
+        m: common_vendor.o(common_vendor.unref(switchAgentPanel))
       });
     };
   }

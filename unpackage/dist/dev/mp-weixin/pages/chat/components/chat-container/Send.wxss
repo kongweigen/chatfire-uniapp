@@ -27,6 +27,19 @@
   position: relative;
   border-radius: 16px;
   box-shadow: none;
+  background-color: #ffffff;
+  padding-left: 20rpx;
+}
+.send-box .send-btn.data-v-f17a0bac {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #efeef5;
+  margin: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 40rpx;
 }
 .send-box .footer.data-v-f17a0bac {
   display: flex;

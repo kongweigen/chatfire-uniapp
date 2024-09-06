@@ -1,6 +1,6 @@
 <template>
 	<div class="chat_container">
-		<div v-if="showLogo" class="body _message_list pt-10">
+		<div v-if="!showLogo" class="body _message_list pt-10">
 			<MsgItem
 				:item="{
 					role: 'system',
@@ -12,11 +12,11 @@
 			<MsgItem v-for="item in chatStore.messageList" :key="item" :item="item" :position="item.role == 'user' ? 'right' : 'left'" role="gpt"></MsgItem>
 			<!-- v-if="sendRef?.running" -->
 			<div class="actions">
-				<u-button class="mb-4" width="100rpx" size="small" shape="circle" @click="sendRef?.handleStop">停止接收</u-button>
+				<u-button v-if="sendRef?.running" class="mb-4" width="100rpx" size="small" shape="circle" @click="sendRef?.handleStop">停止接收</u-button>
 			</div>
 		</div>
-		<div v-else class="homepage py-20 flex flex-col justify-center items-center">
-			<img src="@/assets/logo.png" alt="" />
+		<div v-else class="homepage">
+			<u-image src="@/assets/logo.png" height="500rpx"></u-image>
 		</div>
 		<div class="footer">
 			<!-- <AgentPanel ref="agentPanelRef"></AgentPanel> -->
@@ -34,7 +34,7 @@ import { useChatStore } from '@/stores';
 // import AgentPanel from "./AgentPanel.vue"
 import { useAgent } from './useAgent';
 
-const showLogo = computed(() => !chatStore.messageList || chatStore.messageList?.length == 0);
+const showLogo = computed(() => !chatStore.messageList || chatStore.messageList.length == 0);
 const chatStore = useChatStore();
 const sendRef = ref();
 const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef);

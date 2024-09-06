@@ -1,9 +1,11 @@
 <template>
 	<div class="send-box flex flex-col">
 		<!-- <Plugins ref="pluginRef"></Plugins> -->
-		<u-input ref="inputInstRef" v-model="sendContent" placeholder="请传递你的想法">
+		<u-input ref="inputInstRef" v-model="sendContent" border="none" placeholder="请传递你的想法">
 			<template #suffix>
-				<u-button @tap="submit" type="success" size="mini" >发送</u-button>
+				<div class="send-btn" @tap="submit">
+					<u-image width="50rpx" height="50rpx" src="@/assets/send-fill.png"></u-image>
+				</div>
 			</template>
 		</u-input>
 		<!-- div class="footer w-full px-3 pb-2">
@@ -54,6 +56,8 @@
 import { ref, watch, computed } from 'vue';
 import { useSend } from '@/hooks/useSend';
 import { useChatStore } from '@/stores';
+import SvgIcon from '@/components/SvgIcon/index.vue';
+
 // import Plugins from "./Plugins.vue"
 
 const list = ref([]);
@@ -151,7 +155,20 @@ defineExpose({
 	position: relative;
 	border-radius: 16px;
 	box-shadow: none;
-	// background-color: #3a3a44;
+	background-color: #ffffff;
+	padding-left: 20rpx;
+	.send-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-sizing: border-box;
+		background-color: #efeef5;
+		margin: 20rpx;
+		width: 60rpx;
+		height: 60rpx;
+		border-radius: 40rpx;
+		// transform: rotate(-20deg)
+	}
 	.footer {
 		display: flex;
 		justify-content: space-between;
