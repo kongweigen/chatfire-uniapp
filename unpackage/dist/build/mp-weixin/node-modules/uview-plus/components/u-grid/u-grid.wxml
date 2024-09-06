@@ -1,0 +1,1 @@
+<view class="u-grid data-v-49e7f624" ref="u-grid" style="{{a + ';' + b}}"><slot/></view>

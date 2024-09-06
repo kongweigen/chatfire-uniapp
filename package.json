@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "@vant/weapp": "^1.11.6",
+    "dayjs": "^1.11.10",
+    "highlight.js": "^11.10.0",
+    "markdown-it": "^14.1.0",
+    "pinia": "^2.2.2",
+    "qrcode": "^1.5.4",
+    "text-encoding-shim": "^1.0.5",
+    "uview-plus": "^3.3.27"
+  }
+}

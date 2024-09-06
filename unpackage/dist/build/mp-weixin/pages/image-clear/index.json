@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "图片变清晰",
+  "usingComponents": {
+    "u--image": "../../node-modules/uview-plus/components/u-image/u-image",
+    "u-button": "../../node-modules/uview-plus/components/u-button/u-button"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="chat h-full w-full flex data-v-5a559478"><view class="main h-full w-full flex flex-col data-v-5a559478"><view class="chat-content flex-1 w-full h-full data-v-5a559478"><chat-container class="data-v-5a559478" u-i="5a559478-0" bind:__l="__l"></chat-container></view></view></view>

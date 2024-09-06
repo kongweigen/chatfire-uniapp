@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "火宝 AI",
+  "usingComponents": {
+    "chat-container": "./components/chat-container/index"
+  }
+}

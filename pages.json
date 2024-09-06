@@ -1,0 +1,68 @@
+{
+	"easycom": {
+		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
+		"custom": {
+			"^u--(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^up-(.*)": "uview-plus/components/u-$1/u-$1.vue",
+			"^u-([^-].*)": "uview-plus/components/u-$1/u-$1.vue"
+		}
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "火宝AI工具箱"
+			}
+		},
+		{
+			"path": "pages/image-clear/index",
+			"style": {
+				"navigationBarTitleText": "图片变清晰"
+			}
+		},
+		{
+			"path": "pages/image-style/index",
+			"style": {
+				"navigationBarTitleText": "风格转换"
+			}
+		},
+		{
+			"path" : "pages/chat/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "火宝 AI"
+			}
+		},
+		{
+			"path" : "pages/mine/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "#3cc51f",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/home/index",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/chat/index",
+			"text": "火宝"
+		},{
+			"pagePath": "pages/mine/index",
+			"text": "我的"
+		}]
+	}
+}

@@ -1,0 +1,1 @@
+<view class="image-compare data-v-738811bc"><view class="bottom-img data-v-738811bc" style="{{'background-image:' + a}}"></view><view class="mask data-v-738811bc"><view class="up-img data-v-738811bc" style="{{'background-image:' + b}}"></view></view></view>
