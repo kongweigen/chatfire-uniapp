@@ -28,7 +28,6 @@
 
 <script setup>
 // import FileUpload from '@/components/file-upload/index.vue';
-import ImgCompare from '@/components/ImgCompare/index.vue';
 import { useClear } from './useClear';
 const { customStyle, sourceImage, imageUrl, uploadImage, generate } = useClear();
 </script>

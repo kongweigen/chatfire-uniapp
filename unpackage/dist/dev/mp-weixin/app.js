@@ -21,12 +21,10 @@ const _sfc_main = {
     console.log("App Hide");
   }
 };
-const SvgIcon = () => "./components/SvgIcon/index.js";
 function createApp() {
   const app = common_vendor.createSSRApp(_sfc_main);
   app.use(common_vendor.uviewPlus);
   app.use(stores_index.store);
-  app.use(SvgIcon);
   config_request.request();
   return {
     app

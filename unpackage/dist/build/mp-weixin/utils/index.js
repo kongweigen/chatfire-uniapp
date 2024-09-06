@@ -1,1 +1,1 @@
-"use strict";
+"use strict";require("../common/vendor.js");

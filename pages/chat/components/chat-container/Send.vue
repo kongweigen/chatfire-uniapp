@@ -56,7 +56,6 @@
 import { ref, watch, computed } from 'vue';
 import { useSend } from '@/hooks/useSend';
 import { useChatStore } from '@/stores';
-import SvgIcon from '@/components/SvgIcon/index.vue';
 
 // import Plugins from "./Plugins.vue"
 

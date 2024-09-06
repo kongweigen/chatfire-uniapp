@@ -6,7 +6,6 @@ import {
 import stores from '@/stores'
 import request from "./config/request.js";
 import uviewPlus from 'uview-plus'
-import SvgIcon from "@/components/SvgIcon/index.vue"
 
 
 // 引入请求封装，将app参数传递到配置中
@@ -16,7 +15,6 @@ export function createApp() {
 	// app.config.globalProperties.$http = request;
 	app.use(uviewPlus);
 	app.use(stores);
-	app.use(SvgIcon)
 	request(app)
 	return {
 		app
