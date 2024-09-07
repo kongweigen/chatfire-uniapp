@@ -145,14 +145,13 @@ const onSwiperChange = ({ current }) => {
 		flex-direction: row;
 		background-color: rgba(225, 255, 255, 0.3);
 		border-radius: 20px;
-		padding-top: 6px;
 		width: calc(88% - 4px) !important;
 		height: 24% !important;
 		margin-bottom: 14px;
 		align-items: center;
 		justify-content: center;
 		padding: 4px;
-		gap: 2px;
+		gap: 8px;
 	}
 	.leftBox {
 		display: flex;
