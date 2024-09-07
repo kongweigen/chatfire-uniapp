@@ -18,7 +18,8 @@ export const useHome = () => {
 	const createItem = ref(createItemMock)
 	const historyList = ref(historyMock)
 	const toPage = (item) => {
-		switch (item) {
+		debugger
+		switch (item.value) {
 			case 'clear':
 				toRoute(routerUrlMap['clear'])
 				break;
