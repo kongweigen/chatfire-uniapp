@@ -11673,7 +11673,7 @@ const install = (Vue) => {
 const uviewPlus = {
   install
 };
-const props$g = defineMixin({
+const props$d = defineMixin({
   props: {
     // 列表数组，元素可为字符串，如为对象可通过keyName指定目标属性名
     list: {
@@ -11798,7 +11798,7 @@ const props$g = defineMixin({
     }
   }
 });
-const props$f = defineMixin({
+const props$c = defineMixin({
   props: {
     // 宫格的name
     name: {
@@ -11812,7 +11812,7 @@ const props$f = defineMixin({
     }
   }
 });
-const props$e = defineMixin({
+const props$b = defineMixin({
   props: {
     // 分成几列
     col: {
@@ -11836,85 +11836,7 @@ const props$e = defineMixin({
     }
   }
 });
-const props$d = defineMixin({
-  props: {
-    // item标签的名称，作为与u-tabbar的value参数匹配的标识符
-    name: {
-      type: [String, Number, null],
-      default: () => defProps.tabbarItem.name
-    },
-    // uView内置图标或者绝对路径的图片
-    icon: {
-      icon: String,
-      default: () => defProps.tabbarItem.icon
-    },
-    // 右上角的角标提示信息
-    badge: {
-      type: [String, Number, null],
-      default: () => defProps.tabbarItem.badge
-    },
-    // 是否显示圆点，将会覆盖badge参数
-    dot: {
-      type: Boolean,
-      default: () => defProps.tabbarItem.dot
-    },
-    // 描述文本
-    text: {
-      type: String,
-      default: () => defProps.tabbarItem.text
-    },
-    // 控制徽标的位置，对象或者字符串形式，可以设置top和right属性
-    badgeStyle: {
-      type: [Object, String],
-      default: () => defProps.tabbarItem.badgeStyle
-    }
-  }
-});
-const props$c = defineMixin({
-  props: {
-    // 当前匹配项的name
-    value: {
-      type: [String, Number, null],
-      default: () => defProps.tabbar.value
-    },
-    // 是否为iPhoneX留出底部安全距离
-    safeAreaInsetBottom: {
-      type: Boolean,
-      default: () => defProps.tabbar.safeAreaInsetBottom
-    },
-    // 是否显示上方边框
-    border: {
-      type: Boolean,
-      default: () => defProps.tabbar.border
-    },
-    // 元素层级z-index
-    zIndex: {
-      type: [String, Number],
-      default: () => defProps.tabbar.zIndex
-    },
-    // 选中标签的颜色
-    activeColor: {
-      type: String,
-      default: () => defProps.tabbar.activeColor
-    },
-    // 未选中标签的颜色
-    inactiveColor: {
-      type: String,
-      default: () => defProps.tabbar.inactiveColor
-    },
-    // 是否固定在底部
-    fixed: {
-      type: Boolean,
-      default: () => defProps.tabbar.fixed
-    },
-    // fixed定位固定在底部时，是否生成一个等高元素防止塌陷
-    placeholder: {
-      type: Boolean,
-      default: () => defProps.tabbar.placeholder
-    }
-  }
-});
-const props$b = defineMixin({
+const props$a = defineMixin({
   props: {
     // 是否展示弹窗
     show: {
@@ -11993,7 +11915,7 @@ const props$b = defineMixin({
     }
   }
 });
-const props$a = defineMixin({
+const props$9 = defineMixin({
   props: {
     // 图片地址
     src: {
@@ -12115,7 +12037,7 @@ const openType = defineMixin({
     }
   }
 });
-const props$9 = defineMixin({
+const props$8 = defineMixin({
   props: {
     // 是否细边框
     hairline: {
@@ -12267,7 +12189,193 @@ const props$9 = defineMixin({
     }
   }
 });
-const props$8 = defineMixin({
+const props$7 = defineMixin({
+  props: {
+    // 绑定的值
+    modelValue: {
+      type: [String, Number],
+      default: () => defProps.input.value
+    },
+    // number-数字输入键盘，app-vue下可以输入浮点数，app-nvue和小程序平台下只能输入整数
+    // idcard-身份证输入键盘，微信、支付宝、百度、QQ小程序
+    // digit-带小数点的数字键盘，App的nvue页面、微信、支付宝、百度、头条、QQ小程序
+    // text-文本输入键盘
+    type: {
+      type: String,
+      default: () => defProps.input.type
+    },
+    // 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
+    // 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
+    fixed: {
+      type: Boolean,
+      default: () => defProps.input.fixed
+    },
+    // 是否禁用输入框
+    disabled: {
+      type: Boolean,
+      default: () => defProps.input.disabled
+    },
+    // 禁用状态时的背景色
+    disabledColor: {
+      type: String,
+      default: () => defProps.input.disabledColor
+    },
+    // 是否显示清除控件
+    clearable: {
+      type: Boolean,
+      default: () => defProps.input.clearable
+    },
+    // 是否密码类型
+    password: {
+      type: Boolean,
+      default: () => defProps.input.password
+    },
+    // 最大输入长度，设置为 -1 的时候不限制最大长度
+    maxlength: {
+      type: [String, Number],
+      default: () => defProps.input.maxlength
+    },
+    // 	输入框为空时的占位符
+    placeholder: {
+      type: String,
+      default: () => defProps.input.placeholder
+    },
+    // 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
+    placeholderClass: {
+      type: String,
+      default: () => defProps.input.placeholderClass
+    },
+    // 指定placeholder的样式
+    placeholderStyle: {
+      type: [String, Object],
+      default: () => defProps.input.placeholderStyle
+    },
+    // 是否显示输入字数统计，只在 type ="text"或type ="textarea"时有效
+    showWordLimit: {
+      type: Boolean,
+      default: () => defProps.input.showWordLimit
+    },
+    // 设置右下角按钮的文字，有效值：send|search|next|go|done，兼容性详见uni-app文档
+    // https://uniapp.dcloud.io/component/input
+    // https://uniapp.dcloud.io/component/textarea
+    confirmType: {
+      type: String,
+      default: () => defProps.input.confirmType
+    },
+    // 点击键盘右下角按钮时是否保持键盘不收起，H5无效
+    confirmHold: {
+      type: Boolean,
+      default: () => defProps.input.confirmHold
+    },
+    // focus时，点击页面的时候不收起键盘，微信小程序有效
+    holdKeyboard: {
+      type: Boolean,
+      default: () => defProps.input.holdKeyboard
+    },
+    // 自动获取焦点
+    // 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
+    focus: {
+      type: Boolean,
+      default: () => defProps.input.focus
+    },
+    // 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
+    autoBlur: {
+      type: Boolean,
+      default: () => defProps.input.autoBlur
+    },
+    // 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
+    disableDefaultPadding: {
+      type: Boolean,
+      default: () => defProps.input.disableDefaultPadding
+    },
+    // 指定focus时光标的位置
+    cursor: {
+      type: [String, Number],
+      default: () => defProps.input.cursor
+    },
+    // 输入框聚焦时底部与键盘的距离
+    cursorSpacing: {
+      type: [String, Number],
+      default: () => defProps.input.cursorSpacing
+    },
+    // 光标起始位置，自动聚集时有效，需与selection-end搭配使用
+    selectionStart: {
+      type: [String, Number],
+      default: () => defProps.input.selectionStart
+    },
+    // 光标结束位置，自动聚集时有效，需与selection-start搭配使用
+    selectionEnd: {
+      type: [String, Number],
+      default: () => defProps.input.selectionEnd
+    },
+    // 键盘弹起时，是否自动上推页面
+    adjustPosition: {
+      type: Boolean,
+      default: () => defProps.input.adjustPosition
+    },
+    // 输入框内容对齐方式，可选值为：left|center|right
+    inputAlign: {
+      type: String,
+      default: () => defProps.input.inputAlign
+    },
+    // 输入框字体的大小
+    fontSize: {
+      type: [String, Number],
+      default: () => defProps.input.fontSize
+    },
+    // 输入框字体颜色
+    color: {
+      type: String,
+      default: () => defProps.input.color
+    },
+    // 输入框前置图标
+    prefixIcon: {
+      type: String,
+      default: () => defProps.input.prefixIcon
+    },
+    // 前置图标样式，对象或字符串
+    prefixIconStyle: {
+      type: [String, Object],
+      default: () => defProps.input.prefixIconStyle
+    },
+    // 输入框后置图标
+    suffixIcon: {
+      type: String,
+      default: () => defProps.input.suffixIcon
+    },
+    // 后置图标样式，对象或字符串
+    suffixIconStyle: {
+      type: [String, Object],
+      default: () => defProps.input.suffixIconStyle
+    },
+    // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
+    border: {
+      type: String,
+      default: () => defProps.input.border
+    },
+    // 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
+    readonly: {
+      type: Boolean,
+      default: () => defProps.input.readonly
+    },
+    // 输入框形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: () => defProps.input.shape
+    },
+    // 用于处理或者过滤输入框内容的方法
+    formatter: {
+      type: [Function, null],
+      default: () => defProps.input.formatter
+    },
+    // 是否忽略组件内对文本合成系统事件的处理
+    ignoreCompositionEvent: {
+      type: Boolean,
+      default: true
+    }
+  }
+});
+const props$6 = defineMixin({
   props: {
     // 是否显示组件
     show: {
@@ -12326,7 +12434,7 @@ const props$8 = defineMixin({
     }
   }
 });
-const props$7 = defineMixin({
+const props$5 = defineMixin({
   props: {
     // 轮播的长度
     length: {
@@ -12352,6 +12460,38 @@ const props$7 = defineMixin({
     indicatorMode: {
       type: String,
       default: () => defProps.swiperIndicator.indicatorMode
+    }
+  }
+});
+const props$4 = defineMixin({
+  props: {
+    // 是否显示遮罩
+    show: {
+      type: Boolean,
+      default: () => defProps.overlay.show
+    },
+    // 层级z-index
+    zIndex: {
+      type: [String, Number],
+      default: () => defProps.overlay.zIndex
+    },
+    // 遮罩的过渡时间，单位为ms
+    duration: {
+      type: [String, Number],
+      default: () => defProps.overlay.duration
+    },
+    // 不透明度值，当做rgba的第四个参数
+    opacity: {
+      type: [String, Number],
+      default: () => defProps.overlay.opacity
+    }
+  }
+});
+const props$3 = defineMixin({
+  props: {
+    bgColor: {
+      type: String,
+      default: () => defProps.statusBar.bgColor
     }
   }
 });
@@ -12569,7 +12709,7 @@ const icons = {
   "uicon-zh": "",
   "uicon-en": ""
 };
-const props$6 = defineMixin({
+const props$2 = defineMixin({
   props: {
     // 图标类名
     name: {
@@ -12658,119 +12798,10 @@ const props$6 = defineMixin({
     }
   }
 });
-const props$5 = defineMixin({
-  props: {
-    // 是否显示圆点
-    isDot: {
-      type: Boolean,
-      default: () => defProps.badge.isDot
-    },
-    // 显示的内容
-    value: {
-      type: [Number, String],
-      default: () => defProps.badge.value
-    },
-    // 显示的内容
-    modelValue: {
-      type: [Number, String],
-      default: () => defProps.badge.modelValue
-    },
-    // 是否显示
-    show: {
-      type: Boolean,
-      default: () => defProps.badge.show
-    },
-    // 最大值，超过最大值会显示 '{max}+'
-    max: {
-      type: [Number, String],
-      default: () => defProps.badge.max
-    },
-    // 主题类型，error|warning|success|primary
-    type: {
-      type: String,
-      default: () => defProps.badge.type
-    },
-    // 当数值为 0 时，是否展示 Badge
-    showZero: {
-      type: Boolean,
-      default: () => defProps.badge.showZero
-    },
-    // 背景颜色，优先级比type高，如设置，type参数会失效
-    bgColor: {
-      type: [String, null],
-      default: () => defProps.badge.bgColor
-    },
-    // 字体颜色
-    color: {
-      type: [String, null],
-      default: () => defProps.badge.color
-    },
-    // 徽标形状，circle-四角均为圆角，horn-左下角为直角
-    shape: {
-      type: String,
-      default: () => defProps.badge.shape
-    },
-    // 设置数字的显示方式，overflow|ellipsis|limit
-    // overflow会根据max字段判断，超出显示`${max}+`
-    // ellipsis会根据max判断，超出显示`${max}...`
-    // limit会依据1000作为判断条件，超出1000，显示`${value/1000}K`，比如2.2k、3.34w，最多保留2位小数
-    numberType: {
-      type: String,
-      default: () => defProps.badge.numberType
-    },
-    // 设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
-    offset: {
-      type: Array,
-      default: () => defProps.badge.offset
-    },
-    // 是否反转背景和字体颜色
-    inverted: {
-      type: Boolean,
-      default: () => defProps.badge.inverted
-    },
-    // 是否绝对定位
-    absolute: {
-      type: Boolean,
-      default: () => defProps.badge.absolute
-    }
-  }
-});
-const props$4 = defineMixin({
+const props$1 = defineMixin({
   props: {}
 });
-const props$3 = defineMixin({
-  props: {
-    // 是否显示遮罩
-    show: {
-      type: Boolean,
-      default: () => defProps.overlay.show
-    },
-    // 层级z-index
-    zIndex: {
-      type: [String, Number],
-      default: () => defProps.overlay.zIndex
-    },
-    // 遮罩的过渡时间，单位为ms
-    duration: {
-      type: [String, Number],
-      default: () => defProps.overlay.duration
-    },
-    // 不透明度值，当做rgba的第四个参数
-    opacity: {
-      type: [String, Number],
-      default: () => defProps.overlay.opacity
-    }
-  }
-});
-const props$2 = defineMixin({
-  props: {
-    bgColor: {
-      type: String,
-      default: () => defProps.statusBar.bgColor
-    }
-  }
-});
-const props$1 = defineMixin({
+const props = defineMixin({
   props: {
     // 是否展示组件
     show: {
@@ -19712,192 +19743,6 @@ var core = highlight;
 highlight.HighlightJS = highlight;
 highlight.default = highlight;
 const HighlightJS = /* @__PURE__ */ getDefaultExportFromCjs(core);
-const props = defineMixin({
-  props: {
-    // 绑定的值
-    modelValue: {
-      type: [String, Number],
-      default: () => defProps.input.value
-    },
-    // number-数字输入键盘，app-vue下可以输入浮点数，app-nvue和小程序平台下只能输入整数
-    // idcard-身份证输入键盘，微信、支付宝、百度、QQ小程序
-    // digit-带小数点的数字键盘，App的nvue页面、微信、支付宝、百度、头条、QQ小程序
-    // text-文本输入键盘
-    type: {
-      type: String,
-      default: () => defProps.input.type
-    },
-    // 如果 textarea 是在一个 position:fixed 的区域，需要显示指定属性 fixed 为 true，
-    // 兼容性：微信小程序、百度小程序、字节跳动小程序、QQ小程序
-    fixed: {
-      type: Boolean,
-      default: () => defProps.input.fixed
-    },
-    // 是否禁用输入框
-    disabled: {
-      type: Boolean,
-      default: () => defProps.input.disabled
-    },
-    // 禁用状态时的背景色
-    disabledColor: {
-      type: String,
-      default: () => defProps.input.disabledColor
-    },
-    // 是否显示清除控件
-    clearable: {
-      type: Boolean,
-      default: () => defProps.input.clearable
-    },
-    // 是否密码类型
-    password: {
-      type: Boolean,
-      default: () => defProps.input.password
-    },
-    // 最大输入长度，设置为 -1 的时候不限制最大长度
-    maxlength: {
-      type: [String, Number],
-      default: () => defProps.input.maxlength
-    },
-    // 	输入框为空时的占位符
-    placeholder: {
-      type: String,
-      default: () => defProps.input.placeholder
-    },
-    // 指定placeholder的样式类，注意页面或组件的style中写了scoped时，需要在类名前写/deep/
-    placeholderClass: {
-      type: String,
-      default: () => defProps.input.placeholderClass
-    },
-    // 指定placeholder的样式
-    placeholderStyle: {
-      type: [String, Object],
-      default: () => defProps.input.placeholderStyle
-    },
-    // 是否显示输入字数统计，只在 type ="text"或type ="textarea"时有效
-    showWordLimit: {
-      type: Boolean,
-      default: () => defProps.input.showWordLimit
-    },
-    // 设置右下角按钮的文字，有效值：send|search|next|go|done，兼容性详见uni-app文档
-    // https://uniapp.dcloud.io/component/input
-    // https://uniapp.dcloud.io/component/textarea
-    confirmType: {
-      type: String,
-      default: () => defProps.input.confirmType
-    },
-    // 点击键盘右下角按钮时是否保持键盘不收起，H5无效
-    confirmHold: {
-      type: Boolean,
-      default: () => defProps.input.confirmHold
-    },
-    // focus时，点击页面的时候不收起键盘，微信小程序有效
-    holdKeyboard: {
-      type: Boolean,
-      default: () => defProps.input.holdKeyboard
-    },
-    // 自动获取焦点
-    // 在 H5 平台能否聚焦以及软键盘是否跟随弹出，取决于当前浏览器本身的实现。nvue 页面不支持，需使用组件的 focus()、blur() 方法控制焦点
-    focus: {
-      type: Boolean,
-      default: () => defProps.input.focus
-    },
-    // 键盘收起时，是否自动失去焦点，目前仅App3.0.0+有效
-    autoBlur: {
-      type: Boolean,
-      default: () => defProps.input.autoBlur
-    },
-    // 是否去掉 iOS 下的默认内边距，仅微信小程序，且type=textarea时有效
-    disableDefaultPadding: {
-      type: Boolean,
-      default: () => defProps.input.disableDefaultPadding
-    },
-    // 指定focus时光标的位置
-    cursor: {
-      type: [String, Number],
-      default: () => defProps.input.cursor
-    },
-    // 输入框聚焦时底部与键盘的距离
-    cursorSpacing: {
-      type: [String, Number],
-      default: () => defProps.input.cursorSpacing
-    },
-    // 光标起始位置，自动聚集时有效，需与selection-end搭配使用
-    selectionStart: {
-      type: [String, Number],
-      default: () => defProps.input.selectionStart
-    },
-    // 光标结束位置，自动聚集时有效，需与selection-start搭配使用
-    selectionEnd: {
-      type: [String, Number],
-      default: () => defProps.input.selectionEnd
-    },
-    // 键盘弹起时，是否自动上推页面
-    adjustPosition: {
-      type: Boolean,
-      default: () => defProps.input.adjustPosition
-    },
-    // 输入框内容对齐方式，可选值为：left|center|right
-    inputAlign: {
-      type: String,
-      default: () => defProps.input.inputAlign
-    },
-    // 输入框字体的大小
-    fontSize: {
-      type: [String, Number],
-      default: () => defProps.input.fontSize
-    },
-    // 输入框字体颜色
-    color: {
-      type: String,
-      default: () => defProps.input.color
-    },
-    // 输入框前置图标
-    prefixIcon: {
-      type: String,
-      default: () => defProps.input.prefixIcon
-    },
-    // 前置图标样式，对象或字符串
-    prefixIconStyle: {
-      type: [String, Object],
-      default: () => defProps.input.prefixIconStyle
-    },
-    // 输入框后置图标
-    suffixIcon: {
-      type: String,
-      default: () => defProps.input.suffixIcon
-    },
-    // 后置图标样式，对象或字符串
-    suffixIconStyle: {
-      type: [String, Object],
-      default: () => defProps.input.suffixIconStyle
-    },
-    // 边框类型，surround-四周边框，bottom-底部边框，none-无边框
-    border: {
-      type: String,
-      default: () => defProps.input.border
-    },
-    // 是否只读，与disabled不同之处在于disabled会置灰组件，而readonly则不会
-    readonly: {
-      type: Boolean,
-      default: () => defProps.input.readonly
-    },
-    // 输入框形状，circle-圆形，square-方形
-    shape: {
-      type: String,
-      default: () => defProps.input.shape
-    },
-    // 用于处理或者过滤输入框内容的方法
-    formatter: {
-      type: [Function, null],
-      default: () => defProps.input.formatter
-    },
-    // 是否忽略组件内对文本合成系统事件的处理
-    ignoreCompositionEvent: {
-      type: Boolean,
-      default: true
-    }
-  }
-});
 exports.HighlightJS = HighlightJS;
 exports.MarkdownIt = MarkdownIt;
 exports._export_sfc = _export_sfc;
@@ -19926,23 +19771,20 @@ exports.onMounted = onMounted;
 exports.onUnmounted = onUnmounted;
 exports.openType = openType;
 exports.p = p;
-exports.props = props$g;
-exports.props$1 = props$f;
-exports.props$10 = props$6;
-exports.props$11 = props$5;
-exports.props$12 = props$4;
-exports.props$13 = props$3;
-exports.props$14 = props$2;
-exports.props$15 = props$1;
-exports.props$16 = props;
-exports.props$2 = props$e;
-exports.props$3 = props$d;
-exports.props$4 = props$c;
-exports.props$5 = props$b;
-exports.props$6 = props$a;
-exports.props$7 = props$9;
-exports.props$8 = props$8;
-exports.props$9 = props$7;
+exports.props = props$d;
+exports.props$1 = props$c;
+exports.props$10 = props$3;
+exports.props$11 = props$2;
+exports.props$12 = props$1;
+exports.props$13 = props;
+exports.props$2 = props$b;
+exports.props$3 = props$a;
+exports.props$4 = props$9;
+exports.props$5 = props$8;
+exports.props$6 = props$7;
+exports.props$7 = props$6;
+exports.props$8 = props$5;
+exports.props$9 = props$4;
 exports.r = r;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "火宝 AI",
   "usingComponents": {
-    "chat-container": "./components/chat-container/index"
+    "u-image": "../../node-modules/uview-plus/components/u-image/u-image",
+    "u-input": "../../node-modules/uview-plus/components/u-input/u-input"
   }
 }

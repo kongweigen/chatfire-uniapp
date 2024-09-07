@@ -8,7 +8,8 @@ const useHome = () => {
   const createItem = common_vendor.ref(utils_constant.createItemMock);
   const historyList = common_vendor.ref(utils_constant.historyMock);
   const toPage = (item) => {
-    switch (item) {
+    debugger;
+    switch (item.value) {
       case "clear":
         toRoute(utils_constant.routerUrlMap["clear"]);
         break;
