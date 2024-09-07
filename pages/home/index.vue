@@ -14,7 +14,7 @@
 							<span style="font-size: 12px; color: #fff; opacity: 0.7">图片视频尽情创作</span>
 						</view>
 					</view>
-					<view class="leftBox boxDown">
+<!-- 					<view class="leftBox boxDown">
 						<view>
 							<span style="margin: 4px 0 0 9px; font-size: 12px; color: #fff; font-weight: bold">历史记录</span>
 						</view>
@@ -23,7 +23,7 @@
 								<img :src="item.img" style="width: 20px; height: 20px" alt="" />
 							</view>
 						</view>
-					</view>
+					</view> -->
 				</view>
 				<view class="rightMenu">
 					<view class="menuItem rightHeight" v-for="item in mainItems" :key="item">
@@ -58,13 +58,13 @@
 					</swiper-item>
 				</swiper>
 			</view>
-			<view class="bottom">
+<!-- 			<view class="bottom">
 				<up-tabbar :value="value1" @change="change1" :fixed="true" :placeholder="false" :safeAreaInsetBottom="true">
 					<up-tabbar-item text="首页" icon="home" @click="click1"></up-tabbar-item>
 					<up-tabbar-item text="火宝" icon="photo" @click="click1"></up-tabbar-item>
 					<up-tabbar-item text="我的" icon="account" @click="click1"></up-tabbar-item>
 				</up-tabbar>
-			</view>
+			</view> -->
 		</view>
 		<up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
 			<view class="createPop">
@@ -185,7 +185,7 @@ const onSwiperChange = ({ current }) => {
 	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 0%, white 18%);
 	border-radius: 8px 8px 0 0;
 	width: 96vw;
-	height: 45vh;
+	height: 58vh;
 	padding: 16px 8px 0 8px;
 	overflow-x: scroll;
 	position: absolute;
