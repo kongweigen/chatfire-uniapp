@@ -1,6 +1,6 @@
 <template>
 	<div class="chat_container">
-		<div v-if="!showLogo" class="body _message_list pt-10">
+		<div class="body _message_list pt-10">
 			<MsgItem
 				:item="{
 					role: 'system',
@@ -14,9 +14,6 @@
 			<div class="actions">
 				<u-button v-if="sendRef?.running" class="mb-4" width="100rpx" size="small" shape="circle" @click="sendRef?.handleStop">停止接收</u-button>
 			</div>
-		</div>
-		<div v-else class="homepage">
-			<u-image src="@/assets/logo.png" height="500rpx"></u-image>
 		</div>
 		<div class="footer">
 			<!-- <AgentPanel ref="agentPanelRef"></AgentPanel> -->
@@ -38,6 +35,10 @@ const showLogo = computed(() => !chatStore.messageList || chatStore.messageList.
 const chatStore = useChatStore();
 const sendRef = ref();
 const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef);
+
+const props = defineProps({
+	text: String
+});
 
 // watchEffect(() => {
 //   const { id } = route.params
@@ -81,6 +82,7 @@ let handleStop;
 onMounted(() => {
 	console.log('加载');
 	handleStop = sendRef.value?.handleStop;
+	sendRef.value?.shortcut(props.text)
 });
 onUnmounted(() => {
 	console.log('卸载');

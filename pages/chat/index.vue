@@ -3,7 +3,7 @@
 		<div class="homepage">
 			<u-image src="@/assets/logo.png" height="500rpx"></u-image>
 		</div>
-		<div class="footer">
+		<div class="send-box">
 			<u-input ref="inputInstRef" v-model="sendContent" border="none" placeholder="请传递你的想法">
 				<template #suffix>
 					<div class="send-btn" @tap="submit">
@@ -17,7 +17,12 @@
 
 <script setup>
 import { ref, watchEffect, onMounted, onUnmounted, computed } from 'vue';
-
+const sendContent = ref('');
+const submit = () => {
+	uni.navigateTo({
+		url: `/pages/chat-detail/index?text=${sendContent.value}`
+	});
+};
 </script>
 <style lang="scss" scoped>
 .chat_container {
@@ -32,19 +37,24 @@ import { ref, watchEffect, onMounted, onUnmounted, computed } from 'vue';
 		display: flex;
 		justify-content: center;
 	}
-
-	.body {
-		flex: 1;
-		overflow: auto;
-	}
-	.actions {
-		margin-left: 40rpx;
-		display: flex;
-		width: 100rpx;
-	}
-	.footer {
+	.send-box {
 		position: relative;
-		max-height: 145px;
+		border-radius: 16px;
+		box-shadow: none;
+		background-color: #ffffff;
+		padding-left: 20rpx;
+		.send-btn {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			box-sizing: border-box;
+			background-color: #efeef5;
+			margin: 20rpx;
+			width: 60rpx;
+			height: 60rpx;
+			border-radius: 40rpx;
+			// transform: rotate(-20deg)
+		}
 	}
 }
 </style>

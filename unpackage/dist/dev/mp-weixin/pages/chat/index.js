@@ -14,6 +14,12 @@ if (!Math) {
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const sendContent = common_vendor.ref("");
+    const submit = () => {
+      common_vendor.index.navigateTo({
+        url: `/pages/chat-detail/index?text=${sendContent.value}`
+      });
+    };
     return (_ctx, _cache) => {
       return {
         a: common_vendor.p({
@@ -25,13 +31,13 @@ const _sfc_main = {
           height: "50rpx",
           src: common_assets._imports_0$2
         }),
-        c: common_vendor.o((...args) => _ctx.submit && _ctx.submit(...args)),
+        c: common_vendor.o(submit),
         d: common_vendor.sr("inputInstRef", "5a559478-1"),
-        e: common_vendor.o(($event) => _ctx.sendContent = $event),
+        e: common_vendor.o(($event) => sendContent.value = $event),
         f: common_vendor.p({
           border: "none",
           placeholder: "请传递你的想法",
-          modelValue: _ctx.sendContent
+          modelValue: sendContent.value
         })
       };
     };

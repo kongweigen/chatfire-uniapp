@@ -36,16 +36,21 @@
   display: flex;
   justify-content: center;
 }
-.chat_container .body.data-v-5a559478 {
-  flex: 1;
-  overflow: auto;
-}
-.chat_container .actions.data-v-5a559478 {
-  margin-left: 40rpx;
-  display: flex;
-  width: 100rpx;
-}
-.chat_container .footer.data-v-5a559478 {
+.chat_container .send-box.data-v-5a559478 {
   position: relative;
-  max-height: 145px;
+  border-radius: 16px;
+  box-shadow: none;
+  background-color: #ffffff;
+  padding-left: 20rpx;
+}
+.chat_container .send-box .send-btn.data-v-5a559478 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #efeef5;
+  margin: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 40rpx;
 }
