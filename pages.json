@@ -62,7 +62,9 @@
 	"uniIdRouter": {},
 	"tabBar": {
 		"color": "#7A7E83",
-		"selectedColor": "#3cc51f",
+		"fontWeight": "bold",
+		"fontSize": "14px",
+		"selectedColor": "#333333",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{

@@ -5,25 +5,21 @@
 			<view class="mainMenu">
 				<view class="menuItem leftHeight" :style="{ backgroundColor: btnColor }">
 					<view class="leftBox boxUp" @click="showPop = true">
-						<view>
-							<img src="/static/add.svg" style="width: 50px; height: 50px" alt="" />
+						<view class="createIcon">
+							<img src="/static/add.svg" style="width: 48px; height: 46px; opacity: 0.9" alt="" />
 						</view>
-						<view>
+						<view class="createBox">
 							<span style="font-size: 16px; color: #fff; font-weight: bold">开始创作</span>
 							<br />
 							<span style="font-size: 12px; color: #fff; opacity: 0.7">图片视频尽情创作</span>
 						</view>
 					</view>
-<!-- 					<view class="leftBox boxDown">
+					<view class="leftBox boxDown">
 						<view>
-							<span style="margin: 4px 0 0 9px; font-size: 12px; color: #fff; font-weight: bold">历史记录</span>
+							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
-						<view style="display: flex; gap: 4px; margin: 6px 0 0 14px; overflow-x: scroll; width: 150px">
-							<view class="historyBox" v-for="item in historyList" :key="item">
-								<img :src="item.img" style="width: 20px; height: 20px" alt="" />
-							</view>
-						</view>
-					</view> -->
+						<up-icon name="play-right-fill" color="#fff" size="12"></up-icon>
+					</view>
 				</view>
 				<view class="rightMenu">
 					<view class="menuItem rightHeight" v-for="item in mainItems" :key="item">
@@ -58,13 +54,6 @@
 					</swiper-item>
 				</swiper>
 			</view>
-<!-- 			<view class="bottom">
-				<up-tabbar :value="value1" @change="change1" :fixed="true" :placeholder="false" :safeAreaInsetBottom="true">
-					<up-tabbar-item text="首页" icon="home" @click="click1"></up-tabbar-item>
-					<up-tabbar-item text="火宝" icon="photo" @click="click1"></up-tabbar-item>
-					<up-tabbar-item text="我的" icon="account" @click="click1"></up-tabbar-item>
-				</up-tabbar>
-			</view> -->
 		</view>
 		<up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
 			<view class="createPop">
@@ -142,18 +131,33 @@ const onSwiperChange = ({ current }) => {
 	.boxUp {
 		justify-content: center;
 		align-items: center;
-		padding-right: 14px;
+		margin-top: 6px;
+		height: 66% !important;
+		.createBox {
+			span {
+				display: block; /* 使span成为块级元素 */
+				margin-bottom: 2px; /* 设置底部外边距 */
+			}
+			margin-left: 2px;
+		}
 	}
 	.boxDown {
-		flex-direction: column;
-		background-color: rgba(255, 255, 255, 0.3);
-		border-radius: 8px;
+		flex-direction: row;
+		background-color: rgba(225, 255, 255, 0.3);
+		border-radius: 20px;
 		padding-top: 6px;
+		width: calc(88% - 4px) !important;
+		height: 24% !important;
+		margin-bottom: 14px;
+		align-items: center;
+		justify-content: center;
+		padding: 4px;
+		gap: 2px;
 	}
 	.leftBox {
 		display: flex;
 		width: 100%;
-		height: 50%;
+		// height: 50%;
 		// height: 125px;
 		.historyBox {
 			display: flex;
