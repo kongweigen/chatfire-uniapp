@@ -1,38 +1,50 @@
 <template>
-  <div class="chat h-full w-full flex">
-    <!-- <Nav></Nav> -->
-    <div class="main h-full w-full flex flex-col">
-      <!-- <Header v-if="chatStore.navType === '1'"></Header> -->
-      <div class="chat-content flex-1 w-full h-full">
-        <ChatContainer></ChatContainer>
-        <!-- <History v-if="chatStore.navType === '2'"></History>
-        <Agents v-if="chatStore.navType === '3'"></Agents> -->
-      </div>
-    </div>
-    <!-- <Panel ref="panelRef"></Panel> -->
-  </div>
+	<div class="chat_container">
+		<div class="homepage">
+			<u-image src="@/assets/logo.png" height="500rpx"></u-image>
+		</div>
+		<div class="footer">
+			<u-input ref="inputInstRef" v-model="sendContent" border="none" placeholder="请传递你的想法">
+				<template #suffix>
+					<div class="send-btn" @tap="submit">
+						<u-image width="50rpx" height="50rpx" src="@/assets/send-fill.png"></u-image>
+					</div>
+				</template>
+			</u-input>
+		</div>
+	</div>
 </template>
-<script setup>
-// import Nav from "./layout/Nav.vue"
-// import Header from "./layout/Header.vue"
-// import Panel from "./layout/Panel.vue"
-import ChatContainer from "./components/chat-container/index.vue"
-// import History from "./components/history/index.vue"
-// import Agents from "./components/agents/index.vue"
-// import { useChatStore } from "@/stores"
-// import { onMounted } from "vue"
 
-// const chatStore = useChatStore()
-// onMounted(() => {
-//   chatStore.initChat()
-// })
+<script setup>
+import { ref, watchEffect, onMounted, onUnmounted, computed } from 'vue';
+
 </script>
 <style lang="scss" scoped>
-.chat {
-  // background-color: #292932;
-  .chat-content {
-    transition: all 0.2s ease;
-    width: 750rpx;
-  }
+.chat_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	box-sizing: border-box;
+	height: 100vh;
+	padding: 20rpx 32rpx;
+	background-color: #eff0f6;
+	.homepage {
+		display: flex;
+		justify-content: center;
+	}
+
+	.body {
+		flex: 1;
+		overflow: auto;
+	}
+	.actions {
+		margin-left: 40rpx;
+		display: flex;
+		width: 100rpx;
+	}
+	.footer {
+		position: relative;
+		max-height: 145px;
+	}
 }
 </style>

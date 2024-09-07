@@ -23,7 +23,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.chat .chat-content.data-v-5a559478 {
-  transition: all 0.2s ease;
-  width: 750rpx;
+.chat_container.data-v-5a559478 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 100vh;
+  padding: 20rpx 32rpx;
+  background-color: #eff0f6;
+}
+.chat_container .homepage.data-v-5a559478 {
+  display: flex;
+  justify-content: center;
+}
+.chat_container .body.data-v-5a559478 {
+  flex: 1;
+  overflow: auto;
+}
+.chat_container .actions.data-v-5a559478 {
+  margin-left: 40rpx;
+  display: flex;
+  width: 100rpx;
+}
+.chat_container .footer.data-v-5a559478 {
+  position: relative;
+  max-height: 145px;
 }

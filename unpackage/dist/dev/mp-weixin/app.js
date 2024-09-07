@@ -8,7 +8,9 @@ if (!Math) {
   "./pages/image-clear/index.js";
   "./pages/image-style/index.js";
   "./pages/chat/index.js";
+  "./pages/chat-detail/index.js";
   "./pages/mine/index.js";
+  "./pages/design/index.js";
 }
 const _sfc_main = {
   onLaunch: function() {

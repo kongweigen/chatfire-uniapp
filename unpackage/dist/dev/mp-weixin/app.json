@@ -4,7 +4,9 @@
     "pages/image-clear/index",
     "pages/image-style/index",
     "pages/chat/index",
-    "pages/mine/index"
+    "pages/chat-detail/index",
+    "pages/mine/index",
+    "pages/design/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -20,15 +22,21 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home_sel.png"
       },
       {
         "pagePath": "pages/chat/index",
-        "text": "火宝"
+        "text": "火宝",
+        "iconPath": "static/chatfire.png",
+        "selectedIconPath": "static/chatfire_sel.png"
       },
       {
         "pagePath": "pages/mine/index",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "static/mine.png",
+        "selectedIconPath": "static/mine_sel.png"
       }
     ]
   },

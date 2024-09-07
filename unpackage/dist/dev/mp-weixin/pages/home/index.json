@@ -5,8 +5,6 @@
     "up-swiper": "../../node-modules/uview-plus/components/u-swiper/u-swiper",
     "up-grid-item": "../../node-modules/uview-plus/components/u-grid-item/u-grid-item",
     "up-grid": "../../node-modules/uview-plus/components/u-grid/u-grid",
-    "up-tabbar-item": "../../node-modules/uview-plus/components/u-tabbar-item/u-tabbar-item",
-    "up-tabbar": "../../node-modules/uview-plus/components/u-tabbar/u-tabbar",
     "up-popup": "../../node-modules/uview-plus/components/u-popup/u-popup"
   }
 }
