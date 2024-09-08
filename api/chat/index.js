@@ -1,10 +1,4 @@
 const http = uni.$u.http;
-// import { openkey, serialstring } from "@/config";
-import {
-	createController,
-	createSSERequset
-} from "@/config/sseRequset.js";
-
 export const chat2gpt = ({
 	data,
 	signal

@@ -27,7 +27,6 @@
   height: 100vh;
   background-color: #eeeeee;
   /* 举例背景颜色，您可以根据需要更改 */
-  transition: background-color 2s ease;
   height: 100vh;
 }
 .bannerBox {
@@ -46,22 +45,42 @@
 .mainMenu .leftHeight {
   height: 20vh !important;
   flex-direction: column;
+  background: linear-gradient(to bottom, #307ae4, #45b5df);
 }
 .mainMenu .boxUp {
   justify-content: center;
   align-items: center;
-  padding-right: 14px;
+  margin-top: 6px;
+  height: 66% !important;
+}
+.mainMenu .boxUp .createBox {
+  margin-left: 2px;
+}
+.mainMenu .boxUp .createBox span {
+  display: block;
+  /* 使span成为块级元素 */
+  margin-bottom: 2px;
+  /* 设置底部外边距 */
 }
 .mainMenu .boxDown {
-  flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding-top: 6px;
+  flex-direction: row;
+  background-color: rgba(225, 255, 255, 0.3);
+  border-radius: 20px;
+  width: calc(88% - 4px) !important;
+  height: 24% !important;
+  margin-bottom: 14px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  gap: 8px;
+}
+.mainMenu .boxDown .u-icon__icon {
+  margin-top: 2px;
+  opacity: 0.6;
 }
 .mainMenu .leftBox {
   display: flex;
   width: 100%;
-  height: 50%;
 }
 .mainMenu .leftBox .historyBox {
   display: flex;
@@ -77,14 +96,12 @@
   color: #333333 !important;
 }
 .mainMenu .menuItem {
-  transition: background-color 2s ease;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 46vw;
   height: 9.5vh;
-  border-radius: 8px;
-  background-color: rgba(203, 240, 255, 0.5);
+  border-radius: 18px;
   margin-bottom: 8px;
 }
 .moreItem {

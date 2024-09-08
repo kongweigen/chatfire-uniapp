@@ -109,13 +109,13 @@ const submit = async (e) => {
 		.map(({ content, role }) => {
 			return { content, role };
 		});
-	// 插入引导词
-	if (chatStore.chat.prompt) {
-		list.splice(-1, 0, {
-			content: chatStore.chat.prompt,
-			role: 'user'
-		});
-	}
+	// // 插入引导词
+	// if (chatStore.chat.prompt) {
+	// 	list.splice(-1, 0, {
+	// 		content: chatStore.chat.prompt,
+	// 		role: 'user'
+	// 	});
+	// }
 	let model = chatStore.currentChatModel;
 	// 判断是否选择了 agent 有的话需要以 agent 为准
 	if (chatStore.agent) {

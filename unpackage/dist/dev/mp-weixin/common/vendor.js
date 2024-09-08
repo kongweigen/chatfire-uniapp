@@ -11677,7 +11677,7 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
-const props$d = defineMixin({
+const props$f = defineMixin({
   props: {
     // 列表数组，元素可为字符串，如为对象可通过keyName指定目标属性名
     list: {
@@ -11802,7 +11802,310 @@ const props$d = defineMixin({
     }
   }
 });
-const props$c = defineMixin({
+const icons = {
+  "uicon-level": "",
+  "uicon-column-line": "",
+  "uicon-checkbox-mark": "",
+  "uicon-folder": "",
+  "uicon-movie": "",
+  "uicon-star-fill": "",
+  "uicon-star": "",
+  "uicon-phone-fill": "",
+  "uicon-phone": "",
+  "uicon-apple-fill": "",
+  "uicon-chrome-circle-fill": "",
+  "uicon-backspace": "",
+  "uicon-attach": "",
+  "uicon-cut": "",
+  "uicon-empty-car": "",
+  "uicon-empty-coupon": "",
+  "uicon-empty-address": "",
+  "uicon-empty-favor": "",
+  "uicon-empty-permission": "",
+  "uicon-empty-news": "",
+  "uicon-empty-search": "",
+  "uicon-github-circle-fill": "",
+  "uicon-rmb": "",
+  "uicon-person-delete-fill": "",
+  "uicon-reload": "",
+  "uicon-order": "",
+  "uicon-server-man": "",
+  "uicon-search": "",
+  "uicon-fingerprint": "",
+  "uicon-more-dot-fill": "",
+  "uicon-scan": "",
+  "uicon-share-square": "",
+  "uicon-map": "",
+  "uicon-map-fill": "",
+  "uicon-tags": "",
+  "uicon-tags-fill": "",
+  "uicon-bookmark-fill": "",
+  "uicon-bookmark": "",
+  "uicon-eye": "",
+  "uicon-eye-fill": "",
+  "uicon-mic": "",
+  "uicon-mic-off": "",
+  "uicon-calendar": "",
+  "uicon-calendar-fill": "",
+  "uicon-trash": "",
+  "uicon-trash-fill": "",
+  "uicon-play-left": "",
+  "uicon-play-right": "",
+  "uicon-minus": "",
+  "uicon-plus": "",
+  "uicon-info": "",
+  "uicon-info-circle": "",
+  "uicon-info-circle-fill": "",
+  "uicon-question": "",
+  "uicon-error": "",
+  "uicon-close": "",
+  "uicon-checkmark": "",
+  "uicon-android-circle-fill": "",
+  "uicon-android-fill": "",
+  "uicon-ie": "",
+  "uicon-IE-circle-fill": "",
+  "uicon-google": "",
+  "uicon-google-circle-fill": "",
+  "uicon-setting-fill": "",
+  "uicon-setting": "",
+  "uicon-minus-square-fill": "",
+  "uicon-plus-square-fill": "",
+  "uicon-heart": "",
+  "uicon-heart-fill": "",
+  "uicon-camera": "",
+  "uicon-camera-fill": "",
+  "uicon-more-circle": "",
+  "uicon-more-circle-fill": "",
+  "uicon-chat": "",
+  "uicon-chat-fill": "",
+  "uicon-bag-fill": "",
+  "uicon-bag": "",
+  "uicon-error-circle-fill": "",
+  "uicon-error-circle": "",
+  "uicon-close-circle": "",
+  "uicon-close-circle-fill": "",
+  "uicon-checkmark-circle": "",
+  "uicon-checkmark-circle-fill": "",
+  "uicon-question-circle-fill": "",
+  "uicon-question-circle": "",
+  "uicon-share": "",
+  "uicon-share-fill": "",
+  "uicon-shopping-cart": "",
+  "uicon-shopping-cart-fill": "",
+  "uicon-bell": "",
+  "uicon-bell-fill": "",
+  "uicon-list": "",
+  "uicon-list-dot": "",
+  "uicon-zhihu": "",
+  "uicon-zhihu-circle-fill": "",
+  "uicon-zhifubao": "",
+  "uicon-zhifubao-circle-fill": "",
+  "uicon-weixin-circle-fill": "",
+  "uicon-weixin-fill": "",
+  "uicon-twitter-circle-fill": "",
+  "uicon-twitter": "",
+  "uicon-taobao-circle-fill": "",
+  "uicon-taobao": "",
+  "uicon-weibo-circle-fill": "",
+  "uicon-weibo": "",
+  "uicon-qq-fill": "",
+  "uicon-qq-circle-fill": "",
+  "uicon-moments-circel-fill": "",
+  "uicon-moments": "",
+  "uicon-qzone": "",
+  "uicon-qzone-circle-fill": "",
+  "uicon-baidu-circle-fill": "",
+  "uicon-baidu": "",
+  "uicon-facebook-circle-fill": "",
+  "uicon-facebook": "",
+  "uicon-car": "",
+  "uicon-car-fill": "",
+  "uicon-warning-fill": "",
+  "uicon-warning": "",
+  "uicon-clock-fill": "",
+  "uicon-clock": "",
+  "uicon-edit-pen": "",
+  "uicon-edit-pen-fill": "",
+  "uicon-email": "",
+  "uicon-email-fill": "",
+  "uicon-minus-circle": "",
+  "uicon-minus-circle-fill": "",
+  "uicon-plus-circle": "",
+  "uicon-plus-circle-fill": "",
+  "uicon-file-text": "",
+  "uicon-file-text-fill": "",
+  "uicon-pushpin": "",
+  "uicon-pushpin-fill": "",
+  "uicon-grid": "",
+  "uicon-grid-fill": "",
+  "uicon-play-circle": "",
+  "uicon-play-circle-fill": "",
+  "uicon-pause-circle-fill": "",
+  "uicon-pause": "",
+  "uicon-pause-circle": "",
+  "uicon-eye-off": "",
+  "uicon-eye-off-outline": "",
+  "uicon-gift-fill": "",
+  "uicon-gift": "",
+  "uicon-rmb-circle-fill": "",
+  "uicon-rmb-circle": "",
+  "uicon-kefu-ermai": "",
+  "uicon-server-fill": "",
+  "uicon-coupon-fill": "",
+  "uicon-coupon": "",
+  "uicon-integral": "",
+  "uicon-integral-fill": "",
+  "uicon-home-fill": "",
+  "uicon-home": "",
+  "uicon-hourglass-half-fill": "",
+  "uicon-hourglass": "",
+  "uicon-account": "",
+  "uicon-plus-people-fill": "",
+  "uicon-minus-people-fill": "",
+  "uicon-account-fill": "",
+  "uicon-thumb-down-fill": "",
+  "uicon-thumb-down": "",
+  "uicon-thumb-up": "",
+  "uicon-thumb-up-fill": "",
+  "uicon-lock-fill": "",
+  "uicon-lock-open": "",
+  "uicon-lock-opened-fill": "",
+  "uicon-lock": "",
+  "uicon-red-packet-fill": "",
+  "uicon-photo-fill": "",
+  "uicon-photo": "",
+  "uicon-volume-off-fill": "",
+  "uicon-volume-off": "",
+  "uicon-volume-fill": "",
+  "uicon-volume": "",
+  "uicon-red-packet": "",
+  "uicon-download": "",
+  "uicon-arrow-up-fill": "",
+  "uicon-arrow-down-fill": "",
+  "uicon-play-left-fill": "",
+  "uicon-play-right-fill": "",
+  "uicon-rewind-left-fill": "",
+  "uicon-rewind-right-fill": "",
+  "uicon-arrow-downward": "",
+  "uicon-arrow-leftward": "",
+  "uicon-arrow-rightward": "",
+  "uicon-arrow-upward": "",
+  "uicon-arrow-down": "",
+  "uicon-arrow-right": "",
+  "uicon-arrow-left": "",
+  "uicon-arrow-up": "",
+  "uicon-skip-back-left": "",
+  "uicon-skip-forward-right": "",
+  "uicon-rewind-right": "",
+  "uicon-rewind-left": "",
+  "uicon-arrow-right-double": "",
+  "uicon-arrow-left-double": "",
+  "uicon-wifi-off": "",
+  "uicon-wifi": "",
+  "uicon-empty-data": "",
+  "uicon-empty-history": "",
+  "uicon-empty-list": "",
+  "uicon-empty-page": "",
+  "uicon-empty-order": "",
+  "uicon-man": "",
+  "uicon-woman": "",
+  "uicon-man-add": "",
+  "uicon-man-add-fill": "",
+  "uicon-man-delete": "",
+  "uicon-man-delete-fill": "",
+  "uicon-zh": "",
+  "uicon-en": ""
+};
+const props$e = defineMixin({
+  props: {
+    // 图标类名
+    name: {
+      type: String,
+      default: () => defProps.icon.name
+    },
+    // 图标颜色，可接受主题色
+    color: {
+      type: String,
+      default: () => defProps.icon.color
+    },
+    // 字体大小，单位px
+    size: {
+      type: [String, Number],
+      default: () => defProps.icon.size
+    },
+    // 是否显示粗体
+    bold: {
+      type: Boolean,
+      default: () => defProps.icon.bold
+    },
+    // 点击图标的时候传递事件出去的index（用于区分点击了哪一个）
+    index: {
+      type: [String, Number],
+      default: () => defProps.icon.index
+    },
+    // 触摸图标时的类名
+    hoverClass: {
+      type: String,
+      default: () => defProps.icon.hoverClass
+    },
+    // 自定义扩展前缀，方便用户扩展自己的图标库
+    customPrefix: {
+      type: String,
+      default: () => defProps.icon.customPrefix
+    },
+    // 图标右边或者下面的文字
+    label: {
+      type: [String, Number],
+      default: () => defProps.icon.label
+    },
+    // label的位置，只能右边或者下边
+    labelPos: {
+      type: String,
+      default: () => defProps.icon.labelPos
+    },
+    // label的大小
+    labelSize: {
+      type: [String, Number],
+      default: () => defProps.icon.labelSize
+    },
+    // label的颜色
+    labelColor: {
+      type: String,
+      default: () => defProps.icon.labelColor
+    },
+    // label与图标的距离
+    space: {
+      type: [String, Number],
+      default: () => defProps.icon.space
+    },
+    // 图片的mode
+    imgMode: {
+      type: String,
+      default: () => defProps.icon.imgMode
+    },
+    // 用于显示图片小图标时，图片的宽度
+    width: {
+      type: [String, Number],
+      default: () => defProps.icon.width
+    },
+    // 用于显示图片小图标时，图片的高度
+    height: {
+      type: [String, Number],
+      default: () => defProps.icon.height
+    },
+    // 用于解决某些情况下，让图标垂直居中的用途
+    top: {
+      type: [String, Number],
+      default: () => defProps.icon.top
+    },
+    // 是否阻止事件传播
+    stop: {
+      type: Boolean,
+      default: () => defProps.icon.stop
+    }
+  }
+});
+const props$d = defineMixin({
   props: {
     // 宫格的name
     name: {
@@ -11816,7 +12119,7 @@ const props$c = defineMixin({
     }
   }
 });
-const props$b = defineMixin({
+const props$c = defineMixin({
   props: {
     // 分成几列
     col: {
@@ -11840,7 +12143,7 @@ const props$b = defineMixin({
     }
   }
 });
-const props$a = defineMixin({
+const props$b = defineMixin({
   props: {
     // 是否展示弹窗
     show: {
@@ -11919,7 +12222,7 @@ const props$a = defineMixin({
     }
   }
 });
-const props$9 = defineMixin({
+const props$a = defineMixin({
   props: {
     // 图片地址
     src: {
@@ -12041,7 +12344,7 @@ const openType = defineMixin({
     }
   }
 });
-const props$8 = defineMixin({
+const props$9 = defineMixin({
   props: {
     // 是否细边框
     hairline: {
@@ -12190,6 +12493,90 @@ const props$8 = defineMixin({
     color: {
       type: String,
       default: () => defProps.button.color
+    }
+  }
+});
+const props$8 = defineMixin({
+  props: {
+    // 是否开启顶部安全区适配
+    safeAreaInsetTop: {
+      type: Boolean,
+      default: () => defProps.navbar.safeAreaInsetTop
+    },
+    // 固定在顶部时，是否生成一个等高元素，以防止塌陷
+    placeholder: {
+      type: Boolean,
+      default: () => defProps.navbar.placeholder
+    },
+    // 是否固定在顶部
+    fixed: {
+      type: Boolean,
+      default: () => defProps.navbar.fixed
+    },
+    // 是否显示下边框
+    border: {
+      type: Boolean,
+      default: () => defProps.navbar.border
+    },
+    // 左边的图标
+    leftIcon: {
+      type: String,
+      default: () => defProps.navbar.leftIcon
+    },
+    // 左边的提示文字
+    leftText: {
+      type: String,
+      default: () => defProps.navbar.leftText
+    },
+    // 左右的提示文字
+    rightText: {
+      type: String,
+      default: () => defProps.navbar.rightText
+    },
+    // 右边的图标
+    rightIcon: {
+      type: String,
+      default: () => defProps.navbar.rightIcon
+    },
+    // 标题
+    title: {
+      type: [String, Number],
+      default: () => defProps.navbar.title
+    },
+    // 背景颜色
+    bgColor: {
+      type: String,
+      default: () => defProps.navbar.bgColor
+    },
+    // 标题的宽度
+    titleWidth: {
+      type: [String, Number],
+      default: () => defProps.navbar.titleWidth
+    },
+    // 导航栏高度
+    height: {
+      type: [String, Number],
+      default: () => defProps.navbar.height
+    },
+    // 左侧返回图标的大小
+    leftIconSize: {
+      type: [String, Number],
+      default: () => defProps.navbar.leftIconSize
+    },
+    // 左侧返回图标的颜色
+    leftIconColor: {
+      type: String,
+      default: () => defProps.navbar.leftIconColor
+    },
+    // 点击左侧区域(返回图标)，是否自动返回上一页
+    autoBack: {
+      type: Boolean,
+      default: () => defProps.navbar.autoBack
+    },
+    // 标题的样式，对象或字符串
+    titleStyle: {
+      type: [String, Object],
+      default: () => defProps.navbar.titleStyle
     }
   }
 });
@@ -12499,313 +12886,10 @@ const props$3 = defineMixin({
     }
   }
 });
-const icons = {
-  "uicon-level": "",
-  "uicon-column-line": "",
-  "uicon-checkbox-mark": "",
-  "uicon-folder": "",
-  "uicon-movie": "",
-  "uicon-star-fill": "",
-  "uicon-star": "",
-  "uicon-phone-fill": "",
-  "uicon-phone": "",
-  "uicon-apple-fill": "",
-  "uicon-chrome-circle-fill": "",
-  "uicon-backspace": "",
-  "uicon-attach": "",
-  "uicon-cut": "",
-  "uicon-empty-car": "",
-  "uicon-empty-coupon": "",
-  "uicon-empty-address": "",
-  "uicon-empty-favor": "",
-  "uicon-empty-permission": "",
-  "uicon-empty-news": "",
-  "uicon-empty-search": "",
-  "uicon-github-circle-fill": "",
-  "uicon-rmb": "",
-  "uicon-person-delete-fill": "",
-  "uicon-reload": "",
-  "uicon-order": "",
-  "uicon-server-man": "",
-  "uicon-search": "",
-  "uicon-fingerprint": "",
-  "uicon-more-dot-fill": "",
-  "uicon-scan": "",
-  "uicon-share-square": "",
-  "uicon-map": "",
-  "uicon-map-fill": "",
-  "uicon-tags": "",
-  "uicon-tags-fill": "",
-  "uicon-bookmark-fill": "",
-  "uicon-bookmark": "",
-  "uicon-eye": "",
-  "uicon-eye-fill": "",
-  "uicon-mic": "",
-  "uicon-mic-off": "",
-  "uicon-calendar": "",
-  "uicon-calendar-fill": "",
-  "uicon-trash": "",
-  "uicon-trash-fill": "",
-  "uicon-play-left": "",
-  "uicon-play-right": "",
-  "uicon-minus": "",
-  "uicon-plus": "",
-  "uicon-info": "",
-  "uicon-info-circle": "",
-  "uicon-info-circle-fill": "",
-  "uicon-question": "",
-  "uicon-error": "",
-  "uicon-close": "",
-  "uicon-checkmark": "",
-  "uicon-android-circle-fill": "",
-  "uicon-android-fill": "",
-  "uicon-ie": "",
-  "uicon-IE-circle-fill": "",
-  "uicon-google": "",
-  "uicon-google-circle-fill": "",
-  "uicon-setting-fill": "",
-  "uicon-setting": "",
-  "uicon-minus-square-fill": "",
-  "uicon-plus-square-fill": "",
-  "uicon-heart": "",
-  "uicon-heart-fill": "",
-  "uicon-camera": "",
-  "uicon-camera-fill": "",
-  "uicon-more-circle": "",
-  "uicon-more-circle-fill": "",
-  "uicon-chat": "",
-  "uicon-chat-fill": "",
-  "uicon-bag-fill": "",
-  "uicon-bag": "",
-  "uicon-error-circle-fill": "",
-  "uicon-error-circle": "",
-  "uicon-close-circle": "",
-  "uicon-close-circle-fill": "",
-  "uicon-checkmark-circle": "",
-  "uicon-checkmark-circle-fill": "",
-  "uicon-question-circle-fill": "",
-  "uicon-question-circle": "",
-  "uicon-share": "",
-  "uicon-share-fill": "",
-  "uicon-shopping-cart": "",
-  "uicon-shopping-cart-fill": "",
-  "uicon-bell": "",
-  "uicon-bell-fill": "",
-  "uicon-list": "",
-  "uicon-list-dot": "",
-  "uicon-zhihu": "",
-  "uicon-zhihu-circle-fill": "",
-  "uicon-zhifubao": "",
-  "uicon-zhifubao-circle-fill": "",
-  "uicon-weixin-circle-fill": "",
-  "uicon-weixin-fill": "",
-  "uicon-twitter-circle-fill": "",
-  "uicon-twitter": "",
-  "uicon-taobao-circle-fill": "",
-  "uicon-taobao": "",
-  "uicon-weibo-circle-fill": "",
-  "uicon-weibo": "",
-  "uicon-qq-fill": "",
-  "uicon-qq-circle-fill": "",
-  "uicon-moments-circel-fill": "",
-  "uicon-moments": "",
-  "uicon-qzone": "",
-  "uicon-qzone-circle-fill": "",
-  "uicon-baidu-circle-fill": "",
-  "uicon-baidu": "",
-  "uicon-facebook-circle-fill": "",
-  "uicon-facebook": "",
-  "uicon-car": "",
-  "uicon-car-fill": "",
-  "uicon-warning-fill": "",
-  "uicon-warning": "",
-  "uicon-clock-fill": "",
-  "uicon-clock": "",
-  "uicon-edit-pen": "",
-  "uicon-edit-pen-fill": "",
-  "uicon-email": "",
-  "uicon-email-fill": "",
-  "uicon-minus-circle": "",
-  "uicon-minus-circle-fill": "",
-  "uicon-plus-circle": "",
-  "uicon-plus-circle-fill": "",
-  "uicon-file-text": "",
-  "uicon-file-text-fill": "",
-  "uicon-pushpin": "",
-  "uicon-pushpin-fill": "",
-  "uicon-grid": "",
-  "uicon-grid-fill": "",
-  "uicon-play-circle": "",
-  "uicon-play-circle-fill": "",
-  "uicon-pause-circle-fill": "",
-  "uicon-pause": "",
-  "uicon-pause-circle": "",
-  "uicon-eye-off": "",
-  "uicon-eye-off-outline": "",
-  "uicon-gift-fill": "",
-  "uicon-gift": "",
-  "uicon-rmb-circle-fill": "",
-  "uicon-rmb-circle": "",
-  "uicon-kefu-ermai": "",
-  "uicon-server-fill": "",
-  "uicon-coupon-fill": "",
-  "uicon-coupon": "",
-  "uicon-integral": "",
-  "uicon-integral-fill": "",
-  "uicon-home-fill": "",
-  "uicon-home": "",
-  "uicon-hourglass-half-fill": "",
-  "uicon-hourglass": "",
-  "uicon-account": "",
-  "uicon-plus-people-fill": "",
-  "uicon-minus-people-fill": "",
-  "uicon-account-fill": "",
-  "uicon-thumb-down-fill": "",
-  "uicon-thumb-down": "",
-  "uicon-thumb-up": "",
-  "uicon-thumb-up-fill": "",
-  "uicon-lock-fill": "",
-  "uicon-lock-open": "",
-  "uicon-lock-opened-fill": "",
-  "uicon-lock": "",
-  "uicon-red-packet-fill": "",
-  "uicon-photo-fill": "",
-  "uicon-photo": "",
-  "uicon-volume-off-fill": "",
-  "uicon-volume-off": "",
-  "uicon-volume-fill": "",
-  "uicon-volume": "",
-  "uicon-red-packet": "",
-  "uicon-download": "",
-  "uicon-arrow-up-fill": "",
-  "uicon-arrow-down-fill": "",
-  "uicon-play-left-fill": "",
-  "uicon-play-right-fill": "",
-  "uicon-rewind-left-fill": "",
-  "uicon-rewind-right-fill": "",
-  "uicon-arrow-downward": "",
-  "uicon-arrow-leftward": "",
-  "uicon-arrow-rightward": "",
-  "uicon-arrow-upward": "",
-  "uicon-arrow-down": "",
-  "uicon-arrow-right": "",
-  "uicon-arrow-left": "",
-  "uicon-arrow-up": "",
-  "uicon-skip-back-left": "",
-  "uicon-skip-forward-right": "",
-  "uicon-rewind-right": "",
-  "uicon-rewind-left": "",
-  "uicon-arrow-right-double": "",
-  "uicon-arrow-left-double": "",
-  "uicon-wifi-off": "",
-  "uicon-wifi": "",
-  "uicon-empty-data": "",
-  "uicon-empty-history": "",
-  "uicon-empty-list": "",
-  "uicon-empty-page": "",
-  "uicon-empty-order": "",
-  "uicon-man": "",
-  "uicon-woman": "",
-  "uicon-man-add": "",
-  "uicon-man-add-fill": "",
-  "uicon-man-delete": "",
-  "uicon-man-delete-fill": "",
-  "uicon-zh": "",
-  "uicon-en": ""
-};
 const props$2 = defineMixin({
-  props: {
-    // 图标类名
-    name: {
-      type: String,
-      default: () => defProps.icon.name
-    },
-    // 图标颜色，可接受主题色
-    color: {
-      type: String,
-      default: () => defProps.icon.color
-    },
-    // 字体大小，单位px
-    size: {
-      type: [String, Number],
-      default: () => defProps.icon.size
-    },
-    // 是否显示粗体
-    bold: {
-      type: Boolean,
-      default: () => defProps.icon.bold
-    },
-    // 点击图标的时候传递事件出去的index（用于区分点击了哪一个）
-    index: {
-      type: [String, Number],
-      default: () => defProps.icon.index
-    },
-    // 触摸图标时的类名
-    hoverClass: {
-      type: String,
-      default: () => defProps.icon.hoverClass
-    },
-    // 自定义扩展前缀，方便用户扩展自己的图标库
-    customPrefix: {
-      type: String,
-      default: () => defProps.icon.customPrefix
-    },
-    // 图标右边或者下面的文字
-    label: {
-      type: [String, Number],
-      default: () => defProps.icon.label
-    },
-    // label的位置，只能右边或者下边
-    labelPos: {
-      type: String,
-      default: () => defProps.icon.labelPos
-    },
-    // label的大小
-    labelSize: {
-      type: [String, Number],
-      default: () => defProps.icon.labelSize
-    },
-    // label的颜色
-    labelColor: {
-      type: String,
-      default: () => defProps.icon.labelColor
-    },
-    // label与图标的距离
-    space: {
-      type: [String, Number],
-      default: () => defProps.icon.space
-    },
-    // 图片的mode
-    imgMode: {
-      type: String,
-      default: () => defProps.icon.imgMode
-    },
-    // 用于显示图片小图标时，图片的宽度
-    width: {
-      type: [String, Number],
-      default: () => defProps.icon.width
-    },
-    // 用于显示图片小图标时，图片的高度
-    height: {
-      type: [String, Number],
-      default: () => defProps.icon.height
-    },
-    // 用于解决某些情况下，让图标垂直居中的用途
-    top: {
-      type: [String, Number],
-      default: () => defProps.icon.top
-    },
-    // 是否阻止事件传播
-    stop: {
-      type: Boolean,
-      default: () => defProps.icon.stop
-    }
-  }
-});
-const props$1 = defineMixin({
   props: {}
 });
-const props = defineMixin({
+const props$1 = defineMixin({
   props: {
     // 是否展示组件
     show: {
@@ -12887,6 +12971,65 @@ const transitionMixin = {
     }
   }
 };
+const props = defineMixin({
+  props: {
+    // 内置图标名称，或图片路径，建议绝对路径
+    icon: {
+      type: String,
+      default: () => defProps.empty.icon
+    },
+    // 提示文字
+    text: {
+      type: String,
+      default: () => defProps.empty.text
+    },
+    // 文字颜色
+    textColor: {
+      type: String,
+      default: () => defProps.empty.textColor
+    },
+    // 文字大小
+    textSize: {
+      type: [String, Number],
+      default: () => defProps.empty.textSize
+    },
+    // 图标的颜色
+    iconColor: {
+      type: String,
+      default: () => defProps.empty.iconColor
+    },
+    // 图标的大小
+    iconSize: {
+      type: [String, Number],
+      default: () => defProps.empty.iconSize
+    },
+    // 选择预置的图标类型
+    mode: {
+      type: String,
+      default: () => defProps.empty.mode
+    },
+    //  图标宽度，单位px
+    width: {
+      type: [String, Number],
+      default: () => defProps.empty.width
+    },
+    // 图标高度，单位px
+    height: {
+      type: [String, Number],
+      default: () => defProps.empty.height
+    },
+    // 是否显示组件
+    show: {
+      type: Boolean,
+      default: () => defProps.empty.show
+    },
+    // 组件距离上一个元素之间的距离，默认px单位
+    marginTop: {
+      type: [String, Number],
+      default: () => defProps.empty.marginTop
+    }
+  }
+});
 var commonjsGlobal = typeof globalThis !== "undefined" ? globalThis : typeof window !== "undefined" ? window : typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : {};
 function getDefaultExportFromCjs(x) {
   return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, "default") ? x["default"] : x;
@@ -19765,8 +19908,10 @@ exports.e = e;
 exports.error = error$2;
 exports.f = f;
 exports.formValidate = formValidate;
+exports.getPx = getPx;
 exports.icons = icons;
 exports.index = index$1;
+exports.isRef = isRef;
 exports.mixin = mixin;
 exports.mpMixin = mpMixin;
 exports.n = n;
@@ -19776,20 +19921,22 @@ exports.onMounted = onMounted;
 exports.onUnmounted = onUnmounted;
 exports.openType = openType;
 exports.p = p;
-exports.props = props$d;
-exports.props$1 = props$c;
-exports.props$10 = props$3;
-exports.props$11 = props$2;
-exports.props$12 = props$1;
-exports.props$13 = props;
-exports.props$2 = props$b;
-exports.props$3 = props$a;
-exports.props$4 = props$9;
-exports.props$5 = props$8;
-exports.props$6 = props$7;
-exports.props$7 = props$6;
-exports.props$8 = props$5;
-exports.props$9 = props$4;
+exports.props = props$f;
+exports.props$1 = props$e;
+exports.props$10 = props$5;
+exports.props$11 = props$4;
+exports.props$12 = props$3;
+exports.props$13 = props$2;
+exports.props$14 = props$1;
+exports.props$15 = props;
+exports.props$2 = props$d;
+exports.props$3 = props$c;
+exports.props$4 = props$b;
+exports.props$5 = props$a;
+exports.props$6 = props$9;
+exports.props$7 = props$8;
+exports.props$8 = props$7;
+exports.props$9 = props$6;
 exports.r = r;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;

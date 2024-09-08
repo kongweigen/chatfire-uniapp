@@ -30,7 +30,8 @@
 		{
 			"path": "pages/chat/index",
 			"style": {
-				"navigationBarTitleText": "火宝 AI"
+				"navigationBarTitleText": "火宝 AI",
+				"navigationStyle": "custom"
 			}
 		},
 		{
