@@ -14,8 +14,8 @@
 							<span style="font-size: 12px; color: #fff; opacity: 0.7">图片视频尽情创作</span>
 						</view>
 					</view>
-					<view class="leftBox boxDown">
-						<view @click="toPage('fireChat')">
+					<view class="leftBox boxDown" @click="toPage('fireChat','tab')">
+						<view>
 							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
 						<up-icon name="play-right-fill" color="#fff" size="12"></up-icon>
