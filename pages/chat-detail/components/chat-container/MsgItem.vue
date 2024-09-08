@@ -93,9 +93,9 @@ const handlerAction = (type) => {
 		display: flex;
 		align-items: flex-start;
 		gap: 10rpx;
-		max-width: 70%;
+		max-width: 80%;
 		border-radius: 20rpx;
-		font-size: 24rpx;
+		font-size: 28rpx;
 		.content {
 			padding: 20rpx;
 			border-radius: 20rpx;
