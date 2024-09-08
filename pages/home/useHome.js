@@ -29,7 +29,11 @@ export const useHome = () => {
 			case '视频创作':
 				toRoute(routerUrlMap['videoDesign'])
 				break;
-			default:toRoute(routerUrlMap['picDesign'])
+			case 'fireChat':
+				toRoute(routerUrlMap['fireChat'])
+				break;
+			default:
+				toRoute(routerUrlMap['picDesign'])
 				break;
 		}
 

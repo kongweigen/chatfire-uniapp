@@ -3,7 +3,7 @@
 		<view class="content">
 			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="600" radius="0" @change="onSwiperChange"></up-swiper>
 			<view class="mainMenu">
-				<view class="menuItem leftHeight" :style="{ backgroundColor: btnColor }">
+				<view class="menuItem leftHeight">
 					<view class="leftBox boxUp" @click="showPop = true">
 						<view class="createIcon">
 							<img src="/static/add.svg" style="width: 48px; height: 46px; opacity: 0.9" alt="" />
@@ -15,21 +15,26 @@
 						</view>
 					</view>
 					<view class="leftBox boxDown">
-						<view>
+						<view @click="toPage('fireChat')">
 							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
 						<up-icon name="play-right-fill" color="#fff" size="12"></up-icon>
 					</view>
 				</view>
 				<view class="rightMenu">
-					<view class="menuItem rightHeight" v-for="item in mainItems" :key="item">
+					<view
+						class="menuItem rightHeight"
+						:style="{ background: `linear-gradient(to bottom, ${item.bgColor[0]}, ${item.bgColor[1]})` }"
+						v-for="item in mainItems"
+						:key="item"
+					>
 						<view style="margin-left: 16px">
 							<span style="font-size: 16px; font-weight: bold">{{ item.title }}</span>
 							<br />
 							<span style="font-size: 12px; opacity: 0.7">{{ item.content }}</span>
 						</view>
 						<view>
-							<img :src="item.icon" style="width: 50px; height: 50px; margin-right: 4px" alt="" />
+							<img :src="item.icon" style="width: 50px; height: 50px; margin-right: 8px" alt="" />
 						</view>
 					</view>
 				</view>
@@ -57,7 +62,7 @@
 		</view>
 		<up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
 			<view class="createPop">
-				<view class="createItem" v-for="item in createItem" :key="item" @click="toPage(item.label)">
+				<view class="createItem" v-for="item in createItem" :key="item" @click="toPage(item.label), (showPop = false)">
 					<img :src="item.src" alt="" />
 					<text class="grid-text">{{ item.label }}</text>
 				</view>
@@ -76,8 +81,8 @@ const showPop = ref(false);
 const list1 = ref([
 	{
 		url: '/static/banner11.png',
-		backgroundColor: '#c1cdd1',
-		btnColor: 'rgb(30,144,230)'
+		backgroundColor: '#c1cdd1'
+		// btnColor: `linear-gradient(to bottom, rgb(30,144,230), rgb(30,144,180))`;
 	}
 	// 更多图片及其背景色...
 ]);
@@ -85,12 +90,14 @@ const mainItems = ref([
 	{
 		title: '智能换脸',
 		content: '换成TA试试看',
-		icon: '/static/face.svg'
+		icon: '/static/face.png',
+		bgColor: ['rgba(69,180,233,0.3)', 'rgba(69,180,233,0.1)']
 	},
 	{
 		title: '音频转换',
 		content: '清脆声音谁不忘',
-		icon: '/static/pic.png'
+		icon: '/static/voice.png',
+		bgColor: ['rgba(137,155,247,0.3)', 'rgba(137,155,247,0.1)']
 	}
 ]);
 
@@ -100,8 +107,8 @@ const btnColor = ref(list1.value[0].btnColor);
 // 轮播图切换事件处理函数
 const onSwiperChange = ({ current }) => {
 	// 更新当前背景色为当前幻灯片的背景色
-	currentBackgroundColor.value = list1.value[current].backgroundColor;
-	btnColor.value = list1.value[current].btnColor;
+	// currentBackgroundColor.value = list1.value[current].backgroundColor;
+	// btnColor.value = list1.value[current].btnColor;
 };
 </script>
 
@@ -109,7 +116,6 @@ const onSwiperChange = ({ current }) => {
 .content {
 	height: 100vh;
 	background-color: #eeeeee; /* 举例背景颜色，您可以根据需要更改 */
-	transition: background-color 2s ease; // 添加CSS过渡效果
 	height: 100vh;
 }
 .bannerBox {
@@ -127,6 +133,10 @@ const onSwiperChange = ({ current }) => {
 	.leftHeight {
 		height: 20vh !important;
 		flex-direction: column;
+		background: linear-gradient(to bottom, #307ae4, #45b5df);
+	}
+	.rightHeight {
+		// background: rgb(203, 240, 255, 0.3) !important;
 	}
 	.boxUp {
 		justify-content: center;
@@ -152,6 +162,10 @@ const onSwiperChange = ({ current }) => {
 		justify-content: center;
 		padding: 4px;
 		gap: 8px;
+		.u-icon__icon {
+			margin-top: 2px;
+			opacity: 0.6;
+		}
 	}
 	.leftBox {
 		display: flex;
@@ -173,14 +187,12 @@ const onSwiperChange = ({ current }) => {
 		color: #333333 !important;
 	}
 	.menuItem {
-		transition: background-color 2s ease;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 46vw;
 		height: 9.5vh;
 		border-radius: 8px;
-		background-color: rgb(203, 240, 255, 0.5);
 		margin-bottom: 8px;
 	}
 }
