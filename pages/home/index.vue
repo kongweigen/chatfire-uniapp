@@ -1,7 +1,7 @@
 <template>
 	<transition name="fade" type="animation">
 		<view class="content">
-			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="600" radius="0" @change="onSwiperChange"></up-swiper>
+			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="560" radius="0" @change="onSwiperChange"></up-swiper>
 			<view class="mainMenu">
 				<view class="menuItem leftHeight">
 					<view class="leftBox boxUp" @click="showPop = true">
@@ -14,7 +14,7 @@
 							<span style="font-size: 12px; color: #fff; opacity: 0.7">图片视频尽情创作</span>
 						</view>
 					</view>
-					<view class="leftBox boxDown" @click="toPage('fireChat','tab')">
+					<view class="leftBox boxDown" @click="toPage('fireChat', 'tab')">
 						<view>
 							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
@@ -91,13 +91,13 @@ const mainItems = ref([
 		title: '智能换脸',
 		content: '换成TA试试看',
 		icon: '/static/face.png',
-		bgColor: ['rgba(69,180,233,0.3)', 'rgba(69,180,233,0.1)']
+		bgColor: ['rgba(69,180,233,0.3)', 'rgba(69,180,233,0.05)']
 	},
 	{
 		title: '音频转换',
 		content: '清脆声音谁不忘',
 		icon: '/static/voice.png',
-		bgColor: ['rgba(137,155,247,0.3)', 'rgba(137,155,247,0.1)']
+		bgColor: ['rgba(137,155,247,0.2)', 'rgba(137,155,247,0.05)']
 	}
 ]);
 
@@ -133,10 +133,9 @@ const onSwiperChange = ({ current }) => {
 	.leftHeight {
 		height: 20vh !important;
 		flex-direction: column;
-		background: linear-gradient(to bottom, #307ae4, #45b5df);
+		background: linear-gradient(to bottom, #307ae4, #30a7e4, #30e2e4);
 	}
 	.rightHeight {
-		// background: rgb(203, 240, 255, 0.3) !important;
 	}
 	.boxUp {
 		justify-content: center;
@@ -153,7 +152,7 @@ const onSwiperChange = ({ current }) => {
 	}
 	.boxDown {
 		flex-direction: row;
-		background-color: rgba(225, 255, 255, 0.3);
+		background-color: rgba(225, 255, 255, 0.4);
 		border-radius: 20px;
 		width: calc(88% - 4px) !important;
 		height: 24% !important;
