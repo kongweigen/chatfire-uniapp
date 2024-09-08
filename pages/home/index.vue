@@ -18,7 +18,7 @@
 						<view>
 							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
-						<up-icon name="play-right-fill" color="#fff" size="12"></up-icon>
+						<img src="/static/ai.png" style="width: 30px; height: 30px;" alt="" />
 					</view>
 				</view>
 				<view class="rightMenu">
@@ -160,11 +160,6 @@ const onSwiperChange = ({ current }) => {
 		align-items: center;
 		justify-content: center;
 		padding: 4px;
-		gap: 8px;
-		.u-icon__icon {
-			margin-top: 2px;
-			opacity: 0.6;
-		}
 	}
 	.leftBox {
 		display: flex;
