@@ -192,7 +192,7 @@ const onSwiperChange = ({ current }) => {
 		align-items: center;
 		width: 46vw;
 		height: 9.5vh;
-		border-radius: 8px;
+		border-radius: 18px;
 		margin-bottom: 8px;
 	}
 }
