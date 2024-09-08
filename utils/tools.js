@@ -28,9 +28,6 @@ const isEmpty = (val) => {
 
 export const generateUUID = () => {
 	let d = new Date().getTime()
-	if (window.performance && typeof window.performance.now === "function") {
-		d += performance.now() // 使用 performance.now() 生成更短的 UUID
-	}
 	const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
 		/[xy]/g,
 		function(c) {

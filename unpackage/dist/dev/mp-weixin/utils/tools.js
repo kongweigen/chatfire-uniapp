@@ -11,9 +11,6 @@ const positionDomViewBottom = (className = "_message_list") => {
 };
 const generateUUID = () => {
   let d = (/* @__PURE__ */ new Date()).getTime();
-  if (window.performance && typeof window.performance.now === "function") {
-    d += performance.now();
-  }
   const uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
     /[xy]/g,
     function(c) {

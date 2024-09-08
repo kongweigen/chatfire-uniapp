@@ -82,7 +82,7 @@ let handleStop;
 onMounted(() => {
 	console.log('加载');
 	handleStop = sendRef.value?.handleStop;
-	sendRef.value?.shortcut(props.text)
+	props.text && sendRef.value?.shortcut(props.text);
 });
 onUnmounted(() => {
 	console.log('卸载');

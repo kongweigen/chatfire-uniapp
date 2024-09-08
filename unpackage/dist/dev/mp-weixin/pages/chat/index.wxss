@@ -23,7 +23,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.chat_container.data-v-5a559478 {
+.chat.data-v-5a559478 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -32,18 +32,54 @@
   padding: 20rpx 32rpx;
   background-color: #eff0f6;
 }
-.chat_container .homepage.data-v-5a559478 {
+.chat .homepage.data-v-5a559478 {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
-.chat_container .send-box.data-v-5a559478 {
+.chat .homepage .logo.data-v-5a559478 {
+  width: 230rpx;
+  height: 200rpx;
+}
+.chat .homepage .logo image.data-v-5a559478 {
+  width: 230rpx;
+  height: 200rpx;
+}
+.chat .homepage .hot-box.data-v-5a559478 {
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  width: 600rpx;
+  max-height: 500rpx;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+.chat .homepage .hot-box .title.data-v-5a559478 {
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+}
+.chat .homepage .hot-box .item.data-v-5a559478 {
+  font-size: 28rpx;
+  max-height: 90rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+.chat .homepage .hot-box .item .sequence.data-v-5a559478 {
+  display: inline-block;
+  width: 20rpx;
+  margin-right: 20rpx;
+  color: #9c9c9c;
+}
+.chat .send-box.data-v-5a559478 {
   position: relative;
   border-radius: 16px;
   box-shadow: none;
   background-color: #ffffff;
   padding-left: 20rpx;
 }
-.chat_container .send-box .send-btn.data-v-5a559478 {
+.chat .send-box .send-btn.data-v-5a559478 {
   display: flex;
   justify-content: center;
   align-items: center;

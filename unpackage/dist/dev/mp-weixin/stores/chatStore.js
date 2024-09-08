@@ -22,11 +22,26 @@ const useChatStore = common_vendor.defineStore({
       panelShow: false,
       panelData: {},
       presetChatModels: [
-        { key: "glm-3-turbo", label: "glm-3-turbo" },
-        { key: "glm-4-air", label: "glm-4-air" },
-        { key: "glm-4", label: "glm-4" },
-        { key: "glm-4-flash", label: "glm-4-flash" },
-        { key: "glm-4-9b-chat", label: "glm-4-9b-chat" }
+        {
+          key: "glm-3-turbo",
+          label: "glm-3-turbo"
+        },
+        {
+          key: "glm-4-air",
+          label: "glm-4-air"
+        },
+        {
+          key: "glm-4",
+          label: "glm-4"
+        },
+        {
+          key: "glm-4-flash",
+          label: "glm-4-flash"
+        },
+        {
+          key: "glm-4-9b-chat",
+          label: "glm-4-9b-chat"
+        }
       ],
       // 内置模型
       currentChatModel: "glm-3-turbo"
@@ -64,14 +79,14 @@ const useChatStore = common_vendor.defineStore({
       this.apiKey = data.apiKey;
       this.baseUrl = data.baseUrl;
       this.customModels = ((_a = data.models) == null ? void 0 : _a.split(",")) || [];
-      localStorage.setItem("chatbot-api-settings", JSON.stringify(data));
+      common_vendor.index.setStorageSync("chatbot-api-settings", JSON.stringify(data));
     },
     setLoading(loading) {
       this.loading = loading;
     },
     // chat 相关
     initChat() {
-      const chatListJson = localStorage.getItem("chatbot-chat-list") || "[]";
+      const chatListJson = common_vendor.index.getStorageSync("chatbot-chat-list") || "[]";
       const list = JSON.parse(chatListJson);
       this.chatList = list;
     },
@@ -91,6 +106,7 @@ const useChatStore = common_vendor.defineStore({
         fileList: []
       };
       this.chatList.push(item);
+      common_vendor.index.setStorageSync("chatbot-chat-list", JSON.stringify(this.chatList));
       this.setChat(item);
       this.initMessage(item.id);
       return item.id;
@@ -103,10 +119,11 @@ const useChatStore = common_vendor.defineStore({
         }
         this.setChat(t);
       }
+      common_vendor.index.setStorageSync("chatbot-chat-list", JSON.stringify(this.chatList));
     },
     delChat(id) {
       this.chatList = this.chatList.filter((item) => item.id !== id);
-      localStorage.setItem("chatbot-chat-list", JSON.stringify(this.chatList));
+      common_vendor.index.setStorageSync("chatbot-chat-list", JSON.stringify(this.chatList));
       $message.success("操作成功");
     },
     setChat(data) {
@@ -124,7 +141,7 @@ const useChatStore = common_vendor.defineStore({
     initMessage(id) {
       var _a;
       this.chatId = id;
-      const messageMapJson = localStorage.getItem("chatbot-chat-message-map") || "{}";
+      const messageMapJson = common_vendor.index.getStorageSync("chatbot-chat-message-map") || "{}";
       const map = JSON.parse(messageMapJson);
       this.messageList = ((_a = map[id]) == null ? void 0 : _a.filter((t) => t.content)) || [];
     },
@@ -134,19 +151,20 @@ const useChatStore = common_vendor.defineStore({
           name: val
         });
       }
-      this.messageList.push(
-        {
-          content: val,
-          role: "user",
-          status: "success",
-          datetime: ""
-        },
-        {
-          content: "",
-          role: "system",
-          status: "loading"
-        }
-      );
+      this.messageList.push({
+        content: val,
+        role: "user",
+        status: "success",
+        datetime: ""
+      }, {
+        content: "",
+        role: "system",
+        status: "loading"
+      });
+      const messageMapJson = common_vendor.index.getStorageSync("chatbot-chat-message-map") || "{}";
+      const map = JSON.parse(messageMapJson);
+      map[this.chatId] = this.messageList;
+      common_vendor.index.setStorageSync("chatbot-chat-message-map", JSON.stringify(map));
     },
     // 更新最后一条回复的状态、信息
     updateLastMessage(content, status) {
@@ -156,6 +174,10 @@ const useChatStore = common_vendor.defineStore({
         this.messageList[this.messageList.length - 1].status = status;
       if (content)
         this.messageList[this.messageList.length - 1].content = content;
+      const messageMapJson = common_vendor.index.getStorageSync("chatbot-chat-message-map") || "{}";
+      const map = JSON.parse(messageMapJson);
+      map[this.chatId] = this.messageList;
+      common_vendor.index.setStorageSync("chatbot-chat-message-map", JSON.stringify(map));
     }
   }
 });
