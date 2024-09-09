@@ -6,7 +6,8 @@
     "pages/chat/index",
     "pages/chat-detail/index",
     "pages/mine/index",
-    "pages/design/index"
+    "pages/design/index",
+    "pages/pcedit/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",

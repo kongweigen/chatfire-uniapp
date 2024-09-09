@@ -15,23 +15,29 @@ const useHome = () => {
         toRoute(utils_constant.routerUrlMap["clear"], "clear");
         break;
       case "图片创作":
-        toRoute();
+        toRoute(utils_constant.routerUrlMap["picDesign"]);
         break;
       case "视频创作":
-        toRoute();
+        toRoute(utils_constant.routerUrlMap["videoDesign"]);
         break;
       case "fireChat":
-        toRoute();
+        toRoute(utils_constant.routerUrlMap["fireChat"]);
         break;
       default:
-        toRoute();
+        toRoute(utils_constant.routerUrlMap["picDesign"]);
         break;
     }
   };
   const toRoute = (url, type) => {
-    common_vendor.index.navigateTo({
-      url: `/pages/design/index?type=${type}`
-    });
+    if (type === "tab") {
+      common_vendor.index.switchTab({
+        url
+      });
+    } else {
+      common_vendor.index.navigateTo({
+        url: `/pages/design/index`
+      });
+    }
   };
   common_vendor.onMounted(() => {
     api_user_index.queryUser();

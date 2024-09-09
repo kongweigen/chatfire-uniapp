@@ -1,41 +1,14 @@
 <template>
-	<view class="stepsBox">
-		<image src="/static/design03.png"></image>
-	</view>
-	<view class="createBox">
-		<view class="">
-			<up-text bold="true" text="01 键入所想" size="26"></up-text>
-			<span>发挥想象，随心所写</span>
-		</view>
-		<up-textarea placeholder="所想即所得,输入你现在的想法吧!" border="surround" v-model="createVal" @change="change"></up-textarea>
-		<view class="">
-			<span>模板推荐</span>
-			<view class="templateBox">
-				<view class="templateItem" v-for="item in templateList" :key="item">
-					<view :style="{ background: `linear-gradient(to bottom, url(${item.bg}), #fff)` }">
-						<span style="font-size: 12px; opacity: 0.7">{{ item.content }}</span>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
-	<view class="bottom">
-		<up-button type="primary">生成创作</up-button>
+	<view class="page">
+		<ImageClear></ImageClear>
 	</view>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { useDesign } from './useDesign.js';
-useDesign();
-const createVal = ref('');
-const valChange = () => {};
-const templateList = ref([
-	{ content: '小男孩', bg: '/static/btnBg.png' },
-	{ content: '糖醋排骨', bg: '/static/btnBg.png' },
-	{ content: '兔子先生', bg: '/static/btnBg.png' },
-	{ content: '粉色城堡', bg: '/static/btnBg.png' }
-]);
+import ImageClear from './image-clear/index.vue';
+import { usePcedit } from './usePcedit.js';
+usePcedit();
 </script>
 
 <style lang="scss" scoped>

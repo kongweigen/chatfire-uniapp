@@ -53,6 +53,12 @@
 				// "navigationStyle": "custom",
 				"navigationBarTitleText": "工作台"
 			}
+		}, {
+			"path": "pages/pcedit/index",
+			"style": {
+				// "navigationStyle": "custom",
+				"navigationBarTitleText": "图片工具箱"
+			}
 		}
 	],
 	"globalStyle": {

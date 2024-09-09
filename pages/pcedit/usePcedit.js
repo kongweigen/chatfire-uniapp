@@ -5,7 +5,6 @@ import {
 	ref,
 	onMounted
 } from 'vue';
-
 import {
 	onLoad,
 } from '@dcloudio/uni-app';
@@ -16,7 +15,7 @@ import {
 	routerUrlMap
 } from '@/utils/index.js'
 
-export const useHome = () => {
+export const usePcedit = () => {
 
 	const menuList = ref(menuMock)
 	const createItem = ref(createItemMock)
@@ -26,43 +25,38 @@ export const useHome = () => {
 		const urlName = item.value || item;
 		switch (urlName) {
 			case 'clear':
-				toRoute(routerUrlMap['clear'], 'clear')
+				toRoute(routerUrlMap['clear'], routerType)
 				break;
 			case '图片创作':
-				toRoute(routerUrlMap['picDesign'])
+				toRoute(routerUrlMap['picDesign'], routerType)
 				break;
 			case '视频创作':
-				toRoute(routerUrlMap['videoDesign'])
+				toRoute(routerUrlMap['videoDesign'], routerType)
 				break;
 			case 'fireChat':
-				toRoute(routerUrlMap['fireChat'])
+				toRoute(routerUrlMap['fireChat'], routerType)
 				break;
 			default:
-				toRoute(routerUrlMap['picDesign'])
+				toRoute(routerUrlMap['picDesign'], routerType)
 				break;
 		}
 
 	}
-
-	const toRoute = (url, type) => {
-		if (type === 'tab') {
+	const toRoute = (urlInfo, routerType) => {
+		if (routerType === 'tab') {
 			uni.switchTab({
-				url: url
+				url: urlInfo
 			})
 		} else {
 			uni.navigateTo({
-				url: `/pages/design/index`
+				url: urlInfo
 			});
 		}
+	}
 
-	}
-	const toPcedit = () => {
-		uni.navigateTo({
-			url: `/pages/pcedit/index?type=${type}`
-		});
-	}
-	onMounted(() => {
-		queryUser()
+	const designType = ref('')
+	onLoad((option) => {
+		designType.value = option.type
 	})
 	return {
 		createItem,

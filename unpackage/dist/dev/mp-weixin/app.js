@@ -11,6 +11,7 @@ if (!Math) {
   "./pages/chat-detail/index.js";
   "./pages/mine/index.js";
   "./pages/design/index.js";
+  "./pages/pcedit/index.js";
 }
 const _sfc_main = {
   onLaunch: function() {
