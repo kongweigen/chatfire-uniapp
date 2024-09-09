@@ -3,12 +3,12 @@ export const chat2gpt = ({
 	data,
 	signal
 }, successCall) => {
-	let token =
-		'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjMyMWEzMDRmLTdlZjktNDljMS1hYmE4LTBhOTBhMDdjZTgzOSIsInVzZXJuYW1lIjoidGVzdCJ9.9nLbW-MPMr42Y8em5BPSpXXoJkK6kxU3-ajFnYNfoMaHeg5fQ4AWyFJRSnsrUEMkNCULAQJraAb8c2833v9-lw'
+	let token = uni.getStorageSync("token")
 
 	return uni.request({
 		method: "POST",
-		url: 'https://agi.chatfire.cn/box/chat/ask', //仅为示例，并非真实接口地址。
+		// url: 'https://agi.chatfire.cn/box/chat/ask', //仅为示例，并非真实接口地址。
+		url: 'http://103.74.173.48:6101/box/chat/ask', //仅为示例，并非真实接口地址。
 		data,
 		enableChunked: true,
 		responseType: "stream",
@@ -18,8 +18,12 @@ export const chat2gpt = ({
 			Authorization: `Bearer ${token}`
 		},
 		success: (res) => {
+			console.log(res)
 			successCall()
 		}
 	});
 
 }
+
+
+// export const chat2gpt = (params, config = {}) => http.post('/box/chat/ask', params.data, config)

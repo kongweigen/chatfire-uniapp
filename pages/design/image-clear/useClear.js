@@ -64,8 +64,8 @@ export const useClear = () => {
 			success: (chooseImageRes) => {
 				const tempFile = chooseImageRes.tempFiles[0];
 				const tempFilePath = chooseImageRes.tempFilePaths[0];
-				let token =
-					'eyJhbGciOiJIUzUxMiJ9.eyJ1c2VyX2lkIjoxODI0MTAyMzM0OTkzNzcyNTQ0LCJ1c2VyX2tleSI6IjgyMTIxYjdhLWU3MjMtNDYwMC1hMTlhLTAxYmIzODUzMWY0YSIsInVzZXJuYW1lIjoidGVzdCJ9.QckzY4WTJRTe9E0CGdlrzpL_DuQBBJnT7DYOjAJVmVhsLotGKnP597A-jBqid8H7UnMFiwG1JFRSf63PzvBvuQ'
+				let token = uni.getStorageSync("token")
+				
 				uni.showLoading({
 					mask: true,
 					title: '正在上传'

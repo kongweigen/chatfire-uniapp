@@ -11677,7 +11677,7 @@ const createHook = (lifecycle) => (hook, target = getCurrentInstance()) => {
   !isInSSRComponentSetup && injectHook(lifecycle, hook, target);
 };
 const onLoad = /* @__PURE__ */ createHook(ON_LOAD);
-const props$i = defineMixin({
+const props$l = defineMixin({
   props: {
     // 列表数组，元素可为字符串，如为对象可通过keyName指定目标属性名
     list: {
@@ -11802,7 +11802,7 @@ const props$i = defineMixin({
     }
   }
 });
-const props$h = defineMixin({
+const props$k = defineMixin({
   props: {
     // 宫格的name
     name: {
@@ -11816,7 +11816,7 @@ const props$h = defineMixin({
     }
   }
 });
-const props$g = defineMixin({
+const props$j = defineMixin({
   props: {
     // 分成几列
     col: {
@@ -11840,7 +11840,85 @@ const props$g = defineMixin({
     }
   }
 });
-const props$f = defineMixin({
+const props$i = defineMixin({
+  props: {
+    // item标签的名称，作为与u-tabbar的value参数匹配的标识符
+    name: {
+      type: [String, Number, null],
+      default: () => defProps.tabbarItem.name
+    },
+    // uView内置图标或者绝对路径的图片
+    icon: {
+      icon: String,
+      default: () => defProps.tabbarItem.icon
+    },
+    // 右上角的角标提示信息
+    badge: {
+      type: [String, Number, null],
+      default: () => defProps.tabbarItem.badge
+    },
+    // 是否显示圆点，将会覆盖badge参数
+    dot: {
+      type: Boolean,
+      default: () => defProps.tabbarItem.dot
+    },
+    // 描述文本
+    text: {
+      type: String,
+      default: () => defProps.tabbarItem.text
+    },
+    // 控制徽标的位置，对象或者字符串形式，可以设置top和right属性
+    badgeStyle: {
+      type: [Object, String],
+      default: () => defProps.tabbarItem.badgeStyle
+    }
+  }
+});
+const props$h = defineMixin({
+  props: {
+    // 当前匹配项的name
+    value: {
+      type: [String, Number, null],
+      default: () => defProps.tabbar.value
+    },
+    // 是否为iPhoneX留出底部安全距离
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: () => defProps.tabbar.safeAreaInsetBottom
+    },
+    // 是否显示上方边框
+    border: {
+      type: Boolean,
+      default: () => defProps.tabbar.border
+    },
+    // 元素层级z-index
+    zIndex: {
+      type: [String, Number],
+      default: () => defProps.tabbar.zIndex
+    },
+    // 选中标签的颜色
+    activeColor: {
+      type: String,
+      default: () => defProps.tabbar.activeColor
+    },
+    // 未选中标签的颜色
+    inactiveColor: {
+      type: String,
+      default: () => defProps.tabbar.inactiveColor
+    },
+    // 是否固定在底部
+    fixed: {
+      type: Boolean,
+      default: () => defProps.tabbar.fixed
+    },
+    // fixed定位固定在底部时，是否生成一个等高元素防止塌陷
+    placeholder: {
+      type: Boolean,
+      default: () => defProps.tabbar.placeholder
+    }
+  }
+});
+const props$g = defineMixin({
   props: {
     // 是否展示弹窗
     show: {
@@ -11919,7 +11997,7 @@ const props$f = defineMixin({
     }
   }
 });
-const props$e = defineMixin({
+const props$f = defineMixin({
   props: {
     // 图片地址
     src: {
@@ -12041,7 +12119,7 @@ const openType = defineMixin({
     }
   }
 });
-const props$d = defineMixin({
+const props$e = defineMixin({
   props: {
     // 是否细边框
     hairline: {
@@ -12407,7 +12485,7 @@ const icons = {
   "uicon-zh": "",
   "uicon-en": ""
 };
-const props$c = defineMixin({
+const props$d = defineMixin({
   props: {
     // 图标类名
     name: {
@@ -12496,7 +12574,7 @@ const props$c = defineMixin({
     }
   }
 });
-const props$b = defineMixin({
+const props$c = defineMixin({
   props: {
     // 是否开启顶部安全区适配
     safeAreaInsetTop: {
@@ -12580,7 +12658,7 @@ const props$b = defineMixin({
     }
   }
 });
-const props$a = defineMixin({
+const props$b = defineMixin({
   props: {
     // 绑定的值
     modelValue: {
@@ -12766,7 +12844,7 @@ const props$a = defineMixin({
     }
   }
 });
-const props$9 = defineMixin({
+const props$a = defineMixin({
   props: {
     // 主题颜色
     type: {
@@ -12950,7 +13028,7 @@ const value = {
     }
   }
 };
-const props$8 = defineMixin({
+const props$9 = defineMixin({
   props: {
     // 输入框的内容
     value: {
@@ -13074,7 +13152,7 @@ const props$8 = defineMixin({
     }
   }
 });
-const props$7 = defineMixin({
+const props$8 = defineMixin({
   props: {
     // 是否显示组件
     show: {
@@ -13133,7 +13211,7 @@ const props$7 = defineMixin({
     }
   }
 });
-const props$6 = defineMixin({
+const props$7 = defineMixin({
   props: {
     // 轮播的长度
     length: {
@@ -13162,7 +13240,87 @@ const props$6 = defineMixin({
     }
   }
 });
+const props$6 = defineMixin({
+  props: {
+    // 是否显示圆点
+    isDot: {
+      type: Boolean,
+      default: () => defProps.badge.isDot
+    },
+    // 显示的内容
+    value: {
+      type: [Number, String],
+      default: () => defProps.badge.value
+    },
+    // 显示的内容
+    modelValue: {
+      type: [Number, String],
+      default: () => defProps.badge.modelValue
+    },
+    // 是否显示
+    show: {
+      type: Boolean,
+      default: () => defProps.badge.show
+    },
+    // 最大值，超过最大值会显示 '{max}+'
+    max: {
+      type: [Number, String],
+      default: () => defProps.badge.max
+    },
+    // 主题类型，error|warning|success|primary
+    type: {
+      type: String,
+      default: () => defProps.badge.type
+    },
+    // 当数值为 0 时，是否展示 Badge
+    showZero: {
+      type: Boolean,
+      default: () => defProps.badge.showZero
+    },
+    // 背景颜色，优先级比type高，如设置，type参数会失效
+    bgColor: {
+      type: [String, null],
+      default: () => defProps.badge.bgColor
+    },
+    // 字体颜色
+    color: {
+      type: [String, null],
+      default: () => defProps.badge.color
+    },
+    // 徽标形状，circle-四角均为圆角，horn-左下角为直角
+    shape: {
+      type: String,
+      default: () => defProps.badge.shape
+    },
+    // 设置数字的显示方式，overflow|ellipsis|limit
+    // overflow会根据max字段判断，超出显示`${max}+`
+    // ellipsis会根据max判断，超出显示`${max}...`
+    // limit会依据1000作为判断条件，超出1000，显示`${value/1000}K`，比如2.2k、3.34w，最多保留2位小数
+    numberType: {
+      type: String,
+      default: () => defProps.badge.numberType
+    },
+    // 设置badge的位置偏移，格式为 [x, y]，也即设置的为top和right的值，absolute为true时有效
+    offset: {
+      type: Array,
+      default: () => defProps.badge.offset
+    },
+    // 是否反转背景和字体颜色
+    inverted: {
+      type: Boolean,
+      default: () => defProps.badge.inverted
+    },
+    // 是否绝对定位
+    absolute: {
+      type: Boolean,
+      default: () => defProps.badge.absolute
+    }
+  }
+});
 const props$5 = defineMixin({
+  props: {}
+});
+const props$4 = defineMixin({
   props: {
     // 是否显示遮罩
     show: {
@@ -13186,16 +13344,13 @@ const props$5 = defineMixin({
     }
   }
 });
-const props$4 = defineMixin({
+const props$3 = defineMixin({
   props: {
     bgColor: {
       type: String,
       default: () => defProps.statusBar.bgColor
     }
   }
-});
-const props$3 = defineMixin({
-  props: {}
 });
 const props$2 = defineMixin({
   props: {
@@ -20268,25 +20423,28 @@ exports.onMounted = onMounted;
 exports.onUnmounted = onUnmounted;
 exports.openType = openType;
 exports.p = p;
-exports.props = props$i;
-exports.props$1 = props$h;
-exports.props$10 = props$8;
-exports.props$11 = props$7;
-exports.props$12 = props$6;
-exports.props$13 = props$5;
-exports.props$14 = props$4;
-exports.props$15 = props$3;
-exports.props$16 = props$2;
-exports.props$17 = props$1;
-exports.props$18 = props;
-exports.props$2 = props$g;
-exports.props$3 = props$f;
-exports.props$4 = props$e;
-exports.props$5 = props$d;
-exports.props$6 = props$c;
-exports.props$7 = props$b;
-exports.props$8 = props$a;
-exports.props$9 = props$9;
+exports.props = props$l;
+exports.props$1 = props$k;
+exports.props$10 = props$b;
+exports.props$11 = props$a;
+exports.props$12 = props$9;
+exports.props$13 = props$8;
+exports.props$14 = props$7;
+exports.props$15 = props$6;
+exports.props$16 = props$5;
+exports.props$17 = props$4;
+exports.props$18 = props$3;
+exports.props$19 = props$2;
+exports.props$2 = props$j;
+exports.props$20 = props$1;
+exports.props$21 = props;
+exports.props$3 = props$i;
+exports.props$4 = props$h;
+exports.props$5 = props$g;
+exports.props$6 = props$f;
+exports.props$7 = props$e;
+exports.props$8 = props$d;
+exports.props$9 = props$c;
 exports.r = r;
 exports.ref = ref;
 exports.resolveComponent = resolveComponent;

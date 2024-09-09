@@ -8,7 +8,6 @@ const useHome = () => {
   const createItem = common_vendor.ref(utils_constant.createItemMock);
   const historyList = common_vendor.ref(utils_constant.historyMock);
   const toPage = (item, routerType) => {
-    debugger;
     const urlName = item.value || item;
     switch (urlName) {
       case "clear":
@@ -39,10 +38,16 @@ const useHome = () => {
       });
     }
   };
+  const toPcedit = (item) => {
+    common_vendor.index.navigateTo({
+      url: `/pages/pcedit/index?type=${item.value}`
+    });
+  };
   common_vendor.onMounted(() => {
     api_user_index.queryUser();
   });
   return {
+    toPcedit,
     createItem,
     historyList,
     menuList,

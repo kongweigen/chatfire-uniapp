@@ -20,21 +20,12 @@ const useSend = () => {
       const arrayBuffer = res.data;
       const uint8Array = new Uint8Array(arrayBuffer);
       const chunk = new common_vendor.textEncodingShimExports.TextDecoder("utf-8").decode(uint8Array);
-      console.log("输出中", chunk);
-      if (chunk.startsWith("{") && chunk.includes("{") && chunk.includes("}")) {
-        try {
-          const {
-            msg
-          } = JSON.parse(chunk);
-          content.value = msg;
-        } catch (e) {
-          console.log("流异常", e);
-          content.value = "系统异常";
-        } finally {
-          return;
-        }
-      } else {
-        content.value += chunk;
+      const t = getOpenAIContent(chunk);
+      console.log("输出中", t);
+      content.value += t;
+      if (chunk.includes("[DONE]")) {
+        console.log("输出结束");
+        running.value = false;
       }
     });
   };
@@ -51,4 +42,17 @@ const useSend = () => {
     handleStop
   };
 };
+function getOpenAIContent(chunk) {
+  let content = "";
+  try {
+    const list = chunk.split("data:");
+    list.forEach((item) => {
+      if (item)
+        content += JSON.parse(item).choices[0].delta.content || "";
+    });
+  } catch (error) {
+  } finally {
+    return content;
+  }
+}
 exports.useSend = useSend;

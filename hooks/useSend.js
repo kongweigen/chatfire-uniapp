@@ -24,7 +24,7 @@ export const useSend = () => {
 			// 结束回调
 			console.log('结束')
 			running.value = false
-		},() => {
+		}, () => {
 			//  失败回调
 			console.log('失败')
 		})
@@ -33,26 +33,13 @@ export const useSend = () => {
 			const uint8Array = new Uint8Array(arrayBuffer);
 			const chunk = new TextEncoding.TextDecoder('utf-8').decode(uint8Array);
 			// 看一下 打印出来的结果
-			console.log("输出中", chunk)
-			if (
-				chunk.startsWith("{") &&
-				chunk.includes("{") &&
-				chunk.includes("}")
-			) {
-				try {
-					const {
-						msg
-					} = JSON.parse(chunk)
-					content.value = msg
-				} catch (e) {
-					console.log("流异常", e)
-					content.value = "系统异常"
-				} finally {
-					return
-				}
-			} else {
 
-				content.value += chunk
+			const t = getOpenAIContent(chunk)
+			console.log("输出中", t)
+			content.value += t
+			if (chunk.includes("[DONE]")) {
+				console.log("输出结束")
+				running.value = false
 			}
 		})
 	}
@@ -71,10 +58,10 @@ export const useSend = () => {
 	}
 }
 
-function getVal(val) {
+function getOpenAIContent(chunk) {
 	let content = ""
 	try {
-		const list = val.split("data: ")
+		const list = chunk.split("data:")
 		list.forEach((item) => {
 			if (item) content += JSON.parse(item).choices[0].delta.content || ""
 		})

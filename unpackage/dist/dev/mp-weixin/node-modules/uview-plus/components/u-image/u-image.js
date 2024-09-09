@@ -2,7 +2,7 @@
 const common_vendor = require("../../../../common/vendor.js");
 const _sfc_main = {
   name: "u-image",
-  mixins: [common_vendor.mpMixin, common_vendor.mixin, common_vendor.props$4],
+  mixins: [common_vendor.mpMixin, common_vendor.mixin, common_vendor.props$6],
   data() {
     return {
       // 图片是否加载错误，如果是，则显示错误占位图

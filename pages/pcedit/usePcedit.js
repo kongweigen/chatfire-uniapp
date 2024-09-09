@@ -21,7 +21,6 @@ export const usePcedit = () => {
 	const createItem = ref(createItemMock)
 	const historyList = ref(historyMock)
 	const toPage = (item, routerType) => {
-		debugger
 		const urlName = item.value || item;
 		switch (urlName) {
 			case 'clear':

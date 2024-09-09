@@ -1,7 +1,6 @@
 "use strict";
 const _imports_0$3 = "/static/add.svg";
-const _imports_1 = "/static/ai.png";
-const _imports_2 = "/static/chatFireLogo.png";
+const _imports_1 = "/static/chatFireLogo.png";
 const _imports_0$2 = "/assets/logo.fdb32604.png";
 const _imports_0$1 = "/assets/send-fill.f9d5d879.png";
 const _imports_0 = "/static/design03.png";
@@ -10,4 +9,3 @@ exports._imports_0$1 = _imports_0$2;
 exports._imports_0$2 = _imports_0$1;
 exports._imports_0$3 = _imports_0;
 exports._imports_1 = _imports_1;
-exports._imports_2 = _imports_2;

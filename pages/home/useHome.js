@@ -22,7 +22,6 @@ export const useHome = () => {
 	const createItem = ref(createItemMock)
 	const historyList = ref(historyMock)
 	const toPage = (item, routerType) => {
-		debugger
 		const urlName = item.value || item;
 		switch (urlName) {
 			case 'clear':
@@ -56,15 +55,16 @@ export const useHome = () => {
 		}
 
 	}
-	const toPcedit = () => {
+	const toPcedit = (item) => {
 		uni.navigateTo({
-			url: `/pages/pcedit/index?type=${type}`
+			url: `/pages/pcedit/index?type=${item.value}`
 		});
 	}
 	onMounted(() => {
 		queryUser()
 	})
 	return {
+		toPcedit,
 		createItem,
 		historyList,
 		menuList,
