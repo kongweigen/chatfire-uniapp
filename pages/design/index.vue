@@ -1,5 +1,5 @@
 <template>
-	<view class="stepsBox">
+	<!-- <view class="stepsBox">
 		<image src="/static/design03.png"></image>
 	</view>
 	<view class="createBox">
@@ -15,29 +15,31 @@
 					<view :style="{ background: `linear-gradient(to bottom, url(${item.bg}), #fff)` }">
 						<span style="font-size: 12px; opacity: 0.7">{{ item.content }}</span>
 					</view>
-					<!-- 				<view>
-					<img :src="item.icon" style="width: 50px; height: 50px; margin-right: 8px" alt="" />
-				</view> -->
 				</view>
 			</view>
 		</view>
 	</view>
 	<view class="bottom">
 		<up-button type="primary">生成创作</up-button>
+	</view> -->
+	<view class="page">
+		<ImageClear></ImageClear>
 	</view>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import ImageClear from './image-clear/index.vue';
 import { useDesign } from './useDesign.js';
-const createVal = ref('');
-const valChange = () => {};
-const templateList = ref([
-	{ content: '小男孩', bg: '/static/btnBg.png' },
-	{ content: '糖醋排骨', bg: '/static/btnBg.png' },
-	{ content: '兔子先生', bg: '/static/btnBg.png' },
-	{ content: '粉色城堡', bg: '/static/btnBg.png' }
-]);
+useDesign()
+// const createVal = ref('');
+// const valChange = () => {};
+// const templateList = ref([
+// 	{ content: '小男孩', bg: '/static/btnBg.png' },
+// 	{ content: '糖醋排骨', bg: '/static/btnBg.png' },
+// 	{ content: '兔子先生', bg: '/static/btnBg.png' },
+// 	{ content: '粉色城堡', bg: '/static/btnBg.png' }
+// ]);
 </script>
 
 <style lang="scss" scoped>

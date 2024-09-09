@@ -11802,6 +11802,397 @@ const props$f = defineMixin({
     }
   }
 });
+const props$e = defineMixin({
+  props: {
+    // 宫格的name
+    name: {
+      type: [String, Number, null],
+      default: () => defProps.gridItem.name
+    },
+    // 背景颜色
+    bgColor: {
+      type: String,
+      default: () => defProps.gridItem.bgColor
+    }
+  }
+});
+const props$d = defineMixin({
+  props: {
+    // 分成几列
+    col: {
+      type: [String, Number],
+      default: () => defProps.grid.col
+    },
+    // 是否显示边框
+    border: {
+      type: Boolean,
+      default: () => defProps.grid.border
+    },
+    // 宫格对齐方式，表现为数量少的时候，靠左，居中，还是靠右
+    align: {
+      type: String,
+      default: () => defProps.grid.align
+    },
+    // 间隔
+    gap: {
+      type: String,
+      default: "0px"
+    }
+  }
+});
+const props$c = defineMixin({
+  props: {
+    // 是否展示弹窗
+    show: {
+      type: Boolean,
+      default: () => defProps.popup.show
+    },
+    // 是否显示遮罩
+    overlay: {
+      type: Boolean,
+      default: () => defProps.popup.overlay
+    },
+    // 弹出的方向，可选值为 top bottom right left center
+    mode: {
+      type: String,
+      default: () => defProps.popup.mode
+    },
+    // 动画时长，单位ms
+    duration: {
+      type: [String, Number],
+      default: () => defProps.popup.duration
+    },
+    // 是否显示关闭图标
+    closeable: {
+      type: Boolean,
+      default: () => defProps.popup.closeable
+    },
+    // 自定义遮罩的样式
+    overlayStyle: {
+      type: [Object, String],
+      default: () => defProps.popup.overlayStyle
+    },
+    // 点击遮罩是否关闭弹窗
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: () => defProps.popup.closeOnClickOverlay
+    },
+    // 层级
+    zIndex: {
+      type: [String, Number],
+      default: () => defProps.popup.zIndex
+    },
+    // 是否为iPhoneX留出底部安全距离
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: () => defProps.popup.safeAreaInsetBottom
+    },
+    // 是否留出顶部安全距离（状态栏高度）
+    safeAreaInsetTop: {
+      type: Boolean,
+      default: () => defProps.popup.safeAreaInsetTop
+    },
+    // 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
+    closeIconPos: {
+      type: String,
+      default: () => defProps.popup.closeIconPos
+    },
+    // 是否显示圆角
+    round: {
+      type: [Boolean, String, Number],
+      default: () => defProps.popup.round
+    },
+    // mode=center，也即中部弹出时，是否使用缩放模式
+    zoom: {
+      type: Boolean,
+      default: () => defProps.popup.zoom
+    },
+    // 弹窗背景色，设置为transparent可去除白色背景
+    bgColor: {
+      type: String,
+      default: () => defProps.popup.bgColor
+    },
+    // 遮罩的透明度，0-1之间
+    overlayOpacity: {
+      type: [Number, String],
+      default: () => defProps.popup.overlayOpacity
+    }
+  }
+});
+const props$b = defineMixin({
+  props: {
+    // 图片地址
+    src: {
+      type: String,
+      default: () => defProps.image.src
+    },
+    // 裁剪模式
+    mode: {
+      type: String,
+      default: () => defProps.image.mode
+    },
+    // 宽度，单位任意
+    width: {
+      type: [String, Number],
+      default: () => defProps.image.width
+    },
+    // 高度，单位任意
+    height: {
+      type: [String, Number],
+      default: () => defProps.image.height
+    },
+    // 图片形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: () => defProps.image.shape
+    },
+    // 圆角，单位任意
+    radius: {
+      type: [String, Number],
+      default: () => defProps.image.radius
+    },
+    // 是否懒加载，微信小程序、App、百度小程序、字节跳动小程序
+    lazyLoad: {
+      type: Boolean,
+      default: () => defProps.image.lazyLoad
+    },
+    // 开启长按图片显示识别微信小程序码菜单
+    showMenuByLongpress: {
+      type: Boolean,
+      default: () => defProps.image.showMenuByLongpress
+    },
+    // 加载中的图标，或者小图片
+    loadingIcon: {
+      type: String,
+      default: () => defProps.image.loadingIcon
+    },
+    // 加载失败的图标，或者小图片
+    errorIcon: {
+      type: String,
+      default: () => defProps.image.errorIcon
+    },
+    // 是否显示加载中的图标或者自定义的slot
+    showLoading: {
+      type: Boolean,
+      default: () => defProps.image.showLoading
+    },
+    // 是否显示加载错误的图标或者自定义的slot
+    showError: {
+      type: Boolean,
+      default: () => defProps.image.showError
+    },
+    // 是否需要淡入效果
+    fade: {
+      type: Boolean,
+      default: () => defProps.image.fade
+    },
+    // 只支持网络资源，只对微信小程序有效
+    webp: {
+      type: Boolean,
+      default: () => defProps.image.webp
+    },
+    // 过渡时间，单位ms
+    duration: {
+      type: [String, Number],
+      default: () => defProps.image.duration
+    },
+    // 背景颜色，用于深色页面加载图片时，为了和背景色融合
+    bgColor: {
+      type: String,
+      default: () => defProps.image.bgColor
+    }
+  }
+});
+const buttonMixin = defineMixin({
+  props: {
+    lang: String,
+    sessionFrom: String,
+    sendMessageTitle: String,
+    sendMessagePath: String,
+    sendMessageImg: String,
+    showMessageCard: Boolean,
+    appParameter: String,
+    formType: String,
+    openType: String
+  }
+});
+const openType = defineMixin({
+  props: {
+    openType: String
+  },
+  methods: {
+    onGetUserInfo(event) {
+      this.$emit("getuserinfo", event.detail);
+    },
+    onContact(event) {
+      this.$emit("contact", event.detail);
+    },
+    onGetPhoneNumber(event) {
+      this.$emit("getphonenumber", event.detail);
+    },
+    onError(event) {
+      this.$emit("error", event.detail);
+    },
+    onLaunchApp(event) {
+      this.$emit("launchapp", event.detail);
+    },
+    onOpenSetting(event) {
+      this.$emit("opensetting", event.detail);
+    }
+  }
+});
+const props$a = defineMixin({
+  props: {
+    // 是否细边框
+    hairline: {
+      type: Boolean,
+      default: () => defProps.button.hairline
+    },
+    // 按钮的预置样式，info，primary，error，warning，success
+    type: {
+      type: String,
+      default: () => defProps.button.type
+    },
+    // 按钮尺寸，large，normal，small，mini
+    size: {
+      type: String,
+      default: () => defProps.button.size
+    },
+    // 按钮形状，circle（两边为半圆），square（带圆角）
+    shape: {
+      type: String,
+      default: () => defProps.button.shape
+    },
+    // 按钮是否镂空
+    plain: {
+      type: Boolean,
+      default: () => defProps.button.plain
+    },
+    // 是否禁止状态
+    disabled: {
+      type: Boolean,
+      default: () => defProps.button.disabled
+    },
+    // 是否加载中
+    loading: {
+      type: Boolean,
+      default: () => defProps.button.loading
+    },
+    // 加载中提示文字
+    loadingText: {
+      type: [String, Number],
+      default: () => defProps.button.loadingText
+    },
+    // 加载状态图标类型
+    loadingMode: {
+      type: String,
+      default: () => defProps.button.loadingMode
+    },
+    // 加载图标大小
+    loadingSize: {
+      type: [String, Number],
+      default: () => defProps.button.loadingSize
+    },
+    // 开放能力，具体请看uniapp稳定关于button组件部分说明
+    // https://uniapp.dcloud.io/component/button
+    openType: {
+      type: String,
+      default: () => defProps.button.openType
+    },
+    // 用于 <form> 组件，点击分别会触发 <form> 组件的 submit/reset 事件
+    // 取值为submit（提交表单），reset（重置表单）
+    formType: {
+      type: String,
+      default: () => defProps.button.formType
+    },
+    // 打开 APP 时，向 APP 传递的参数，open-type=launchApp时有效
+    // 只微信小程序、QQ小程序有效
+    appParameter: {
+      type: String,
+      default: () => defProps.button.appParameter
+    },
+    // 指定是否阻止本节点的祖先节点出现点击态，微信小程序有效
+    hoverStopPropagation: {
+      type: Boolean,
+      default: () => defProps.button.hoverStopPropagation
+    },
+    // 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。只微信小程序有效
+    lang: {
+      type: String,
+      default: () => defProps.button.lang
+    },
+    // 会话来源，open-type="contact"时有效。只微信小程序有效
+    sessionFrom: {
+      type: String,
+      default: () => defProps.button.sessionFrom
+    },
+    // 会话内消息卡片标题，open-type="contact"时有效
+    // 默认当前标题，只微信小程序有效
+    sendMessageTitle: {
+      type: String,
+      default: () => defProps.button.sendMessageTitle
+    },
+    // 会话内消息卡片点击跳转小程序路径，open-type="contact"时有效
+    // 默认当前分享路径，只微信小程序有效
+    sendMessagePath: {
+      type: String,
+      default: () => defProps.button.sendMessagePath
+    },
+    // 会话内消息卡片图片，open-type="contact"时有效
+    // 默认当前页面截图，只微信小程序有效
+    sendMessageImg: {
+      type: String,
+      default: () => defProps.button.sendMessageImg
+    },
+    // 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，
+    // 用户点击后可以快速发送小程序消息，open-type="contact"时有效
+    showMessageCard: {
+      type: Boolean,
+      default: () => defProps.button.showMessageCard
+    },
+    // 额外传参参数，用于小程序的data-xxx属性，通过target.dataset.name获取
+    dataName: {
+      type: String,
+      default: () => defProps.button.dataName
+    },
+    // 节流，一定时间内只能触发一次
+    throttleTime: {
+      type: [String, Number],
+      default: () => defProps.button.throttleTime
+    },
+    // 按住后多久出现点击态，单位毫秒
+    hoverStartTime: {
+      type: [String, Number],
+      default: () => defProps.button.hoverStartTime
+    },
+    // 手指松开后点击态保留时间，单位毫秒
+    hoverStayTime: {
+      type: [String, Number],
+      default: () => defProps.button.hoverStayTime
+    },
+    // 按钮文字，之所以通过props传入，是因为slot传入的话
+    // nvue中无法控制文字的样式
+    text: {
+      type: [String, Number],
+      default: () => defProps.button.text
+    },
+    // 按钮图标
+    icon: {
+      type: String,
+      default: () => defProps.button.icon
+    },
+    // 按钮图标
+    iconColor: {
+      type: String,
+      default: () => defProps.button.icon
+    },
+    // 按钮颜色，支持传入linear-gradient渐变色
+    color: {
+      type: String,
+      default: () => defProps.button.color
+    }
+  }
+});
 const icons = {
   "uicon-level": "",
   "uicon-column-line": "",
@@ -12016,7 +12407,7 @@ const icons = {
   "uicon-zh": "",
   "uicon-en": ""
 };
-const props$e = defineMixin({
+const props$9 = defineMixin({
   props: {
     // 图标类名
     name: {
@@ -12102,397 +12493,6 @@ const props$e = defineMixin({
     stop: {
       type: Boolean,
       default: () => defProps.icon.stop
-    }
-  }
-});
-const props$d = defineMixin({
-  props: {
-    // 宫格的name
-    name: {
-      type: [String, Number, null],
-      default: () => defProps.gridItem.name
-    },
-    // 背景颜色
-    bgColor: {
-      type: String,
-      default: () => defProps.gridItem.bgColor
-    }
-  }
-});
-const props$c = defineMixin({
-  props: {
-    // 分成几列
-    col: {
-      type: [String, Number],
-      default: () => defProps.grid.col
-    },
-    // 是否显示边框
-    border: {
-      type: Boolean,
-      default: () => defProps.grid.border
-    },
-    // 宫格对齐方式，表现为数量少的时候，靠左，居中，还是靠右
-    align: {
-      type: String,
-      default: () => defProps.grid.align
-    },
-    // 间隔
-    gap: {
-      type: String,
-      default: "0px"
-    }
-  }
-});
-const props$b = defineMixin({
-  props: {
-    // 是否展示弹窗
-    show: {
-      type: Boolean,
-      default: () => defProps.popup.show
-    },
-    // 是否显示遮罩
-    overlay: {
-      type: Boolean,
-      default: () => defProps.popup.overlay
-    },
-    // 弹出的方向，可选值为 top bottom right left center
-    mode: {
-      type: String,
-      default: () => defProps.popup.mode
-    },
-    // 动画时长，单位ms
-    duration: {
-      type: [String, Number],
-      default: () => defProps.popup.duration
-    },
-    // 是否显示关闭图标
-    closeable: {
-      type: Boolean,
-      default: () => defProps.popup.closeable
-    },
-    // 自定义遮罩的样式
-    overlayStyle: {
-      type: [Object, String],
-      default: () => defProps.popup.overlayStyle
-    },
-    // 点击遮罩是否关闭弹窗
-    closeOnClickOverlay: {
-      type: Boolean,
-      default: () => defProps.popup.closeOnClickOverlay
-    },
-    // 层级
-    zIndex: {
-      type: [String, Number],
-      default: () => defProps.popup.zIndex
-    },
-    // 是否为iPhoneX留出底部安全距离
-    safeAreaInsetBottom: {
-      type: Boolean,
-      default: () => defProps.popup.safeAreaInsetBottom
-    },
-    // 是否留出顶部安全距离（状态栏高度）
-    safeAreaInsetTop: {
-      type: Boolean,
-      default: () => defProps.popup.safeAreaInsetTop
-    },
-    // 自定义关闭图标位置，top-left为左上角，top-right为右上角，bottom-left为左下角，bottom-right为右下角
-    closeIconPos: {
-      type: String,
-      default: () => defProps.popup.closeIconPos
-    },
-    // 是否显示圆角
-    round: {
-      type: [Boolean, String, Number],
-      default: () => defProps.popup.round
-    },
-    // mode=center，也即中部弹出时，是否使用缩放模式
-    zoom: {
-      type: Boolean,
-      default: () => defProps.popup.zoom
-    },
-    // 弹窗背景色，设置为transparent可去除白色背景
-    bgColor: {
-      type: String,
-      default: () => defProps.popup.bgColor
-    },
-    // 遮罩的透明度，0-1之间
-    overlayOpacity: {
-      type: [Number, String],
-      default: () => defProps.popup.overlayOpacity
-    }
-  }
-});
-const props$a = defineMixin({
-  props: {
-    // 图片地址
-    src: {
-      type: String,
-      default: () => defProps.image.src
-    },
-    // 裁剪模式
-    mode: {
-      type: String,
-      default: () => defProps.image.mode
-    },
-    // 宽度，单位任意
-    width: {
-      type: [String, Number],
-      default: () => defProps.image.width
-    },
-    // 高度，单位任意
-    height: {
-      type: [String, Number],
-      default: () => defProps.image.height
-    },
-    // 图片形状，circle-圆形，square-方形
-    shape: {
-      type: String,
-      default: () => defProps.image.shape
-    },
-    // 圆角，单位任意
-    radius: {
-      type: [String, Number],
-      default: () => defProps.image.radius
-    },
-    // 是否懒加载，微信小程序、App、百度小程序、字节跳动小程序
-    lazyLoad: {
-      type: Boolean,
-      default: () => defProps.image.lazyLoad
-    },
-    // 开启长按图片显示识别微信小程序码菜单
-    showMenuByLongpress: {
-      type: Boolean,
-      default: () => defProps.image.showMenuByLongpress
-    },
-    // 加载中的图标，或者小图片
-    loadingIcon: {
-      type: String,
-      default: () => defProps.image.loadingIcon
-    },
-    // 加载失败的图标，或者小图片
-    errorIcon: {
-      type: String,
-      default: () => defProps.image.errorIcon
-    },
-    // 是否显示加载中的图标或者自定义的slot
-    showLoading: {
-      type: Boolean,
-      default: () => defProps.image.showLoading
-    },
-    // 是否显示加载错误的图标或者自定义的slot
-    showError: {
-      type: Boolean,
-      default: () => defProps.image.showError
-    },
-    // 是否需要淡入效果
-    fade: {
-      type: Boolean,
-      default: () => defProps.image.fade
-    },
-    // 只支持网络资源，只对微信小程序有效
-    webp: {
-      type: Boolean,
-      default: () => defProps.image.webp
-    },
-    // 过渡时间，单位ms
-    duration: {
-      type: [String, Number],
-      default: () => defProps.image.duration
-    },
-    // 背景颜色，用于深色页面加载图片时，为了和背景色融合
-    bgColor: {
-      type: String,
-      default: () => defProps.image.bgColor
-    }
-  }
-});
-const buttonMixin = defineMixin({
-  props: {
-    lang: String,
-    sessionFrom: String,
-    sendMessageTitle: String,
-    sendMessagePath: String,
-    sendMessageImg: String,
-    showMessageCard: Boolean,
-    appParameter: String,
-    formType: String,
-    openType: String
-  }
-});
-const openType = defineMixin({
-  props: {
-    openType: String
-  },
-  methods: {
-    onGetUserInfo(event) {
-      this.$emit("getuserinfo", event.detail);
-    },
-    onContact(event) {
-      this.$emit("contact", event.detail);
-    },
-    onGetPhoneNumber(event) {
-      this.$emit("getphonenumber", event.detail);
-    },
-    onError(event) {
-      this.$emit("error", event.detail);
-    },
-    onLaunchApp(event) {
-      this.$emit("launchapp", event.detail);
-    },
-    onOpenSetting(event) {
-      this.$emit("opensetting", event.detail);
-    }
-  }
-});
-const props$9 = defineMixin({
-  props: {
-    // 是否细边框
-    hairline: {
-      type: Boolean,
-      default: () => defProps.button.hairline
-    },
-    // 按钮的预置样式，info，primary，error，warning，success
-    type: {
-      type: String,
-      default: () => defProps.button.type
-    },
-    // 按钮尺寸，large，normal，small，mini
-    size: {
-      type: String,
-      default: () => defProps.button.size
-    },
-    // 按钮形状，circle（两边为半圆），square（带圆角）
-    shape: {
-      type: String,
-      default: () => defProps.button.shape
-    },
-    // 按钮是否镂空
-    plain: {
-      type: Boolean,
-      default: () => defProps.button.plain
-    },
-    // 是否禁止状态
-    disabled: {
-      type: Boolean,
-      default: () => defProps.button.disabled
-    },
-    // 是否加载中
-    loading: {
-      type: Boolean,
-      default: () => defProps.button.loading
-    },
-    // 加载中提示文字
-    loadingText: {
-      type: [String, Number],
-      default: () => defProps.button.loadingText
-    },
-    // 加载状态图标类型
-    loadingMode: {
-      type: String,
-      default: () => defProps.button.loadingMode
-    },
-    // 加载图标大小
-    loadingSize: {
-      type: [String, Number],
-      default: () => defProps.button.loadingSize
-    },
-    // 开放能力，具体请看uniapp稳定关于button组件部分说明
-    // https://uniapp.dcloud.io/component/button
-    openType: {
-      type: String,
-      default: () => defProps.button.openType
-    },
-    // 用于 <form> 组件，点击分别会触发 <form> 组件的 submit/reset 事件
-    // 取值为submit（提交表单），reset（重置表单）
-    formType: {
-      type: String,
-      default: () => defProps.button.formType
-    },
-    // 打开 APP 时，向 APP 传递的参数，open-type=launchApp时有效
-    // 只微信小程序、QQ小程序有效
-    appParameter: {
-      type: String,
-      default: () => defProps.button.appParameter
-    },
-    // 指定是否阻止本节点的祖先节点出现点击态，微信小程序有效
-    hoverStopPropagation: {
-      type: Boolean,
-      default: () => defProps.button.hoverStopPropagation
-    },
-    // 指定返回用户信息的语言，zh_CN 简体中文，zh_TW 繁体中文，en 英文。只微信小程序有效
-    lang: {
-      type: String,
-      default: () => defProps.button.lang
-    },
-    // 会话来源，open-type="contact"时有效。只微信小程序有效
-    sessionFrom: {
-      type: String,
-      default: () => defProps.button.sessionFrom
-    },
-    // 会话内消息卡片标题，open-type="contact"时有效
-    // 默认当前标题，只微信小程序有效
-    sendMessageTitle: {
-      type: String,
-      default: () => defProps.button.sendMessageTitle
-    },
-    // 会话内消息卡片点击跳转小程序路径，open-type="contact"时有效
-    // 默认当前分享路径，只微信小程序有效
-    sendMessagePath: {
-      type: String,
-      default: () => defProps.button.sendMessagePath
-    },
-    // 会话内消息卡片图片，open-type="contact"时有效
-    // 默认当前页面截图，只微信小程序有效
-    sendMessageImg: {
-      type: String,
-      default: () => defProps.button.sendMessageImg
-    },
-    // 是否显示会话内消息卡片，设置此参数为 true，用户进入客服会话会在右下角显示"可能要发送的小程序"提示，
-    // 用户点击后可以快速发送小程序消息，open-type="contact"时有效
-    showMessageCard: {
-      type: Boolean,
-      default: () => defProps.button.showMessageCard
-    },
-    // 额外传参参数，用于小程序的data-xxx属性，通过target.dataset.name获取
-    dataName: {
-      type: String,
-      default: () => defProps.button.dataName
-    },
-    // 节流，一定时间内只能触发一次
-    throttleTime: {
-      type: [String, Number],
-      default: () => defProps.button.throttleTime
-    },
-    // 按住后多久出现点击态，单位毫秒
-    hoverStartTime: {
-      type: [String, Number],
-      default: () => defProps.button.hoverStartTime
-    },
-    // 手指松开后点击态保留时间，单位毫秒
-    hoverStayTime: {
-      type: [String, Number],
-      default: () => defProps.button.hoverStayTime
-    },
-    // 按钮文字，之所以通过props传入，是因为slot传入的话
-    // nvue中无法控制文字的样式
-    text: {
-      type: [String, Number],
-      default: () => defProps.button.text
-    },
-    // 按钮图标
-    icon: {
-      type: String,
-      default: () => defProps.button.icon
-    },
-    // 按钮图标
-    iconColor: {
-      type: String,
-      default: () => defProps.button.icon
-    },
-    // 按钮颜色，支持传入linear-gradient渐变色
-    color: {
-      type: String,
-      default: () => defProps.button.color
     }
   }
 });

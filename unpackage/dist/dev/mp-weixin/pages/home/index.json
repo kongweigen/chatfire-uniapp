@@ -3,7 +3,6 @@
   "navigationBarTitleText": "火宝AI工具箱",
   "usingComponents": {
     "up-swiper": "../../node-modules/uview-plus/components/u-swiper/u-swiper",
-    "up-icon": "../../node-modules/uview-plus/components/u-icon/u-icon",
     "up-grid-item": "../../node-modules/uview-plus/components/u-grid-item/u-grid-item",
     "up-grid": "../../node-modules/uview-plus/components/u-grid/u-grid",
     "up-popup": "../../node-modules/uview-plus/components/u-popup/u-popup"

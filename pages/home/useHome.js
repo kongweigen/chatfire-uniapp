@@ -5,6 +5,10 @@ import {
 	ref,
 	onMounted
 } from 'vue';
+
+import {
+	onLoad,
+} from '@dcloudio/uni-app';
 import {
 	menuMock,
 	createItemMock,
@@ -22,39 +26,42 @@ export const useHome = () => {
 		const urlName = item.value || item;
 		switch (urlName) {
 			case 'clear':
-				toRoute(routerUrlMap['clear'], routerType)
+				toRoute(routerUrlMap['clear'], 'clear')
 				break;
 			case '图片创作':
-				toRoute(routerUrlMap['picDesign'], routerType)
+				toRoute(routerUrlMap['picDesign'])
 				break;
 			case '视频创作':
-				toRoute(routerUrlMap['videoDesign'], routerType)
+				toRoute(routerUrlMap['videoDesign'])
 				break;
 			case 'fireChat':
-				toRoute(routerUrlMap['fireChat'], routerType)
+				toRoute(routerUrlMap['fireChat'])
 				break;
 			default:
-				toRoute(routerUrlMap['picDesign'], routerType)
+				toRoute(routerUrlMap['picDesign'])
 				break;
 		}
 
 	}
-	const toRoute = (urlInfo, routerType) => {
-		debugger
-		if (routerType === 'tab') {
-			uni.switchTab({
-				url: urlInfo
-			})
-		} else {
-			uni.navigateTo({
-				url: urlInfo
-			});
-		}
+	
+	const toRoute = (url, type) => {
+		// debugger
+		// if (routerType === 'tab') {
+		// 	uni.switchTab({
+		// 		url: urlInfo
+		// 	})
+		// } else {
+		// 	uni.navigateTo({
+		// 		url: `/pages/design/index?type=${type}`
+		// 	});
+		// }
+		uni.navigateTo({
+			url: `/pages/design/index?type=${type}`
+		});
 	}
 	onMounted(() => {
 		queryUser()
 	})
-
 	return {
 		createItem,
 		historyList,

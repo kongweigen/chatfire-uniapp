@@ -88,7 +88,7 @@ const routerUrlMap = {
   "clear": "/pages/image-clear/index",
   "picDesign": "/pages/design/index",
   "videoDesign": "/pages/design/index",
-  "fireChat": "pages/chat-detail/index"
+  "fireChat": "/pages/chat/index"
 };
 exports.createItemMock = createItemMock;
 exports.historyMock = historyMock;

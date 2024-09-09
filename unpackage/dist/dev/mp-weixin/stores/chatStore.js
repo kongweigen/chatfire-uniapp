@@ -45,6 +45,7 @@ const useChatStore = common_vendor.defineStore({
       ],
       // 内置模型
       currentChatModel: "glm-3-turbo"
+      // kimi
     };
   },
   getters: {

@@ -6,13 +6,16 @@ import {
 	onMounted
 } from 'vue';
 import {
+	onLoad,
+} from '@dcloudio/uni-app';
+import {
 	menuMock,
 	createItemMock,
 	historyMock,
 	routerUrlMap
 } from '@/utils/index.js'
 
-export const useHome = () => {
+export const useDesign = () => {
 
 	const menuList = ref(menuMock)
 	const createItem = ref(createItemMock)
@@ -40,7 +43,6 @@ export const useHome = () => {
 
 	}
 	const toRoute = (urlInfo, routerType) => {
-		debugger
 		if (routerType === 'tab') {
 			uni.switchTab({
 				url: urlInfo
@@ -52,6 +54,10 @@ export const useHome = () => {
 		}
 	}
 
+	const designType = ref('')
+	onLoad((option) => {
+		designType.value = option.type
+	})
 	return {
 		createItem,
 		historyList,

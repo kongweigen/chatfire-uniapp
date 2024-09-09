@@ -45,7 +45,7 @@
 .mainMenu .leftHeight {
   height: 20vh !important;
   flex-direction: column;
-  background: linear-gradient(to bottom, #307ae4, #45b5df);
+  background: linear-gradient(to bottom, #307ae4, #30a7e4, #30e2e4);
 }
 .mainMenu .boxUp {
   justify-content: center;
@@ -64,7 +64,7 @@
 }
 .mainMenu .boxDown {
   flex-direction: row;
-  background-color: rgba(225, 255, 255, 0.3);
+  background-color: rgba(225, 255, 255, 0.4);
   border-radius: 20px;
   width: calc(88% - 4px) !important;
   height: 24% !important;
@@ -72,11 +72,6 @@
   align-items: center;
   justify-content: center;
   padding: 4px;
-  gap: 8px;
-}
-.mainMenu .boxDown .u-icon__icon {
-  margin-top: 2px;
-  opacity: 0.6;
 }
 .mainMenu .leftBox {
   display: flex;

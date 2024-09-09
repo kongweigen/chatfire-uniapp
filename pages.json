@@ -50,7 +50,7 @@
 		{
 			"path": "pages/design/index",
 			"style": {
-				"navigationStyle": "custom",
+				// "navigationStyle": "custom",
 				"navigationBarTitleText": "工作台"
 			}
 		}

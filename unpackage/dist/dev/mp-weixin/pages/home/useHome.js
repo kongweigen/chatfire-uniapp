@@ -12,33 +12,26 @@ const useHome = () => {
     const urlName = item.value || item;
     switch (urlName) {
       case "clear":
-        toRoute(utils_constant.routerUrlMap["clear"], routerType);
+        toRoute(utils_constant.routerUrlMap["clear"], "clear");
         break;
       case "图片创作":
-        toRoute(utils_constant.routerUrlMap["picDesign"], routerType);
+        toRoute();
         break;
       case "视频创作":
-        toRoute(utils_constant.routerUrlMap["videoDesign"], routerType);
+        toRoute();
         break;
       case "fireChat":
-        toRoute(utils_constant.routerUrlMap["fireChat"], routerType);
+        toRoute();
         break;
       default:
-        toRoute(utils_constant.routerUrlMap["picDesign"], routerType);
+        toRoute();
         break;
     }
   };
-  const toRoute = (urlInfo, routerType) => {
-    debugger;
-    if (routerType === "tab") {
-      common_vendor.index.switchTab({
-        url: urlInfo
-      });
-    } else {
-      common_vendor.index.navigateTo({
-        url: urlInfo
-      });
-    }
+  const toRoute = (url, type) => {
+    common_vendor.index.navigateTo({
+      url: `/pages/design/index?type=${type}`
+    });
   };
   common_vendor.onMounted(() => {
     api_user_index.queryUser();
