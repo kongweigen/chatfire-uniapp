@@ -1,9 +1,12 @@
+import {
+	commonUrl
+} from './host.js'
 const request = (vm) => {
 	// 初始化请求配置
 	uni.$u.http.setConfig((config) => {
 		/* config 为默认全局配置*/
 		// config.baseURL = 'https://agi.chatfire.cn'; /* 根域名 */
-		config.baseURL = 'http://103.74.173.48:6101'; /* 根域名 */
+		config.baseURL = commonUrl; /* 根域名 */
 		return config
 	})
 
