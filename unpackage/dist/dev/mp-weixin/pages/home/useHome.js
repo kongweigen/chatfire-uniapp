@@ -38,9 +38,16 @@ const useHome = () => {
       });
     }
   };
-  const toPcedit = (item) => {
+  const toPcedit = (params) => {
+    let query = "?";
+    for (let key in params) {
+      if (params.hasOwnProperty(key)) {
+        query += `${key}=${params[key]}&`;
+      }
+    }
+    query = query.substr(0, query.length - 1);
     common_vendor.index.navigateTo({
-      url: `/pages/pcedit/index?type=${item.value}`
+      url: `/pages/pcedit/index${query}`
     });
   };
   common_vendor.onMounted(() => {

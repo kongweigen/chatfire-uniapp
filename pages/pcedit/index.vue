@@ -1,74 +1,72 @@
 <template>
 	<view class="page">
-		<ImageClear></ImageClear>
+		<div class="header">
+			<p class="title">{{ title }}</p>
+			<p class="desc">{{ subTitle }}</p>
+		</div>
+		<div class="main">
+			<u--image
+				v-if="!sourceImage.url && !imageUrl"
+				src="https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/201b7bc3-c183-472c-a4bf-c8c7c2127661_0.png"
+				height="700rpx"
+				width="700rpx"
+				radius="10"
+			></u--image>
+
+			<u--image v-if="!imageUrl && sourceImage.url" :src="sourceImage.url" height="700rpx" width="700rpx" radius="10"></u--image>
+			<u--image v-if="imageUrl" :src="imageUrl" height="700rpx" width="700rpx" radius="10"></u--image>
+		</div>
+		<div class="footer">
+			<u-button v-if="sourceImage.url" :customStyle="customStyle" text="一键清晰" @click="generate"></u-button>
+			<u-button v-else :customStyle="customStyle" text="点击上传" @click="uploadImage"></u-button>
+		</div>
 	</view>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import ImageClear from './image-clear/index.vue';
 import { usePcedit } from './usePcedit.js';
-usePcedit();
+const { title, subTitle, designType, customStyle, sourceImage, imageUrl, uploadImage, generate } = usePcedit();
 </script>
 
 <style lang="scss" scoped>
-.stepsBox image {
-	width: 100%;
-	height: 44vh;
-	background-size: cover;
-	background-position: center;
-	// background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-}
-.createBox {
-	position: absolute;
-	width: calc(100% - 32px);
-	height: 60vh;
-	top: 38vh;
-	padding: 16px;
-	background: #fff;
-	border-radius: 8px 8px 0 0;
-	label {
-		line-height: 32px;
-		// font-weight: bold;
-	}
-	textarea {
-		background: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
-	}
-	::v-deep .u-border,
-	.up-border {
-		border-width: 1px !important;
-		border-color: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
-	}
-}
-.templateBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 80px;
-	overflow-x: scroll;
-	.templateItem {
+.page {
+	padding: 0 25rpx;
+	box-sizing: border-box;
+	height: 100vh;
+	background: linear-gradient(to bottom, #ffffff, #f5ebcc);
+	position: relative;
+	overflow: auto;
+
+	.header {
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
-		color: rgb(30, 144, 230);
-		font-size: 14px;
 		align-items: center;
-		background-color: rgb(30, 144, 230, 0.1);
-		margin-left: 4px;
-		border-radius: 8px;
-		width: 120px;
-		height: 60px;
+		flex-direction: column;
+		.title {
+			margin-top: 40rpx;
+			font-size: 40rpx;
+			width: 100%;
+			text-align: center;
+		}
+		.desc {
+			font-size: 24rpx;
+			font-weight: 100rpx;
+		}
 	}
-}
-.bottom {
-	width: 90%;
-	height: 44px;
-	bottom: 20px;
-	margin: 5%;
-	position: absolute;
-	.u-button {
-		border-radius: 18px !important;
+	.main {
+		margin-top: 80rpx;
+		:deep(.u-transition) {
+			display: flex;
+			justify-content: center;
+		}
+	}
+	.footer {
+		position: fixed;
+		bottom: 40rpx;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: center;
 	}
 }
 </style>

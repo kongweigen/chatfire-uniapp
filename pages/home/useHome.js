@@ -55,9 +55,17 @@ export const useHome = () => {
 		}
 
 	}
-	const toPcedit = (item) => {
+	const toPcedit = (params) => {
+		let query = '?';
+		for (let key in params) {
+			if (params.hasOwnProperty(key)) {
+				query += `${key}=${params[key]}&`;
+			}
+		}
+		// 移除最后一个'&'
+		query = query.substr(0, query.length - 1);
 		uni.navigateTo({
-			url: `/pages/pcedit/index?type=${item.value}`
+			url: `/pages/pcedit/index${query}`,
 		});
 	}
 	onMounted(() => {
