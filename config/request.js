@@ -1,6 +1,6 @@
 import {
 	commonUrl
-} from './host.js'
+} from '@/config/host.js'
 const request = (vm) => {
 	// 初始化请求配置
 	uni.$u.http.setConfig((config) => {
