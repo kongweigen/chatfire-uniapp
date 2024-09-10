@@ -4,14 +4,19 @@ import {
 } from '@/api/index.js'
 import {
 	ref,
+	watch,
 	onMounted
 } from 'vue';
 import {
 	onLoad,
 } from '@dcloudio/uni-app';
 import {
-	commonUrl
+	commonUrl,
+	token
 } from '@/config/host.js'
+import {
+	useUpload
+} from '@/hooks/useUpload.js'
 
 export const usePcedit = () => {
 	const customStyle = ref({
@@ -65,40 +70,15 @@ export const usePcedit = () => {
 	}
 
 	const sourceImage = ref({})
-	const uploadImage = () => {
-		uni.chooseImage({
-			success: (chooseImageRes) => {
-				const tempFile = chooseImageRes.tempFiles[0];
-				const tempFilePath = chooseImageRes.tempFilePaths[0];
-				let token = uni.getStorageSync("token")
-
-				uni.showLoading({
-					mask: true,
-					title: '正在上传'
-				});
-				uni.uploadFile({
-					url: `${commonUrl}/box/chat/file`, //仅为示例，非真实的接口地址
-					filePath: tempFilePath,
-					name: 'file',
-					header: {
-						Authorization: `Bearer ${token}`
-					},
-					formData: {
-						'file': tempFile,
-						"purpose": "oss"
-					},
-					success: (uploadFileRes) => {
-						uni.hideLoading();
-						sourceImage.value = JSON.parse(uploadFileRes.data).data
-					},
-					fail: () => {
-						uni.hideLoading();
-					}
-				});
-			}
-		});
-	}
-
+	const {
+		uploadImage,
+		imageUrl: uploadImageInfo
+	} = useUpload()
+	watch(() => uploadImageInfo, (data) => {
+		sourceImage.value = data
+	}, {
+		deep: true
+	})
 
 	const pceditSettings = ref({
 		type: "3",
