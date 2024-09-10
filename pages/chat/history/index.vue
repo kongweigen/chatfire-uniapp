@@ -24,10 +24,11 @@ onMounted(() => {});
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: calc(100vh - 80rpx);
 	.list {
 		width: 100%;
-		height: 100vh;
+		height: 100%;
+		overflow-y: auto;
 	}
 }
 </style>

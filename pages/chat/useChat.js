@@ -8,6 +8,10 @@ import {
 import {
 	useChatStore
 } from '@/stores';
+import {
+	getHot
+} from '@/api'
+
 
 export const useChat = () => {
 	const chatStore = useChatStore();
@@ -19,13 +23,7 @@ export const useChat = () => {
 		});
 	};
 	const list = ref([
-		'美驻华领馆工作人员散布“台独”言论',
-		'女格斗运动员遭猥亵：想打他怕打残废热',
-		'台风灾后恢复工作已加紧展开',
-		'郑钦文晒和父母游玩九寨沟美照',
-		'国足球员刘洋离开国家队热',
-		'小孩姐削土豆受伤气跑4名医生',
-		'男子出差回来发现家被妻子出租'
+
 	]);
 
 	// 历史记录
@@ -34,8 +32,20 @@ export const useChat = () => {
 		historyShow.value = !historyShow.value
 	}
 
+	const initHot = async () => {
+		const res = await getHot()
+		console.log(res)
+		let t = res.split("\n").splice(0, 10);
+		try {
+			t = t.map(val => val.replaceAll(/^\d+./g, '').trim())
+		} catch (e) {
+			//TODO handle the exception
+		}
+		list.value = t
+	}
 	onMounted(() => {
 		chatStore.initChat()
+		initHot()
 	})
 	return {
 		historyShow,

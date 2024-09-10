@@ -125,3 +125,23 @@ export const usePcedit = () => {
 		generate,
 	}
 }
+const getPceditReq = (original_url, thumb_url) => {
+    const { type, create_level, ext_ratio, style } = pceditSettings.value
+    return {
+      type,
+      original_url,
+      thumb_url,
+      query: "ChatfireAI图片助手",
+      image_source: "1",
+      picInfo: "",
+      picInfo2: "",
+      text: "",
+      ext_ratio: type == 4 ? ext_ratio : "", // 扩图比例 1:1   3:4   4:3,
+      expand_zoom: "",
+      clid: "1",
+      front_display: "2",
+      create_level: type == 6 ? `${create_level}` : "0", // 重绘 0～6
+      style: type == 14 ? style : "", // 风格 clay  橡皮泥的风 miyazaki 宫崎骏 monet 油画
+      is_first: true,
+    }
+  }

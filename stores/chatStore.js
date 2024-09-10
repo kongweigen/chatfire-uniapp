@@ -43,7 +43,7 @@ export const useChatStore = defineStore({
 					label: "glm-4-9b-chat"
 				},
 			], // 内置模型
-			currentChatModel: "glm-3-turbo", // kimi
+			currentChatModel: "glm-4-9b-chat", // kimi
 		}
 	},
 	getters: {

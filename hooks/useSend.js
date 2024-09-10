@@ -32,14 +32,11 @@ export const useSend = () => {
 			const arrayBuffer = res.data;
 			const uint8Array = new Uint8Array(arrayBuffer);
 			const chunk = new TextEncoding.TextDecoder('utf-8').decode(uint8Array);
-			// 看一下 打印出来的结果
 
 			const t = getOpenAIContent(chunk)
-			console.log("输出中", t)
 			content.value += t
 			if (chunk.includes("[DONE]")) {
 				console.log("输出结束")
-				running.value = false
 			}
 		})
 	}
@@ -59,13 +56,15 @@ export const useSend = () => {
 }
 
 function getOpenAIContent(chunk) {
-	let content = ""
+	let result = ""
 	try {
-		const list = chunk.split("data:")
+		const list = chunk.split("<|-hold-|>")
 		list.forEach((item) => {
-			if (item) content += JSON.parse(item).choices[0].delta.content || ""
+			if (item && !item.includes('[DONE]')) result += JSON.parse(item).choices[0].delta.content || ""
 		})
-	} catch (error) {} finally {
-		return content
+	} catch (error) {
+		console.log(error)
+	} finally {
+		return result
 	}
 }
