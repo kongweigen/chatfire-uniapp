@@ -1,39 +1,40 @@
 <template>
 	<transition name="fade" type="animation">
 		<view class="content">
-			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="600" radius="0" @change="onSwiperChange"></up-swiper>
+			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="560" radius="0" @change="onSwiperChange"></up-swiper>
 			<view class="mainMenu">
-				<view class="menuItem leftHeight" :style="{ backgroundColor: btnColor }">
+				<view class="menuItem leftHeight">
 					<view class="leftBox boxUp" @click="showPop = true">
-						<view>
-							<img src="/static/add.svg" style="width: 50px; height: 50px" alt="" />
+						<view class="createIcon">
+							<img src="/static/add.svg" style="width: 48px; height: 46px; opacity: 0.9" alt="" />
 						</view>
-						<view>
+						<view class="createBox">
 							<span style="font-size: 16px; color: #fff; font-weight: bold">开始创作</span>
 							<br />
 							<span style="font-size: 12px; color: #fff; opacity: 0.7">图片视频尽情创作</span>
 						</view>
 					</view>
-					<view class="leftBox boxDown">
+					<view class="leftBox boxDown" @click="toPage('fireChat', 'tab')">
 						<view>
-							<span style="margin: 4px 0 0 9px; font-size: 12px; color: #fff; font-weight: bold">历史记录</span>
+							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
-						<view style="display: flex; gap: 4px; margin: 6px 0 0 14px; overflow-x: scroll; width: 150px">
-							<view class="historyBox" v-for="item in historyList" :key="item">
-								<img :src="item.img" style="width: 20px; height: 20px" alt="" />
-							</view>
-						</view>
+						<img src="/static/ai.png" style="width: 30px; height: 30px;" alt="" />
 					</view>
 				</view>
 				<view class="rightMenu">
-					<view class="menuItem rightHeight" v-for="item in mainItems" :key="item">
+					<view
+						class="menuItem rightHeight"
+						:style="{ background: `linear-gradient(to bottom, ${item.bgColor[0]}, ${item.bgColor[1]})` }"
+						v-for="item in mainItems"
+						:key="item"
+					>
 						<view style="margin-left: 16px">
 							<span style="font-size: 16px; font-weight: bold">{{ item.title }}</span>
 							<br />
 							<span style="font-size: 12px; opacity: 0.7">{{ item.content }}</span>
 						</view>
 						<view>
-							<img :src="item.icon" style="width: 50px; height: 50px; margin-right: 4px" alt="" />
+							<img :src="item.icon" style="width: 50px; height: 50px; margin-right: 8px" alt="" />
 						</view>
 					</view>
 				</view>
@@ -58,17 +59,10 @@
 					</swiper-item>
 				</swiper>
 			</view>
-			<view class="bottom">
-				<up-tabbar :value="value1" @change="change1" :fixed="true" :placeholder="false" :safeAreaInsetBottom="true">
-					<up-tabbar-item text="首页" icon="home" @click="click1"></up-tabbar-item>
-					<up-tabbar-item text="火宝" icon="photo" @click="click1"></up-tabbar-item>
-					<up-tabbar-item text="我的" icon="account" @click="click1"></up-tabbar-item>
-				</up-tabbar>
-			</view>
 		</view>
 		<up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
 			<view class="createPop">
-				<view class="createItem" v-for="item in createItem" :key="item" @click="toPage(item.label)">
+				<view class="createItem" v-for="item in createItem" :key="item" @click="toPage(item.label), (showPop = false)">
 					<img :src="item.src" alt="" />
 					<text class="grid-text">{{ item.label }}</text>
 				</view>
@@ -87,8 +81,8 @@ const showPop = ref(false);
 const list1 = ref([
 	{
 		url: '/static/banner11.png',
-		backgroundColor: '#c1cdd1',
-		btnColor: 'rgb(30,144,230)'
+		backgroundColor: '#c1cdd1'
+		// btnColor: `linear-gradient(to bottom, rgb(30,144,230), rgb(30,144,180))`;
 	}
 	// 更多图片及其背景色...
 ]);
@@ -96,12 +90,14 @@ const mainItems = ref([
 	{
 		title: '智能换脸',
 		content: '换成TA试试看',
-		icon: '/static/face.svg'
+		icon: '/static/face.png',
+		bgColor: ['rgba(69,180,233,0.3)', 'rgba(69,180,233,0.05)']
 	},
 	{
 		title: '音频转换',
 		content: '清脆声音谁不忘',
-		icon: '/static/pic.png'
+		icon: '/static/voice.png',
+		bgColor: ['rgba(137,155,247,0.2)', 'rgba(137,155,247,0.05)']
 	}
 ]);
 
@@ -111,8 +107,8 @@ const btnColor = ref(list1.value[0].btnColor);
 // 轮播图切换事件处理函数
 const onSwiperChange = ({ current }) => {
 	// 更新当前背景色为当前幻灯片的背景色
-	currentBackgroundColor.value = list1.value[current].backgroundColor;
-	btnColor.value = list1.value[current].btnColor;
+	// currentBackgroundColor.value = list1.value[current].backgroundColor;
+	// btnColor.value = list1.value[current].btnColor;
 };
 </script>
 
@@ -120,7 +116,6 @@ const onSwiperChange = ({ current }) => {
 .content {
 	height: 100vh;
 	background-color: #eeeeee; /* 举例背景颜色，您可以根据需要更改 */
-	transition: background-color 2s ease; // 添加CSS过渡效果
 	height: 100vh;
 }
 .bannerBox {
@@ -138,22 +133,38 @@ const onSwiperChange = ({ current }) => {
 	.leftHeight {
 		height: 20vh !important;
 		flex-direction: column;
+		background: linear-gradient(to bottom, #307ae4, #30a7e4, #30e2e4);
+	}
+	.rightHeight {
 	}
 	.boxUp {
 		justify-content: center;
 		align-items: center;
-		padding-right: 14px;
+		margin-top: 6px;
+		height: 66% !important;
+		.createBox {
+			span {
+				display: block; /* 使span成为块级元素 */
+				margin-bottom: 2px; /* 设置底部外边距 */
+			}
+			margin-left: 2px;
+		}
 	}
 	.boxDown {
-		flex-direction: column;
-		background-color: rgba(255, 255, 255, 0.3);
-		border-radius: 8px;
-		padding-top: 6px;
+		flex-direction: row;
+		background-color: rgba(225, 255, 255, 0.4);
+		border-radius: 20px;
+		width: calc(88% - 4px) !important;
+		height: 24% !important;
+		margin-bottom: 14px;
+		align-items: center;
+		justify-content: center;
+		padding: 4px;
 	}
 	.leftBox {
 		display: flex;
 		width: 100%;
-		height: 50%;
+		// height: 50%;
 		// height: 125px;
 		.historyBox {
 			display: flex;
@@ -170,14 +181,12 @@ const onSwiperChange = ({ current }) => {
 		color: #333333 !important;
 	}
 	.menuItem {
-		transition: background-color 2s ease;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 46vw;
 		height: 9.5vh;
-		border-radius: 8px;
-		background-color: rgb(203, 240, 255, 0.5);
+		border-radius: 18px;
 		margin-bottom: 8px;
 	}
 }
@@ -185,7 +194,7 @@ const onSwiperChange = ({ current }) => {
 	background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 0%, white 18%);
 	border-radius: 8px 8px 0 0;
 	width: 96vw;
-	height: 45vh;
+	height: 58vh;
 	padding: 16px 8px 0 8px;
 	overflow-x: scroll;
 	position: absolute;
