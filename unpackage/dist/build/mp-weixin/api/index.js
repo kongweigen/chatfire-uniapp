@@ -1,1 +1,0 @@
-"use strict";const e=require("../common/vendor.js");require("./image/index.js"),require("./pay/index.js"),require("./user/index.js"),require("./video/index.js"),require("./chat/index.js");const r=e.index.$u.http;exports.getTaskById=e=>r.get(`/box/chat/task/${e}`);
