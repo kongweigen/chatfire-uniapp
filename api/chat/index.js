@@ -1,14 +1,16 @@
 const http = uni.$u.http;
+import {
+	commonUrl, token
+} from '@/config/host.js'
 export const chat2gpt = ({
 	data,
 	signal
 }, successCall) => {
-	let token = uni.getStorageSync("token")
+	// let token = uni.getStorageSync("token")
 
 	return uni.request({
 		method: "POST",
-		// url: 'https://agi.chatfire.cn/box/chat/ask', //仅为示例，并非真实接口地址。
-		url: 'http://103.74.173.48:6101/box/chat/ask', //仅为示例，并非真实接口地址。
+		url: `${commonUrl}/box/chat/ask`, //仅为示例，并非真实接口地址。
 		data,
 		enableChunked: true,
 		responseType: "stream",

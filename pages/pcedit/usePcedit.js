@@ -4,12 +4,19 @@ import {
 } from '@/api/index.js'
 import {
 	ref,
+	watch,
 	onMounted
 } from 'vue';
 import {
 	onLoad,
 } from '@dcloudio/uni-app';
-
+import {
+	commonUrl,
+	token
+} from '@/config/host.js'
+import {
+	useUpload
+} from '@/hooks/useUpload.js'
 
 export const usePcedit = () => {
 	const customStyle = ref({
@@ -63,41 +70,22 @@ export const usePcedit = () => {
 	}
 
 	const sourceImage = ref({})
-	const uploadImage = () => {
-		uni.chooseImage({
-			success: (chooseImageRes) => {
-				const tempFile = chooseImageRes.tempFiles[0];
-				const tempFilePath = chooseImageRes.tempFilePaths[0];
-				let token = uni.getStorageSync("token")
+	const {
+		uploadImage,
+		imageUrl: uploadImageInfo
+	} = useUpload()
+	watch(() => uploadImageInfo, (data) => {
+		sourceImage.value = data
+	}, {
+		deep: true
+	})
 
-				uni.showLoading({
-					mask: true,
-					title: '正在上传'
-				});
-				uni.uploadFile({
-					url: 'https://agi.chatfire.cn/box/chat/file', //仅为示例，非真实的接口地址
-					filePath: tempFilePath,
-					name: 'file',
-					header: {
-						Authorization: `Bearer ${token}`
-					},
-					formData: {
-						'file': tempFile,
-						"purpose": "oss"
-					},
-					success: (uploadFileRes) => {
-						uni.hideLoading();
-						sourceImage.value = JSON.parse(uploadFileRes.data).data
-					},
-					fail: () => {
-						uni.hideLoading();
-					}
-				});
-			}
-		});
-	}
-
-
+	const pceditSettings = ref({
+		type: "3",
+		style: "clay",
+		create_level: "3",
+		ext_ratio: "1:1",
+	})
 
 	const designType = ref('')
 	const title = ref('')
@@ -113,7 +101,38 @@ export const usePcedit = () => {
 		title.value = label
 		subTitle.value = subLabel
 
+		if (value == 'clear') pceditSettings.value.type = '3'
+		if (value == 'watermark') pceditSettings.value.type = '1'
+		if (value == 'style') pceditSettings.value.type = '14'
+		if (value == 'expand') pceditSettings.value.type = '4'
+		if (value == 'draw') pceditSettings.value.type = '6'
+
 	})
+	const getPceditReq = (original_url, thumb_url) => {
+		const {
+			type,
+			create_level,
+			ext_ratio,
+			style
+		} = pceditSettings.value
+		return {
+			type,
+			original_url,
+			thumb_url,
+			query: "ChatfireAI图片助手",
+			image_source: "1",
+			picInfo: "",
+			picInfo2: "",
+			text: "",
+			ext_ratio: type == 4 ? ext_ratio : "", // 扩图比例 1:1   3:4   4:3,
+			expand_zoom: "",
+			clid: "1",
+			front_display: "2",
+			create_level: type == 6 ? `${create_level}` : "0", // 重绘 0～6
+			style: type == 14 ? style : "", // 风格 clay  橡皮泥的风 miyazaki 宫崎骏 monet 油画
+			is_first: true,
+		}
+	}
 	return {
 		designType,
 		title,

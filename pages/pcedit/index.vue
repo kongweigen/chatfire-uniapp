@@ -17,7 +17,7 @@
 			<u--image v-if="imageUrl" :src="imageUrl" height="700rpx" width="700rpx" radius="10"></u--image>
 		</div>
 		<div class="footer">
-			<u-button v-if="sourceImage.url" :customStyle="customStyle" text="一键清晰" @click="generate"></u-button>
+			<u-button v-if="sourceImage.url" :customStyle="customStyle" text="生成图片" @click="generate"></u-button>
 			<u-button v-else :customStyle="customStyle" text="点击上传" @click="uploadImage"></u-button>
 		</div>
 	</view>
