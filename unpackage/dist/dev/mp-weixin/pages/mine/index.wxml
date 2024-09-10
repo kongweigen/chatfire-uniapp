@@ -1,1 +1,1 @@
-<view> 我的 </view>
+<view> 我的 <u---input wx:if="{{b}}" u-i="1ed8105d-0" bind:__l="__l" bindupdateModelValue="{{a}}" u-p="{{b}}"></u---input><u-button u-s="{{['d']}}" bindclick="{{c}}" u-i="1ed8105d-1" bind:__l="__l">登录</u-button></view>
