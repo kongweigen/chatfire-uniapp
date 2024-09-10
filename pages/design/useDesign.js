@@ -1,5 +1,6 @@
 import {
-	queryUser
+	queryUser,
+	generateImage
 } from '@/api';
 import {
 	ref,
@@ -53,6 +54,46 @@ export const useDesign = () => {
 		}
 	}
 
+	const imageSetting = ref({
+		model: "flux-pro",
+		prompt: "",
+		n: 1,
+		size: "1024x1024",
+		url: "",
+	})
+
+	const text2picDesign = async (designText) => {
+		debugger
+		uni.showToast({
+			title: '请稍后,图片生成中..',
+			duration: 2000,
+			mask: true,
+			icon: 'loading'
+		})
+		imageSetting.value.prompt = designText;
+		const res = await generateImage(imageSetting).catch(e => uni.hideToast())
+		if (res.data) {
+			uni.hideToast();
+
+		}
+	}
+	const pic2picDesign = () => {
+
+	}
+
+	const createVal = ref('');
+
+	const setVal = (desc) => {
+		createVal.value = desc;
+	};
+
+	const modelContent = ref('123');
+	const showModelPicker = ref(false);
+
+	const selModel = () => {
+		showModelPicker.value = true
+	}
+
 	const designType = ref('')
 	onLoad((option) => {
 		designType.value = option.type
@@ -61,6 +102,13 @@ export const useDesign = () => {
 		createItem,
 		historyList,
 		menuList,
-		toPage
+		toPage,
+		pic2picDesign,
+		text2picDesign,
+		showModelPicker,
+		modelContent,
+		createVal,
+		setVal,
+		selModel
 	}
 }

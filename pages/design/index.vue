@@ -3,39 +3,42 @@
 		<image src="/static/design03.png"></image>
 	</view>
 	<view class="createBox">
-		<view class="">
+		<view class="titleBox">
 			<up-text bold="true" text="01 键入所想" size="26"></up-text>
 			<span>发挥想象，随心所写</span>
 		</view>
 		<up-textarea placeholder="所想即所得,输入你现在的想法吧!" border="surround" v-model="createVal" @change="change"></up-textarea>
-		<view class="">
+		<view class="templateContent">
 			<span>模板推荐</span>
 			<view class="templateBox">
-				<view class="templateItem" v-for="item in templateList" :key="item">
-					<view :style="{ background: `linear-gradient(to bottom, url(${item.bg}), #fff)` }">
-						<span style="font-size: 12px; opacity: 0.7">{{ item.content }}</span>
+				<view class="templateItem" v-for="item in imageRecommendPrompt" :key="item">
+					<view @click="setVal(item.desc)">
+						<span style="font-size: 12px; opacity: 0.7">{{ item.label }}</span>
 					</view>
 				</view>
 			</view>
 		</view>
+		<view class="modelClass templateContent templateBox">
+			<span>当前模型</span>
+			<view style="display: flex; gap: 4px" @click="selModel">
+				<span style="color: rgb(30, 144, 230)">
+					{{ modelContent }}
+				</span>
+				<u-icon name="arrow-right" color="rgb(30, 144, 230,0.7);" size="18"></u-icon>
+			</view>
+		</view>
 	</view>
 	<view class="bottom">
-		<up-button type="primary">生成创作</up-button>
+		<up-button type="primary" @click="text2picDesign(modelContent)">生成创作</up-button>
 	</view>
+	<!-- <up-select v-model="showModelPicker" :list="modelOptions"></up-select> -->
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useDesign } from './useDesign.js';
-useDesign();
-const createVal = ref('');
-const valChange = () => {};
-const templateList = ref([
-	{ content: '小男孩', bg: '/static/btnBg.png' },
-	{ content: '糖醋排骨', bg: '/static/btnBg.png' },
-	{ content: '兔子先生', bg: '/static/btnBg.png' },
-	{ content: '粉色城堡', bg: '/static/btnBg.png' }
-]);
+import { imageRecommendPrompt, modelOptions } from '@/utils/constant.js';
+const { toPage, setVal, pic2picDesign, text2picDesign, showModelPicker, modelContent, createVal, selModel } = useDesign();
 </script>
 
 <style lang="scss" scoped>
@@ -48,12 +51,16 @@ const templateList = ref([
 }
 .createBox {
 	position: absolute;
-	width: calc(100% - 32px);
+	width: calc(100% - 48px);
 	height: 60vh;
-	top: 38vh;
+	margin: 8px;
+	top: 25vh;
 	padding: 16px;
 	background: #fff;
 	border-radius: 8px 8px 0 0;
+	.titleBox {
+		margin: 8px 0 16px 0;
+	}
 	label {
 		line-height: 32px;
 		// font-weight: bold;
@@ -67,26 +74,34 @@ const templateList = ref([
 		border-color: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
 	}
 }
-.templateBox {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 80px;
-	overflow-x: scroll;
-	.templateItem {
+.templateContent {
+	margin: 16px 0 8px 0;
+	font-weight: bold;
+	.templateBox {
 		display: flex;
-		flex-direction: column;
 		justify-content: center;
-		color: rgb(30, 144, 230);
-		font-size: 14px;
 		align-items: center;
-		background-color: rgb(30, 144, 230, 0.1);
-		margin-left: 4px;
-		border-radius: 8px;
-		width: 120px;
-		height: 60px;
+		width: 100%;
+		height: 80px;
+		overflow-x: scroll;
+		.templateItem {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			color: rgb(30, 144, 230);
+			font-size: 14px;
+			align-items: center;
+			background-color: rgb(30, 144, 230, 0.1);
+			margin-left: 6px;
+			border-radius: 8px;
+			width: 120px;
+			height: 60px;
+		}
 	}
+}
+.modelClass {
+	display: flex;
+	justify-content: space-between;
 }
 .bottom {
 	width: 90%;
