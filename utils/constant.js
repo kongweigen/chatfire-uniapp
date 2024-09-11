@@ -135,3 +135,16 @@ export const modelOptions = [{
 		value: "stable-diffusion-3",
 	},
 ]
+
+export const voiceSoundOptions = [
+  "晓晓",
+  "女声",
+  "晓伊",
+  "云健",
+  "云希",
+  "男声",
+  "云夏",
+  "云扬",
+  "辽宁晓北",
+  "陕西晓妮",
+]

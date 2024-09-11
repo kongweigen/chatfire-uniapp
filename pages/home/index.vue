@@ -18,7 +18,7 @@
 						<view>
 							<span style="font-size: 14px; font-weight: bold; color: #fff">找灵感 问火宝</span>
 						</view>
-						<img src="/static/ai.png" style="width: 30px; height: 30px;" alt="" />
+						<img src="/static/ai.png" style="width: 30px; height: 30px" alt="" />
 					</view>
 				</view>
 				<view class="rightMenu">
@@ -27,6 +27,7 @@
 						:style="{ background: `linear-gradient(to bottom, ${item.bgColor[0]}, ${item.bgColor[1]})` }"
 						v-for="item in mainItems"
 						:key="item"
+						@click="toPage(item)"
 					>
 						<view style="margin-left: 16px">
 							<span style="font-size: 16px; font-weight: bold">{{ item.title }}</span>
@@ -95,6 +96,7 @@ const mainItems = ref([
 	},
 	{
 		title: '音频转换',
+		path: '/pages/voice/index',
 		content: '清脆声音谁不忘',
 		icon: '/static/voice.png',
 		bgColor: ['rgba(137,155,247,0.2)', 'rgba(137,155,247,0.05)']

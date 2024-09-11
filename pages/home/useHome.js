@@ -22,6 +22,12 @@ export const useHome = () => {
 	const createItem = ref(createItemMock)
 	const historyList = ref(historyMock)
 	const toPage = (item, routerType) => {
+		if (item.path) {
+			uni.navigateTo({
+				url: item.path
+			})
+			return
+		}
 		const urlName = item.value || item;
 		switch (urlName) {
 			case 'clear':

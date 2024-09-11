@@ -16,18 +16,6 @@
 			}
 		},
 		{
-			"path": "pages/image-clear/index",
-			"style": {
-				"navigationBarTitleText": "图片变清晰"
-			}
-		},
-		{
-			"path": "pages/image-style/index",
-			"style": {
-				"navigationBarTitleText": "风格转换"
-			}
-		},
-		{
 			"path": "pages/chat/index",
 			"style": {
 				"navigationBarTitleText": "火宝 AI",
@@ -58,6 +46,13 @@
 			"style": {
 				// "navigationStyle": "custom",
 				"navigationBarTitleText": "图片工具箱"
+			}
+		},
+		{
+			"path" : "pages/voice/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "音频创作"
 			}
 		}
 	],

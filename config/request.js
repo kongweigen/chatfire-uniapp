@@ -29,6 +29,8 @@ const request = (vm) => {
 		const data = response.data
 		if (response.config.url.includes('openai-dev.chatfire.cn')) {
 			return data
+		}if (response.config.url.includes('/box/chat/speech')) {
+			return data
 		}
 		// 自定义参数
 		const custom = response.config?.custom

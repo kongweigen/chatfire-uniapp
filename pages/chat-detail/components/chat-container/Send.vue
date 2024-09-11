@@ -74,7 +74,6 @@ const submit = async (e) => {
 			return { content, role };
 		});
 
-	debugger;
 	let model = chatStore.currentChatModel;
 	// 判断是否选择了 agent 有的话需要以 agent 为准
 	if (chatStore.agent) {
