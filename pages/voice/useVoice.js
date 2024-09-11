@@ -59,26 +59,30 @@ export const useVoice = () => {
 		let voiceBlobList = []
 		loading.value = true
 		for (const item of voiceTextList) {
-			let res = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
+			let binaryData = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
 				input: item
 			}))
-			debugger
-			const filePath = `temp/test.mp3`
-			const fileManager = uni.getFileSystemManager()
-			fileManager.writeFile({
-				filePath: filePath,
-				data: ' 音频二进制流',
-				encoding: 'binary',
-				success: res => {
-					console.log('写入成功', res)
-					this.setData({
-						vedioSrc: filePath
-					})
+			uni.getFileSystemManager().getTempFilePath({
+				tempPath: 'temp.mp3',
+				success: function(res) {
+					// 创建文件写入器
+					const writeManager = uni.getFileSystemManager().createWriteFile({
+						filePath: res.tempFilePath,
+						data: binaryData,
+						success: function(res) {
+							console.log('文件写入成功');
+							// 可以在这里进行后续操作，比如播放MP3
+						},
+						fail: function(err) {
+							console.error('文件写入失败', err);
+						}
+					});
 				},
-				fail: (err) => {
-					debugger
+				fail: function(err) {
+					console.error('获取临时文件路径失败', err);
 				}
-			})
+			});
+			
 			// if (res == "error") return (loading.value = false)
 			// if (res) {
 			// 	const elink = document.createElement("a")

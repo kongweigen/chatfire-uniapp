@@ -1,12 +1,12 @@
 <template>
+	<view class="titleBox">
+		<up-text color="#ffffff" bold="true" text="键入所想" size="26"></up-text>
+		<span>发挥想象，随心所写</span>
+	</view>
 	<view class="stepsBox">
 		<image src="/static/design03.png"></image>
 	</view>
 	<view class="createBox">
-		<view class="titleBox">
-			<up-text bold="true" text="01 键入所想" size="26"></up-text>
-			<span>发挥想象，随心所写</span>
-		</view>
 		<up-textarea placeholder="所想即所得,输入你现在的想法吧!" border="surround" v-model="createVal" @change="change"></up-textarea>
 		<view class="templateContent">
 			<span>模板推荐</span>
@@ -20,25 +20,49 @@
 		</view>
 		<view class="modelClass templateContent templateBox">
 			<span>当前模型</span>
-			<view style="display: flex; gap: 4px" @click="selModel">
+			<view style="display: flex; gap: 4px" @click="openModelPicker">
 				<span style="color: rgb(30, 144, 230)">
-					{{ modelContent }}
+					{{ modelContent.label }}
 				</span>
 				<u-icon name="arrow-right" color="rgb(30, 144, 230,0.7);" size="18"></u-icon>
 			</view>
 		</view>
+		<view class="bottom">
+			<up-button shape="circle" type="primary" color="linear-gradient(to right, #307ae4, #30e2e4);" @click="text2picDesign()">生成创作</up-button>
+		</view>
 	</view>
-	<view class="bottom">
-		<up-button type="primary" @click="text2picDesign(modelContent)">生成创作</up-button>
-	</view>
-	<!-- <up-select v-model="showModelPicker" :list="modelOptions"></up-select> -->
+	<up-picker :show="showModelPicker" :columns="modelList" keyName="label" title="选择模型" @cancel="openModelPicker" @confirm="setModel"></up-picker>
+	<up-modal class="desigModal" :show="picShow" title="作品预览" @confirm="showDesignModal">
+		<view class="slot-content">
+			<u-image class="designImage" :src="designPic"></u-image>
+			<view class="designBtn">
+				<!-- <up-button shape="circle" @click="picShow">关闭</up-button> -->
+				<!-- <up-button shape="circle" type="primary" @click="savePic">保存图片</up-button> -->
+			</view>
+		</view>
+	</up-modal>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useDesign } from './useDesign.js';
-import { imageRecommendPrompt, modelOptions } from '@/utils/constant.js';
-const { toPage, setVal, pic2picDesign, text2picDesign, showModelPicker, modelContent, createVal, selModel } = useDesign();
+import { imageRecommendPrompt, modelOptions } from '@/utils/index.js';
+const {
+	showDesignModal,
+	designPic,
+	savePic,
+	picShow,
+	toPage,
+	setVal,
+	pic2picDesign,
+	text2picDesign,
+	showModelPicker,
+	modelContent,
+	createVal,
+	openModelPicker,
+	modelList,
+	setModel
+} = useDesign();
 </script>
 
 <style lang="scss" scoped>
@@ -52,14 +76,18 @@ const { toPage, setVal, pic2picDesign, text2picDesign, showModelPicker, modelCon
 .createBox {
 	position: absolute;
 	width: calc(100% - 48px);
-	height: 60vh;
+	height: 70vh;
 	margin: 8px;
-	top: 25vh;
+	top: 20vh;
 	padding: 16px;
-	background: #fff;
+	background: rgb(255, 255, 255, 0.9);
 	border-radius: 8px 8px 0 0;
-	.titleBox {
-		margin: 8px 0 16px 0;
+	box-shadow: 0px 8px 18px 0px rgb(30, 144, 230, 0.2);
+	.bottom {
+		width: 82%;
+		bottom: 4px;
+		margin: 5%;
+		position: absolute;
 	}
 	label {
 		line-height: 32px;
@@ -73,6 +101,14 @@ const { toPage, setVal, pic2picDesign, text2picDesign, showModelPicker, modelCon
 		border-width: 1px !important;
 		border-color: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
 	}
+}
+.titleBox {
+	top: 10vh;
+	left: 5vw;
+	bottom: 4px;
+	position: absolute;
+	margin: 8px 0 16px 0;
+	color: #fff;
 }
 .templateContent {
 	margin: 16px 0 8px 0;
@@ -103,14 +139,18 @@ const { toPage, setVal, pic2picDesign, text2picDesign, showModelPicker, modelCon
 	display: flex;
 	justify-content: space-between;
 }
-.bottom {
-	width: 90%;
-	height: 44px;
-	bottom: 20px;
-	margin: 5%;
-	position: absolute;
-	.u-button {
-		border-radius: 18px !important;
+.desigModal {
+	padding: 16px !important;
+	.slot-content {
+		.designBtn {
+			display: flex;
+			padding: 14px;
+			gap: 18px;
+		}
+		.designImage {
+			border-radius: 16px !important;
+			padding: 12px !important;
+		}
 	}
 }
 </style>
