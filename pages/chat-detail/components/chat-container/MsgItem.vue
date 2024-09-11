@@ -6,8 +6,11 @@
 					<!-- <img src="@/assets/logo.png" /> -->
 					<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
 					<div class="content">
-						<div v-html="searchContentHtml"></div>
-						<div v-html="contentHtml"></div>
+						<rich-text :nodes="searchContentHtml" selectable></rich-text>
+						<rich-text :nodes="contentHtml"></rich-text>
+
+						<!-- <div v-html="searchContentHtml"></div>
+						<div v-html="contentHtml"></div> -->
 					</div>
 				</div>
 				<div v-if="status == 'loading'" class="loading">
@@ -118,6 +121,7 @@ const handlerAction = (type) => {
 			word-break: break-all;
 			min-height: 40rpx;
 			min-width: 60rpx;
+			overflow-x: auto;
 			// white-space: pre;
 		}
 		&.msg-item__left {
