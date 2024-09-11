@@ -17,7 +17,16 @@
 		</div>
 		<div class="footer">
 			<!-- <AgentPanel ref="agentPanelRef"></AgentPanel> -->
-			<Send class="w-full" ref="sendRef" @change="msgChange" @on-before="beforeSend" @on-end="endSend" @on-error="onError" @switch-agent-panel="switchAgentPanel"></Send>
+			<Send
+				class="w-full"
+				ref="sendRef"
+				@search-change="searchMsgChange"
+				@change="msgChange"
+				@on-before="beforeSend"
+				@on-end="endSend"
+				@on-error="onError"
+				@switch-agent-panel="switchAgentPanel"
+			></Send>
 		</div>
 	</div>
 </template>
@@ -40,24 +49,11 @@ const props = defineProps({
 	text: String
 });
 
-// watchEffect(() => {
-//   const { id } = route.params
-//   chatStore.initMessage(id)
-//   positionDomViewBottom()
-// })
-
 const selectPrompt = (val) => {
 	sendRef.value.setContent(val);
 };
 
-let newId = '';
 const beforeSend = async (val) => {
-	// 首页问答需要先新增
-	// let { id } = route.params
-	// if (!id) {
-	//   id = chatStore.createChat()
-	//   newId = id
-	// }
 	chatStore.addMessage(val);
 	positionDomViewBottom();
 };
@@ -66,10 +62,11 @@ const onError = () => {
 };
 const endSend = () => {
 	chatStore.updateLastMessage('', 'success');
-	// if (newId) {
-	//   router.push({ name: "chat", params: { id: newId } })
-	//   newId = undefined
-	// }
+};
+
+const searchMsgChange = (val) => {
+	chatStore.updateLastMessage('', '', val);
+	positionDomViewBottom();
 };
 
 const msgChange = (val) => {

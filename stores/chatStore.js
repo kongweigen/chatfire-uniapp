@@ -157,6 +157,7 @@ export const useChatStore = defineStore({
 				datetime: "",
 			}, {
 				content: "",
+				searchContent: "",
 				role: "system",
 				status: "loading",
 			})
@@ -167,13 +168,15 @@ export const useChatStore = defineStore({
 			uni.setStorageSync("chatbot-chat-message-map", JSON.stringify(map))
 		},
 		// 更新最后一条回复的状态、信息
-		updateLastMessage(content, status) {
+		updateLastMessage(content, status, searchContent) {
 			if (!this.messageList[this.messageList.length - 1]) return
 			if (status) this.messageList[this.messageList.length - 1].status = status
 			if (content)
 				this.messageList[this.messageList.length - 1].content = content
+			if (searchContent)
+				this.messageList[this.messageList.length - 1].searchContent = searchContent
 			const messageMapJson =
-			  uni.getStorageSync("chatbot-chat-message-map") || "{}"
+				uni.getStorageSync("chatbot-chat-message-map") || "{}"
 			const map = JSON.parse(messageMapJson)
 			map[this.chatId] = this.messageList
 			uni.setStorageSync("chatbot-chat-message-map", JSON.stringify(map))

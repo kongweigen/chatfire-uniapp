@@ -5,7 +5,10 @@
 				<div class="u-flex u-gap-2">
 					<!-- <img src="@/assets/logo.png" /> -->
 					<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
-					<div class="content" v-html="contentHtml"></div>
+					<div class="content">
+						<div v-html="searchContentHtml"></div>
+						<div v-html="contentHtml"></div>
+					</div>
 				</div>
 				<div v-if="status == 'loading'" class="loading">
 					<NSpin :size="15"></NSpin>
@@ -61,6 +64,19 @@ const contentHtml = computed(() => {
 	const val = props.item.userContent || props.item.content;
 	return md.render(val);
 });
+
+const searchContentHtml = computed(() => {
+	let val = props.item?.searchContent || '';
+	if (val) {
+		val = val
+			.replaceAll('检索 ', '<|-prefix-|>')
+			.replaceAll('...', '')
+			.replaceAll(/\(http/g, '<|-suffix-|>\(http');
+		val = val.replaceAll('<|-prefix-|>', '[').replaceAll('<|-suffix-|>', ']');
+	}
+	return (val && md.render(val)) || '';
+});
+
 const status = computed(() => props.item.status);
 
 const handlerAction = (type) => {

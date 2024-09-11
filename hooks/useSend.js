@@ -10,6 +10,7 @@ import * as TextEncoding from 'text-encoding-shim';
 export const useSend = () => {
 	const running = ref(false)
 	const content = ref("")
+	const searchContent = ref("")
 	// let controller = new AbortController()
 	const send = async (data) => {
 		// 发送之前进行套餐校验
@@ -17,6 +18,7 @@ export const useSend = () => {
 		// controller = new AbortController()
 		running.value = true
 		content.value = ""
+		searchContent.value = ""
 		const streamTask = chat2gpt({
 			data,
 			signal: controller.signal,
@@ -32,11 +34,18 @@ export const useSend = () => {
 			const arrayBuffer = res.data;
 			const uint8Array = new Uint8Array(arrayBuffer);
 			const chunk = new TextEncoding.TextDecoder('utf-8').decode(uint8Array);
-
-			const t = getOpenAIContent(chunk)
-			content.value += t
+			debugger
+			const {
+				value,
+				searchValue
+			} = getOpenAIContent(chunk)
+			content.value += value
+			searchContent.value += searchValue
 			if (chunk.includes("[DONE]")) {
 				console.log("输出结束")
+				setTimeout(() => {
+					running.value = false
+				}, 500)
 			}
 		})
 	}
@@ -49,6 +58,7 @@ export const useSend = () => {
 	}
 	return {
 		content,
+		searchContent,
 		running,
 		send,
 		handleStop,
@@ -56,15 +66,26 @@ export const useSend = () => {
 }
 
 function getOpenAIContent(chunk) {
-	let result = ""
+	let value = ""
+	let searchValue = ""
 	try {
 		const list = chunk.split("<|-hold-|>")
 		list.forEach((item) => {
-			if (item && !item.includes('[DONE]')) result += JSON.parse(item).choices[0].delta.content || ""
+			if (item && !item.includes('[DONE]')) {
+				let val = JSON.parse(item).choices[0].delta.content || ""
+				if (val.startsWith("检索 ")) {
+					searchValue += val
+				} else {
+					value += val
+				}
+			}
 		})
 	} catch (error) {
 		console.log(error)
 	} finally {
-		return result
+		return {
+			value,
+			searchValue
+		}
 	}
 }

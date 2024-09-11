@@ -61,7 +61,7 @@ import { useChatStore } from '@/stores';
 
 const list = ref([]);
 const chatStore = useChatStore();
-const { running, content, send, handleStop } = useSend(list);
+const { running, searchContent, content, send, handleStop } = useSend(list);
 
 const sendContent = ref('');
 
@@ -73,6 +73,13 @@ watch(
 	() => content.value,
 	(val) => {
 		if (running.value) emit('change', val);
+	}
+);
+
+watch(
+	() => searchContent.value,
+	(val) => {
+		if (running.value) emit('search-change', val);
 	}
 );
 
@@ -109,20 +116,14 @@ const submit = async (e) => {
 		.map(({ content, role }) => {
 			return { content, role };
 		});
-	// // 插入引导词
-	// if (chatStore.chat.prompt) {
-	// 	list.splice(-1, 0, {
-	// 		content: chatStore.chat.prompt,
-	// 		role: 'user'
-	// 	});
-	// }
+
 	let model = chatStore.currentChatModel;
 	// 判断是否选择了 agent 有的话需要以 agent 为准
 	if (chatStore.agent) {
 		model = chatStore.agent.model;
 	}
 	const req = {
-		model,
+		model: 'glm-4-all',
 		messages: list,
 		stream: true
 	};
