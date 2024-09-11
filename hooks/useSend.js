@@ -34,7 +34,6 @@ export const useSend = () => {
 			const arrayBuffer = res.data;
 			const uint8Array = new Uint8Array(arrayBuffer);
 			const chunk = new TextEncoding.TextDecoder('utf-8').decode(uint8Array);
-			debugger
 			const {
 				value,
 				searchValue

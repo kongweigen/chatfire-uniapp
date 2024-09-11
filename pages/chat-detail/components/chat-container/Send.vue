@@ -8,47 +8,6 @@
 				</div>
 			</template>
 		</u-input>
-		<!-- div class="footer w-full px-3 pb-2">
-      <div></div>
-      <div class="flex gap-2">
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <div class="item" @click="showAgent">
-              <SvgIcon
-                :width="20"
-                :height="20"
-                icon="mdi:robot-excited-outline"
-                color="#fff"
-              ></SvgIcon>
-            </div>
-          </template>
-          选择智能体
-        </n-tooltip>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <div class="item" @click="upload">
-              <SvgIcon
-                :width="20"
-                :height="20"
-                icon="iconamoon:attachment"
-                color="#fff"
-              ></SvgIcon>
-            </div>
-          </template>
-          支持上传文件（每个 10 MB）接受 pdf、doc、xlsx、ppt、txt、图片等
-        </n-tooltip>
-        <div class="item submit">
-          <SvgIcon
-            :width="20"
-            :height="20"
-            :icon="running ? 'eos-icons:three-dots-loading' : 'iconamoon:send'"
-            :disabled="running"
-            color="#fff"
-            @click="submit"
-          ></SvgIcon>
-        </div>
-      </div>
-    </div> -->
 	</div>
 </template>
 
@@ -56,7 +15,6 @@
 import { ref, watch, computed } from 'vue';
 import { useSend } from '@/hooks/useSend';
 import { useChatStore } from '@/stores';
-
 // import Plugins from "./Plugins.vue"
 
 const list = ref([]);
@@ -69,6 +27,12 @@ const emit = defineEmits(['submit', 'change', 'on-before', 'on-end', 'on-error']
 const placeholder = computed(() => '传递的你的想法');
 
 // 监听消息响应
+watch(
+	() => running.value,
+	(val) => {
+		if (!val) emit('on-end');
+	}
+);
 watch(
 	() => content.value,
 	(val) => {
@@ -95,13 +59,6 @@ const handleFocus = () => {
 	inputInstRef.value?.focus();
 };
 
-// 上传成功更新文件列表，插入chat对象
-const upload = (file) => {
-	$message.success('开发中，请期待。。。');
-	// chatStore.addFile(file)
-	// chatStore.updateChatItem({ file })
-};
-
 // 消息发送 ctrl + enter 换行
 const submit = async (e) => {
 	if (e?.shiftKey) return;
@@ -117,18 +74,20 @@ const submit = async (e) => {
 			return { content, role };
 		});
 
+	debugger;
 	let model = chatStore.currentChatModel;
 	// 判断是否选择了 agent 有的话需要以 agent 为准
 	if (chatStore.agent) {
 		model = chatStore.agent.model;
 	}
+	if (isNetwork.value) model = 'glm-4-all';
 	const req = {
-		model: 'glm-4-all',
+		model,
 		messages: list,
 		stream: true
 	};
 	await send(req).finally(() => {
-		emit('on-end', sendContent.value);
+		// emit('on-end', sendContent.value);
 	});
 };
 // 设置输入框
@@ -136,7 +95,9 @@ const setContent = (val) => {
 	sendContent.value = val;
 };
 
-const shortcut = (val) => {
+const isNetwork = ref(false);
+const shortcut = (val, open) => {
+	isNetwork.value = open === true || open === 'true';
 	setContent(val);
 	submit();
 };

@@ -3,23 +3,16 @@
 		<div v-if="position == 'left'" :class="['msg-item__box', 'msg-item__left']">
 			<div class="left_content">
 				<div class="u-flex u-gap-2">
-					<!-- <img src="@/assets/logo.png" /> -->
 					<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
 					<div class="content">
 						<rich-text :nodes="searchContentHtml" selectable></rich-text>
 						<rich-text :nodes="contentHtml"></rich-text>
-
 						<!-- <div v-html="searchContentHtml"></div>
 						<div v-html="contentHtml"></div> -->
 					</div>
 				</div>
 				<div v-if="status == 'loading'" class="loading">
-					<NSpin :size="15"></NSpin>
-				</div>
-				<div class="flex gap-2 mt-2 ml-10">
-					<SvgIcon :width="15" :height="15" hover icon="icon-park-outline:copy" @click="handlerAction('copy')"></SvgIcon>
-					<SvgIcon :width="15" :height="15" hover icon="bx:like" @click="handlerAction"></SvgIcon>
-					<SvgIcon :width="15" :height="15" hover icon="bx:dislike" @click="handlerAction"></SvgIcon>
+					<u-image width="40rpx" height="40rpx" src="@/assets/icon-fire.gif"></u-image>
 				</div>
 			</div>
 		</div>
@@ -98,10 +91,9 @@ const handlerAction = (type) => {
 	overflow: auto;
 	.loading {
 		position: absolute !important;
-		width: 20px;
-		height: 20px;
+		border-radius: 20rpx;
 		top: 5px !important;
-		right: 5px !important;
+		right: -2px !important;
 	}
 }
 .msg-item {
@@ -125,6 +117,7 @@ const handlerAction = (type) => {
 			// white-space: pre;
 		}
 		&.msg-item__left {
+			padding-right: 30rpx;
 			align-self: flex-start;
 			// z-index: -1;
 			.content {

@@ -4,7 +4,7 @@
 		<div class="main h-full w-full flex flex-col">
 			<!-- <Header v-if="chatStore.navType === '1'"></Header> -->
 			<div class="chat-content flex-1 w-full h-full">
-				<ChatContainer :text="askText"></ChatContainer>
+				<ChatContainer :text="askText" :isNetwork="isNetwork"></ChatContainer>
 				<!-- <History v-if="chatStore.navType === '2'"></History>
         <Agents v-if="chatStore.navType === '3'"></Agents> -->
 			</div>
@@ -28,8 +28,10 @@ import { ref } from 'vue';
 //   chatStore.initChat()
 // })
 const askText = ref('');
+const isNetwork = ref(false);
 onLoad((option) => {
 	askText.value = option.text;
+	isNetwork.value = option.isNetwork;
 });
 </script>
 <style lang="scss" scoped>

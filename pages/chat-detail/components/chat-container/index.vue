@@ -46,7 +46,8 @@ const sendRef = ref();
 const { sendContent, agentPanelRef, switchAgentPanel } = useAgent(sendRef);
 
 const props = defineProps({
-	text: String
+	text: String,
+	isNetwork: Boolean
 });
 
 const selectPrompt = (val) => {
@@ -65,13 +66,13 @@ const endSend = () => {
 };
 
 const searchMsgChange = (val) => {
-	chatStore.updateLastMessage('', '', val);
+	chatStore.updateLastMessage('', 'loading', val);
 	positionDomViewBottom();
 };
 
 const msgChange = (val) => {
 	sendContent.value = val;
-	chatStore.updateLastMessage(val);
+	chatStore.updateLastMessage(val, 'loading');
 	positionDomViewBottom();
 };
 
@@ -79,7 +80,9 @@ let handleStop;
 onMounted(() => {
 	console.log('加载');
 	handleStop = sendRef.value?.handleStop;
-	props.text && sendRef.value?.shortcut(props.text);
+	if (props.text) {
+		sendRef.value?.shortcut(props.text, props.isNetwork);
+	}
 });
 onUnmounted(() => {
 	console.log('卸载');

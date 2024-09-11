@@ -19,7 +19,7 @@ export const useChat = () => {
 	const submit = (val) => {
 		chatStore.createChat();
 		uni.navigateTo({
-			url: `/pages/chat-detail/index?text=${val || sendContent.value}`
+			url: `/pages/chat-detail/index?text=${val || sendContent.value}&isNetwork=${!!val}`
 		});
 	};
 	const list = ref([

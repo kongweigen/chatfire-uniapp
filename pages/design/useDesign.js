@@ -63,7 +63,6 @@ export const useDesign = () => {
 	})
 
 	const text2picDesign = async (designText) => {
-		debugger
 		uni.showToast({
 			title: '请稍后,图片生成中..',
 			duration: 2000,
