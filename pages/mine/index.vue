@@ -9,9 +9,6 @@
 				<div class="label"></div>
 			</div>
 		</div>
-		<u---input v-model="loginCode"></u---input>
-		<u-button @click="login">登录</u-button>
-		<input type="nickname" class="weui-input" placeholder="请输入昵称" />
 	</view>
 	<LoginPopup></LoginPopup>
 </template>
