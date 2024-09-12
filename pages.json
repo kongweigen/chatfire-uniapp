@@ -39,7 +39,10 @@
 			"path": "pages/design/index",
 			"style": {
 				// "navigationStyle": "custom",
+				"navigationBarBackgroundColor": "#deeaf6",
 				"navigationBarTitleText": "工作台"
+				// "navigationBarTextStyle": "#307ae4" ,
+				// "titleColor":"#307ae4" 
 			}
 		}, {
 			"path": "pages/pcedit/index",

@@ -1,6 +1,6 @@
 <template>
 	<view class="titleBox">
-		<up-text color="#ffffff" bold="true" text="键入所想" size="26"></up-text>
+		<up-text color="#307ae4" bold="true" text="键入所想" size="26"></up-text>
 		<span>发挥想象，随心所写</span>
 	</view>
 	<view class="stepsBox">
@@ -68,7 +68,7 @@ const {
 <style lang="scss" scoped>
 .stepsBox image {
 	width: 100%;
-	height: 44vh;
+	height: 100vh;
 	background-size: cover;
 	background-position: center;
 	// background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -81,7 +81,7 @@ const {
 	top: 20vh;
 	padding: 16px;
 	background: rgb(255, 255, 255, 0.9);
-	border-radius: 8px 8px 0 0;
+	border-radius: 18px;
 	box-shadow: 0px 8px 18px 0px rgb(30, 144, 230, 0.2);
 	.bottom {
 		width: 82%;
@@ -93,12 +93,13 @@ const {
 		line-height: 32px;
 		// font-weight: bold;
 	}
-	textarea {
-		background: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
+	:deep .u-textarea {
+		// background: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
+		height: 120px;
+		border-radius: 18px !important;
 	}
-	::v-deep .u-border,
-	.up-border {
-		border-width: 1px !important;
+	:v-deep .u-border {
+		border-width: 2px !important;
 		border-color: linear-gradient(to bottom, rgb(30, 144, 230, 0.3), rgb(30, 144, 180, 0.1)) !important;
 	}
 }
@@ -108,7 +109,7 @@ const {
 	bottom: 4px;
 	position: absolute;
 	margin: 8px 0 16px 0;
-	color: #fff;
+	color: rgb(30, 144, 230, 0.9);
 }
 .templateContent {
 	margin: 16px 0 8px 0;

@@ -98,7 +98,7 @@ export const useDesign = () => {
 		model: "flux-pro",
 		prompt: "",
 		n: 1,
-		size: "1024x1024",
+		size: "500x500",
 		url: "",
 	})
 
