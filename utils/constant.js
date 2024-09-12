@@ -28,42 +28,42 @@ export const menuMock = [{
 		],
 		itemclass: '图文创意'
 	},
-	{
-		subItems: [{
-				value: 'lock',
-				label: 'AI翻译'
-			},
-			{
-				value: 'star',
-				label: '作业助手'
-			},
-			{
-				value: 'star',
-				label: '课件助手'
-			},
-			{
-				value: 'photo',
-				label: '论文助手'
-			},
-			{
-				value: 'photo',
-				label: '编程助手'
-			},
-			{
-				value: 'photo',
-				label: '简历助手'
-			},
-			{
-				value: 'photo',
-				label: '商品文案'
-			},
-			{
-				value: 'photo',
-				label: '短视频文案'
-			}
-		],
-		itemclass: '办公助手'
-	}
+	// {
+	// 	subItems: [{
+	// 			value: 'lock',
+	// 			label: 'AI翻译'
+	// 		},
+	// 		{
+	// 			value: 'star',
+	// 			label: '作业助手'
+	// 		},
+	// 		{
+	// 			value: 'star',
+	// 			label: '课件助手'
+	// 		},
+	// 		{
+	// 			value: 'photo',
+	// 			label: '论文助手'
+	// 		},
+	// 		{
+	// 			value: 'photo',
+	// 			label: '编程助手'
+	// 		},
+	// 		{
+	// 			value: 'photo',
+	// 			label: '简历助手'
+	// 		},
+	// 		{
+	// 			value: 'photo',
+	// 			label: '商品文案'
+	// 		},
+	// 		{
+	// 			value: 'photo',
+	// 			label: '短视频文案'
+	// 		}
+	// 	],
+	// 	itemclass: '办公助手'
+	// }
 ];
 export const historyMock = [{
 		img: '/static/chatFireLogo.png'

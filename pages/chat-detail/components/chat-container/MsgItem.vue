@@ -5,8 +5,8 @@
 				<div class="u-flex u-gap-2">
 					<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
 					<div class="content">
-						<rich-text :nodes="searchContentHtml" selectable></rich-text>
-						<rich-text :nodes="contentHtml"></rich-text>
+						<u-parse :content="searchContentHtml" selectable></u-parse>
+						<u-parse :content="contentHtml"></u-parse>
 						<!-- <div v-html="searchContentHtml"></div>
 						<div v-html="contentHtml"></div> -->
 					</div>

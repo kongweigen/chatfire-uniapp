@@ -62,40 +62,17 @@ export const useVoice = () => {
 			let binaryData = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
 				input: item
 			}))
-			uni.getFileSystemManager().getTempFilePath({
-				tempPath: 'temp.mp3',
-				success: function(res) {
-					// 创建文件写入器
-					const writeManager = uni.getFileSystemManager().createWriteFile({
-						filePath: res.tempFilePath,
-						data: binaryData,
-						success: function(res) {
-							console.log('文件写入成功');
-							// 可以在这里进行后续操作，比如播放MP3
-						},
-						fail: function(err) {
-							console.error('文件写入失败', err);
-						}
-					});
-				},
-				fail: function(err) {
-					console.error('获取临时文件路径失败', err);
-				}
-			});
 			
 			// if (res == "error") return (loading.value = false)
-			// if (res) {
-			// 	const elink = document.createElement("a")
-			// 	elink.download = "voice.mp3"
-			// 	elink.style.display = "none"
-			// 	const blob = new Blob([res], {
-			// 		type: "audio/mpeg"
-			// 	})
-			// 	voiceBlobList.push(blob)
-			// }
-			// if (voiceTextList.length == voiceBlobList.length) {
-			// 	mergeBlobToMp3(voiceBlobList)
-			// }
+			if (binaryData) {
+				const arrBuf = new Uint8Array(binaryData)
+				const base64 = "data:audio/mpeg;base64," +uni.arrayBufferToBase64(arrBuf)
+				debugger
+				voiceBlobList.push(base64)
+			}
+			if (voiceTextList.length == voiceBlobList.length) {
+				mergeBlobToMp3(voiceBlobList)
+			}
 		}
 	}
 

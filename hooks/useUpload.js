@@ -3,7 +3,6 @@ import {
 } from 'vue'
 import {
 	commonUrl,
-	token
 } from '@/config/host.js'
 
 export const useUpload = () => {
@@ -18,6 +17,7 @@ export const useUpload = () => {
 					mask: true,
 					title: '正在上传'
 				});
+				const token = uni.getStorageSync("token")
 				uni.uploadFile({
 					url: `${commonUrl}/box/chat/file`, //仅为示例，非真实的接口地址
 					filePath: tempFilePath,

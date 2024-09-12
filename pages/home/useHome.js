@@ -30,9 +30,6 @@ export const useHome = () => {
 		}
 		const urlName = item.value || item;
 		switch (urlName) {
-			case 'clear':
-				toRoute(routerUrlMap['clear'], 'clear')
-				break;
 			case '图片创作':
 				toRoute(routerUrlMap['picDesign'])
 				break;
@@ -40,7 +37,7 @@ export const useHome = () => {
 				toRoute(routerUrlMap['videoDesign'])
 				break;
 			case 'fireChat':
-				toRoute(routerUrlMap['fireChat'])
+				toRoute(routerUrlMap['fireChat'], 'tab')
 				break;
 			default:
 				toRoute(routerUrlMap['picDesign'])

@@ -1,12 +1,12 @@
 const http = uni.$u.http;
 import {
-	commonUrl, token
+	commonUrl
 } from '@/config/host.js'
 export const chat2gpt = ({
 	data,
 	signal
 }, successCall) => {
-	// let token = uni.getStorageSync("token")
+	let token = uni.getStorageSync("token")
 
 	return uni.request({
 		method: "POST",
