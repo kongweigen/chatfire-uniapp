@@ -2,7 +2,7 @@
 	<view class="page mine">
 		<div class="top" @click="login">
 			<u-avatar :src="user.avatar" size="60"></u-avatar>
-			<span class="name">{{ user.nickName || '去登录' }}</span>
+			<span class="name">{{ user.nickName || '设置昵称' }}</span>
 		</div>
 		<div class="group">
 			<div class="cell" @click="toSignIn">

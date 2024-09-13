@@ -1,11 +1,11 @@
 import {
-	queryUser
-} from '@/api';
-import {
 	ref,
 	onMounted
 } from 'vue';
+import {
+	useUser,
 
+} from '@/hooks/useUser.js';
 import {
 	onLoad,
 } from '@dcloudio/uni-app';
@@ -17,7 +17,9 @@ import {
 } from '@/utils/index.js'
 
 export const useHome = () => {
-
+	const {
+		initUser
+	} = useUser();
 	const menuList = ref(menuMock)
 	const createItem = ref(createItemMock)
 	const historyList = ref(historyMock)
@@ -72,7 +74,7 @@ export const useHome = () => {
 		});
 	}
 	onMounted(() => {
-		queryUser()
+		initUser()
 	})
 	return {
 		toPcedit,

@@ -29,24 +29,19 @@ const request = (vm) => {
 		const data = response.data
 		if (response.config.url.includes('openai-dev.chatfire.cn')) {
 			return data
-		}if (response.config.url.includes('/box/chat/speech')) {
+		}
+		if (response.config.url.includes('/box/chat/speech')) {
 			return data
 		}
 		// 自定义参数
-		const custom = response.config?.custom
 		if (data.code !== 200) {
-			// 如果没有显式定义custom的toast参数为false的话，默认对报错进行toast弹出提示
-			if (custom.toast !== false) {
-				uni.$u.toast(data.message)
-			}
+			uni.showToast({
+				title: data?.msg,
+				icon: 'error'
+			})
+			return new Promise.reject()
+		} else {
 
-			// 如果需要catch返回，则进行reject
-			if (custom?.catch) {
-				return Promise.reject(data)
-			} else {
-				// 否则返回一个pending中的promise，请求不会进入catch中
-				return new Promise(() => {})
-			}
 		}
 		return data.data === undefined ? {} : data.data
 	}, (response) => {

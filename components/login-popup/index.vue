@@ -1,7 +1,7 @@
 <template>
 	<u-popup :show="userStore.showLogin" mode="bottom" @close="close" @open="open">
 		<div class="box">
-			<div class="title mb25">用户登录</div>
+			<div class="title mb25">{{ title }}</div>
 			<div class="login-form">
 				<u--form labelPosition="left" :model="userInfo" :rules="rules" ref="uForm">
 					<u-form-item label="头像" prop="userInfo.avatar" borderBottom ref="item1">
@@ -42,24 +42,41 @@ const userInfo = ref({
 	nickName: ''
 });
 
-const submit = () => {
-	uni.login({
-		async success(res) {
-			console.log('res.code', res.code);
-			res.code;
-			// access_token
-			const rsp = await userLogin(res.code);
-			uni.setStorageSync('token', rsp.access_token);
-			// 更新头像昵称
-			await updateUserInfo(userInfo.value);
-			initUser();
-			uni.showToast({
-				title: '登录成功',
-				duration: 2000
-			});
-			close();
-		}
-	});
+const title = computed(() => {
+	const token = uni.getStorageSync('token');
+	return token ? '信息更新' : '用户登录';
+});
+
+const submit = async () => {
+	const token = uni.getStorageSync('token');
+	if (!token) {
+		uni.login({
+			async success(res) {
+				console.log('res.code', res.code);
+				res.code;
+				// access_token
+				const rsp = await userLogin(res.code);
+				uni.setStorageSync('token', rsp.access_token);
+				// 更新头像昵称
+				await updateUserInfo(userInfo.value);
+				initUser();
+				uni.showToast({
+					title: '登录成功',
+					duration: 2000
+				});
+				close();
+			}
+		});
+	} else {
+		// 更新头像昵称
+		await updateUserInfo(userInfo.value);
+		initUser();
+		uni.showToast({
+			title: '更新成功',
+			duration: 2000
+		});
+		close();
+	}
 };
 const onChooseAvatar = async (data) => {
 	console.log('onChooseAvatar ', data);

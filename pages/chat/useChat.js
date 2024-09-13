@@ -34,12 +34,11 @@ export const useChat = () => {
 
 	const initHot = async () => {
 		const res = await getHot()
-		console.log(res)
+		// console.log(res)
 		let t = res.split("\n").splice(0, 10);
 		try {
 			t = t.map(val => val.replaceAll(/^\d+./g, '').trim())
 		} catch (e) {
-			//TODO handle the exception
 		}
 		list.value = t
 	}
