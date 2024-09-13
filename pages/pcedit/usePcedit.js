@@ -11,10 +11,6 @@ import {
 	onLoad,
 } from '@dcloudio/uni-app';
 import {
-	commonUrl,
-	token
-} from '@/config/host.js'
-import {
 	useUpload
 } from '@/hooks/useUpload.js'
 

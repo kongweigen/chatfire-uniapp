@@ -1,17 +1,24 @@
-import { queryUser, getAccount } from "@/api/user"
-import { useUserStore } from "@/stores/userStore"
+import {
+	queryUser,
+	getAccountInfo
+} from "@/api/user"
+import {
+	useUserStore
+} from "@/stores/userStore"
 
 export const useUser = () => {
-  const userStore = useUserStore()
+	const userStore = useUserStore()
 
-  const initUser = async () => {
-    const res = await queryUser()
-    userStore.setUser(res)
-    initAccount()
-  }
-  const initAccount = async () => {
-    const res = await getAccount()
-    userStore.setAccountToken(res)
-  }
-  return { initUser, initAccount }
+	const initUser = async () => {
+		initAccount()
+		const res = await queryUser()
+		userStore.setUser(res)
+	}
+	const initAccount = async () => {
+		const res = await getAccountInfo()
+		userStore.setAccountToken(res)
+	}
+	return {
+		initUser
+	}
 }

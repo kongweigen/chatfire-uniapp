@@ -13,7 +13,7 @@
 						</button>
 					</u-form-item>
 					<u-form-item label="姓名" prop="userInfo.nickName" borderBottom ref="item1">
-						<input class="nickName" type="nickname" v-model="userInfo.nickName" placeholder="请输入昵称" />
+						<input id="nickName" type="nickname" v-model="userInfo.nickName" placeholder="请输入昵称" />
 					</u-form-item>
 				</u--form>
 				<u-button class="submit-btn" type="primary" @click="submit">
@@ -25,14 +25,17 @@
 </template>
 
 <script setup>
-import { ref, computed, getCurrentInstance } from 'vue';
+import { ref, computed } from 'vue';
 import AvatarIcon from '@/assets/avatar.jpeg';
 import { useUserStore } from '@/stores';
 import { userLogin, updateUserInfo } from '@/api';
+import { useUser } from '@/hooks/useUser.js';
+import { useUpload } from '@/hooks/useUpload.js';
 
 const emit = defineEmits(['submit']);
 const userStore = useUserStore();
-const instance = getCurrentInstance();
+const { initUser } = useUser();
+const { uploadFile } = useUpload();
 
 const userInfo = ref({
 	avatar: '',
@@ -40,11 +43,6 @@ const userInfo = ref({
 });
 
 const submit = () => {
-	// const query = uni.createSelectorQuery();
-	// query.select(".nickName").boundingClientRect((el) => {
-	// 	debugger
-	// }).exec()
-
 	uni.login({
 		async success(res) {
 			console.log('res.code', res.code);
@@ -54,6 +52,7 @@ const submit = () => {
 			uni.setStorageSync('token', rsp.access_token);
 			// 更新头像昵称
 			await updateUserInfo(userInfo.value);
+			initUser();
 			uni.showToast({
 				title: '登录成功',
 				duration: 2000
@@ -61,16 +60,13 @@ const submit = () => {
 			close();
 		}
 	});
-	uni.getUserInfo({
-		success: function (res) {
-			console.log(res);
-		}
-	});
 };
-const onChooseAvatar = (data) => {
+const onChooseAvatar = async (data) => {
 	console.log('onChooseAvatar ', data);
 	if (data?.detail?.avatarUrl) {
 		userInfo.value.avatar = data?.detail?.avatarUrl;
+		const res = await uploadFile(userInfo.value.avatar);
+		userInfo.value.avatar = res.url;
 	}
 };
 

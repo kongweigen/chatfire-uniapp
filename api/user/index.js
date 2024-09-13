@@ -16,11 +16,13 @@ export const updateUserInfo = (params, config = {}) => {
 	return http.post('/box/system/wx-user/updateUserInfo', params, config)
 }
 
+// 签到
+export const signIn = () => {
+	return http.get(`/box/system/order/signIn`)
+}
 
 
-// //  查询账户信息
-// export const getAccount = () =>
-//   request({
-//     url: `/box/system/account/getInfo`,
-//     method: "get",
-//   })
+// 账户
+export const getAccountInfo = () => {
+	return http.get(`/box/system/account/getInfo`)
+}
