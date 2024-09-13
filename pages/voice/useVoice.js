@@ -62,17 +62,28 @@ export const useVoice = () => {
 			let binaryData = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
 				input: item
 			}))
-			
-			// if (res == "error") return (loading.value = false)
-			if (binaryData) {
-				const arrBuf = new Uint8Array(binaryData)
-				const base64 = "data:audio/mpeg;base64," +uni.arrayBufferToBase64(arrBuf)
-				debugger
-				voiceBlobList.push(base64)
-			}
-			if (voiceTextList.length == voiceBlobList.length) {
-				mergeBlobToMp3(voiceBlobList)
-			}
+			const fs = uni.getFileSystemManager()
+			fs.writeFile({
+			  filePath: `${wx.env.USER_DATA_PATH}/ai.mp3`,
+			  data: binaryData,
+			  encoding: 'binary',
+			  success(res) {
+					// resData.value = res
+			    console.log(res)
+			  },
+			  fail(res) {
+			    console.error(res)
+			  }
+			})
+			// // if (res == "error") return (loading.value = false)
+			// if (binaryData) {
+			// 	const arrBuf = new Uint8Array(binaryData)
+			// 	const base64 = "data:audio/mpeg;base64," +uni.arrayBufferToBase64(arrBuf)
+			// 	voiceBlobList.push(base64)
+			// }
+			// if (voiceTextList.length == voiceBlobList.length) {
+			// 	mergeBlobToMp3(voiceBlobList)
+			// }
 		}
 	}
 

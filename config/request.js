@@ -35,6 +35,7 @@ const request = (vm) => {
 		}
 		// 自定义参数
 		if (data.code !== 200) {
+			if (data.code == 401) uni.setStorageSync("token", "")
 			uni.showToast({
 				title: data?.msg,
 				icon: 'error'

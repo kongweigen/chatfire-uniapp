@@ -18,8 +18,8 @@
 		</div>
 		<div v-if="position == 'right'" :class="['msg-item__box', 'msg-item__right']">
 			<div class="content" v-html="contentHtml"></div>
-			<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
-			<!-- <img :src="userStore.avatar" /> -->
+			<u-image v-if="userStore.user.avatar" width="40rpx" height="40rpx" :src="userStore.user.avatar"></u-image>
+			<u-image v-else width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
 		</div>
 	</div>
 </template>
