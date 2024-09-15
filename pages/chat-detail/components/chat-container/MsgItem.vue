@@ -3,7 +3,7 @@
 		<div v-if="position == 'left'" :class="['msg-item__box', 'msg-item__left']">
 			<div class="left_content">
 				<div class="u-flex u-gap-2">
-					<u-image width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
+					<u-avatar size="30" :src="Logo"></u-avatar>
 					<div class="content">
 						<u-parse :content="searchContentHtml" selectable></u-parse>
 						<u-parse :content="contentHtml"></u-parse>
@@ -18,8 +18,8 @@
 		</div>
 		<div v-if="position == 'right'" :class="['msg-item__box', 'msg-item__right']">
 			<div class="content" v-html="contentHtml"></div>
-			<u-image v-if="userStore.user.avatar" width="40rpx" height="40rpx" :src="userStore.user.avatar"></u-image>
-			<u-image v-else width="40rpx" height="40rpx" src="@/assets/logo.png"></u-image>
+			<u-avatar v-if="userStore.user.avatar" size="40":src="userStore.user.avatar"></u-avatar>
+			<u-avatar v-else size="30" :src="Logo"></u-avatar>
 		</div>
 	</div>
 </template>
@@ -30,6 +30,7 @@ import { useUserStore } from '@/stores';
 import { copy } from '@/utils';
 import markdownit from 'markdown-it';
 import hljs from 'highlight.js/lib/core';
+import Logo from '@/assets/logo.png'
 
 const md = markdownit({
 	html: false, // 在源码中启用 HTML 标签
@@ -106,7 +107,7 @@ const handlerAction = (type) => {
 		gap: 10rpx;
 		max-width: 80%;
 		border-radius: 20rpx;
-		font-size: 28rpx;
+		font-size: 32rpx;
 		.content {
 			padding: 20rpx;
 			border-radius: 20rpx;

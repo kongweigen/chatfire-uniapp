@@ -22,7 +22,8 @@ export const useMine = () => {
 	const loginCode = ref("")
 	const userStore = useUserStore();
 	const {
-		initUser
+		initUser,
+		login
 	} = useUser();
 
 
@@ -31,12 +32,27 @@ export const useMine = () => {
 		t.avatar = t.avatar || AvatarIcon
 		return t
 	})
-	const login = () => {
-		userStore.setLogin(true)
+
+	const name = computed(() => {
+		const token = uni.getStorageSync("token")
+		let t = ''
+		if (!token) {
+			t = '请登录'
+		} else {
+			t = user.value.nickName || '设置昵称'
+		}
+		return t
+	})
+
+	const showLogin = async () => {
+		const token = uni.getStorageSync("token")
+		if (token) userStore.setLogin(true)
+		else await login()
 	}
 	const toSignIn = async () => {
 		await signIn()
 		uni.showToast({
+			icon:'none',
 			title: '签到成功',
 			duration: 2000
 		});
@@ -49,8 +65,9 @@ export const useMine = () => {
 		initUser()
 	})
 	return {
+		name,
 		user,
-		login,
+		showLogin,
 		toSignIn,
 		toPay
 	}

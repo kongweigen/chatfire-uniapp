@@ -72,10 +72,10 @@ const { historyShow, sendContent, list, submit, navLeftClick } = useChat();
 			.title {
 				font-weight: bold;
 				margin-bottom: 10rpx;
-				font-size: 32rpx;
+				font-size: 34rpx;
 			}
 			.item {
-				font-size: 28rpx;
+				font-size: 32rpx;
 				max-height: 90rpx;
 				margin-bottom: 20rpx;
 				display: flex;

@@ -7,8 +7,8 @@ export const queryUser = (data) => {
 	return http.get('/box/system/user/getById', data)
 }
 
-export const userLogin = (code) => {
-	return http.get(`/box/wx-app/login?code=${code}`)
+export const userLogin = (code, config = {}) => {
+	return http.get(`/box/wx-app/login?code=${code}`, {}, config)
 }
 
 // 微信头像昵称信息

@@ -74,7 +74,9 @@ export const useHome = () => {
 		});
 	}
 	onMounted(() => {
-		initUser()
+		// 
+		const token = uni.getStorageSync('token')
+		!token && initUser()
 	})
 	return {
 		toPcedit,

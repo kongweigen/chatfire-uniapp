@@ -6,6 +6,9 @@ import {
 	computed
 } from 'vue';
 import {
+	onShow,
+} from '@dcloudio/uni-app';
+import {
 	useChatStore
 } from '@/stores';
 import {
@@ -42,7 +45,7 @@ export const useChat = () => {
 		}
 		list.value = t
 	}
-	onMounted(() => {
+	onShow(() => {
 		chatStore.initChat()
 		initHot()
 	})

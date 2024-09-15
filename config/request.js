@@ -15,7 +15,22 @@ const request = (vm) => {
 		// 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
 		config.data = config.data || {}
 		// let token = localStorage.getItem("chatfire-token")
+		if (config.url.includes("/box/wx-app/login")) {
+			return config
+		}
 		let token = uni.getStorageSync("token")
+		if (!token) {
+			uni.showToast({
+				title: "请先登录",
+				icon:'none',
+			})
+			setTimeout(() => {
+				uni.switchTab({
+					url: '/pages/mine/index'
+				})
+			}, 1000)
+			return false
+		}
 		config.header["Authorization"] = `Bearer ${token}`
 		return config
 	}, config => { // 可使用async await 做异步操作
@@ -34,11 +49,23 @@ const request = (vm) => {
 		}
 		// 自定义参数
 		if (data.code !== 200) {
-			if (data.code == 401) uni.setStorageSync("token", "")
-			uni.showToast({
-				title: data?.msg,
-				icon: 'error'
-			})
+			if (data.code == 401) {
+				uni.setStorageSync("token", "")
+				uni.showToast({
+					title: "登录已过期，请重新登录",
+					icon:'none',
+				})
+				setTimeout(() => {
+					uni.switchTab({
+						url: '/pages/mine/index'
+					})
+				}, 1000)
+			} else {
+				uni.showToast({
+					title: data?.msg,
+					icon:'none',
+				})
+			}
 			return new Promise.reject()
 		} else {
 

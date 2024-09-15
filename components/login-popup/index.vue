@@ -48,35 +48,22 @@ const title = computed(() => {
 });
 
 const submit = async () => {
-	const token = uni.getStorageSync('token');
-	if (!token) {
-		uni.login({
-			async success(res) {
-				console.log('res.code', res.code);
-				res.code;
-				// access_token
-				const rsp = await userLogin(res.code);
-				uni.setStorageSync('token', rsp.access_token);
-				// 更新头像昵称
-				await updateUserInfo(userInfo.value);
-				initUser();
-				uni.showToast({
-					title: '登录成功',
-					duration: 2000
-				});
-				close();
-			}
-		});
-	} else {
-		// 更新头像昵称
-		await updateUserInfo(userInfo.value);
-		initUser();
+	if (!userInfo.value.avatar || !userInfo.value.nickName) {
 		uni.showToast({
-			title: '更新成功',
-			duration: 2000
+			title: '请设置昵称头像',
+			icon:'none'
 		});
-		close();
+		return;
 	}
+	// 更新头像昵称
+	await updateUserInfo(userInfo.value);
+	initUser();
+	uni.showToast({
+		title: '更新成功',
+		icon:'none',
+		duration: 2000
+	});
+	close();
 };
 const onChooseAvatar = async (data) => {
 	console.log('onChooseAvatar ', data);

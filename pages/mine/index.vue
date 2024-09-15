@@ -1,8 +1,8 @@
 <template>
 	<view class="page mine">
-		<div class="top" @click="login">
+		<div class="top" @click="showLogin">
 			<u-avatar :src="user.avatar" size="60"></u-avatar>
-			<span class="name">{{ user.nickName || '设置昵称' }}</span>
+			<span class="name">{{ name }}</span>
 		</div>
 		<div class="group">
 			<div class="cell" @click="toSignIn">
@@ -31,7 +31,7 @@ import LoginPopup from '@/components/login-popup/index.vue';
 
 import { useUserStore } from '@/stores';
 const userStore = useUserStore();
-const { user, login, toSignIn, toPay } = useMine();
+const { name, user, showLogin, toSignIn, toPay } = useMine();
 </script>
 
 <style lang="scss" scoped>

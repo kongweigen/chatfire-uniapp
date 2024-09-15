@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<div class="page-body">
-			<span>创意描述</span>
+			<p class="title">创意描述</p>
 			<u--textarea v-model="voiceSoundConfig.input" placeholder="请输入需要生成音频的内容"></u--textarea>
 
 			<div class="audio-box">
@@ -33,6 +33,9 @@ const { resData, customStyle, voiceSoundConfig, pickerShow, pickerOptions, mockD
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	.title{
+		margin-bottom: 20rpx;
+	}
 	.audio-box {
 		width: 710rpx;
 		margin: 20rpx 0;
