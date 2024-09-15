@@ -48,6 +48,7 @@ export const useVoice = () => {
 	let loading = ref(false)
 
 	// 文字生成语音参数
+	const audioCtx = wx.createWebAudioContext()
 	let voiceSoundConfig = ref({
 		model: "tts-1",
 		input: "",
@@ -62,30 +63,76 @@ export const useVoice = () => {
 			let binaryData = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
 				input: item
 			}))
-			const fs = uni.getFileSystemManager()
-			fs.writeFile({
-			  filePath: `${wx.env.USER_DATA_PATH}/ai.mp3`,
-			  data: binaryData,
-			  encoding: 'binary',
-			  success(res) {
-					// resData.value = res
-			    console.log(res)
-			  },
-			  fail(res) {
-			    console.error(res)
-			  }
-			})
-			// // if (res == "error") return (loading.value = false)
-			// if (binaryData) {
-			// 	const arrBuf = new Uint8Array(binaryData)
-			// 	const base64 = "data:audio/mpeg;base64," +uni.arrayBufferToBase64(arrBuf)
-			// 	voiceBlobList.push(base64)
-			// }
-			// if (voiceTextList.length == voiceBlobList.length) {
-			// 	mergeBlobToMp3(voiceBlobList)
-			// }
+			// resData.value = binaryData
+			const arrBuf = new Uint8Array(binaryData)
+			const path = `${wx.env.USER_DATA_PATH}/ai-${Date.now()}.mp3`;
+			const fsm = wx.getFileSystemManager();
+			fsm.writeFile({
+				filePath: path,
+				data: binaryData,
+				encoding: 'base64',
+				success: (res) => {
+					const innerAudioContext = wx.createInnerAudioContext();
+					innerAudioContext.src = path;
+					innerAudioContext.play(); // 开始播放音频
+				},
+			});
+			// audioCtx.decodeAudioData(binaryData, buffer => {
+			// 	console.log(buffer)
+			// }, err => {
+			// 	console.error('decodeAudioData fail', err)
+			// })
+			// audioCtx.decodeAudioData(arrBuf, buffer => {
+			// 	debugger
+			// 	let source = audioCtx.createBufferSource()
+			// 	source.buffer = buffer
+			// 	source.connect(audioCtx.destination)
+			// 	source.start()
+			// }, err => {
+			// 	console.error('decodeAudioData fail', err)
+			// 	reject()
+			// })
+
+			// const fs = uni.getFileSystemManager()
+			// const filePath = `${wx.env.USER_DATA_PATH}/ai-${Date.now()}.mp3`
+
+			// fs.writeFile({
+			// 	filePath,
+			// 	data: binaryData,
+			// 	// encoding: 'binary',
+			// 	success(res) {
+
+			// 		console.log(res)
+			// 		fs.readFile({
+			// 			filePath,
+			// 			encoding: 'base64',
+			// 			success: r => {
+			// 				debugger
+			// 				resData.value = r.data
+			// 				console.log(r.data, 'base64');
+			// 			}
+			// 		})
+			// 	},
+			// 	fail(res) {
+			// 		console.error(res)
+			// 	}
+			// })
+
 		}
 	}
+
+	// const play = () => {
+	//   loadAudio('huobao-ai-test.mp3').then(buffer => {
+	//     let source = audioCtx.createBufferSource()
+	//     source.buffer = buffer
+	//     source.connect(audioCtx.destination)
+	//     source.start()
+	//   }).catch(() => {
+	//     console.log('fail')
+	//   })
+	// }
+
+
 
 	const historyVoice = ref([])
 	const mergeBlobToMp3 = (voiceBlobList) => {
@@ -116,6 +163,7 @@ export const useVoice = () => {
 		pickerShow.value = false
 	}
 	return {
+		resData,
 		customStyle,
 		voiceSoundConfig,
 		pickerShow,
