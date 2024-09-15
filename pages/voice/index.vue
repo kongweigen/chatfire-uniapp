@@ -5,10 +5,9 @@
 			<u--textarea v-model="voiceSoundConfig.input" placeholder="请输入需要生成音频的内容"></u--textarea>
 
 			<div class="audio-box">
-				<!-- <audio style="text-align: left" :src="resData" :name="mockData.name" :author="mockData.author" :action="audioAction" controls></audio> -->
-				<!-- <u-empty mode="data"></u-empty> -->
 				<view class="page-section page-section-gap" style="text-align: center">
-					<audio style="text-align: left" :src="mockData.src" :poster="mockData.poster" :name="mockData.name" :author="mockData.author" :action="audioAction" controls></audio>
+					<audio v-if="resData" style="text-align: left" :src="resData" :name="voiceSoundConfig.input" :author="mockData.author" :action="audioAction" controls></audio>
+					<u-empty v-else mode="data"></u-empty>
 				</view>
 			</div>
 			<u-cell-group>
@@ -16,7 +15,7 @@
 			</u-cell-group>
 		</div>
 		<div class="footer">
-			<!-- <u-button :customStyle="customStyle" text="生成音频" @click="createVoice"></u-button> -->
+			<u-button :customStyle="customStyle" text="生成音频" @click="createVoice"></u-button>
 		</div>
 	</view>
 	<u-picker :show="pickerShow" :columns="pickerOptions" :defaultIndex="[3]" :closeOnClickOverlay="true" @confirm="confirm" @close="close" @cancel="cancel"></u-picker>
@@ -35,7 +34,11 @@ const { resData, customStyle, voiceSoundConfig, pickerShow, pickerOptions, mockD
 	flex-direction: column;
 	justify-content: space-between;
 	.audio-box {
+		width: 710rpx;
 		margin: 20rpx 0;
+		audio {
+			width: 680rpx;
+		}
 	}
 	.page-body {
 	}

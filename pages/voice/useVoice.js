@@ -9,7 +9,9 @@ import {
 import {
 	voiceSoundOptions
 } from "@/utils"
-
+import {
+	commonUrl,
+} from '@/config/host.js'
 
 export const useVoice = () => {
 	const customStyle = ref({
@@ -60,93 +62,31 @@ export const useVoice = () => {
 		let voiceBlobList = []
 		loading.value = true
 		for (const item of voiceTextList) {
+			uni.showLoading({
+				title: "生成中"
+			})
 			let binaryData = await textToVoice(Object.assign({}, voiceSoundConfig.value, {
 				input: item
-			}))
-			// resData.value = binaryData
-			const arrBuf = new Uint8Array(binaryData)
+			}), {
+				responseType: 'arraybuffer'
+			})
+			uni.hideLoading()
 			const path = `${wx.env.USER_DATA_PATH}/ai-${Date.now()}.mp3`;
 			const fsm = wx.getFileSystemManager();
 			fsm.writeFile({
 				filePath: path,
 				data: binaryData,
-				encoding: 'base64',
+				encoding: 'binary',
 				success: (res) => {
-					const innerAudioContext = wx.createInnerAudioContext();
-					innerAudioContext.src = path;
-					innerAudioContext.play(); // 开始播放音频
+					resData.value = path
 				},
 			});
-			// audioCtx.decodeAudioData(binaryData, buffer => {
-			// 	console.log(buffer)
-			// }, err => {
-			// 	console.error('decodeAudioData fail', err)
-			// })
-			// audioCtx.decodeAudioData(arrBuf, buffer => {
-			// 	debugger
-			// 	let source = audioCtx.createBufferSource()
-			// 	source.buffer = buffer
-			// 	source.connect(audioCtx.destination)
-			// 	source.start()
-			// }, err => {
-			// 	console.error('decodeAudioData fail', err)
-			// 	reject()
-			// })
-
-			// const fs = uni.getFileSystemManager()
-			// const filePath = `${wx.env.USER_DATA_PATH}/ai-${Date.now()}.mp3`
-
-			// fs.writeFile({
-			// 	filePath,
-			// 	data: binaryData,
-			// 	// encoding: 'binary',
-			// 	success(res) {
-
-			// 		console.log(res)
-			// 		fs.readFile({
-			// 			filePath,
-			// 			encoding: 'base64',
-			// 			success: r => {
-			// 				debugger
-			// 				resData.value = r.data
-			// 				console.log(r.data, 'base64');
-			// 			}
-			// 		})
-			// 	},
-			// 	fail(res) {
-			// 		console.error(res)
-			// 	}
-			// })
 
 		}
 	}
 
-	// const play = () => {
-	//   loadAudio('huobao-ai-test.mp3').then(buffer => {
-	//     let source = audioCtx.createBufferSource()
-	//     source.buffer = buffer
-	//     source.connect(audioCtx.destination)
-	//     source.start()
-	//   }).catch(() => {
-	//     console.log('fail')
-	//   })
-	// }
-
-
 
 	const historyVoice = ref([])
-	const mergeBlobToMp3 = (voiceBlobList) => {
-		const blob = new Blob(voiceBlobList, {
-			type: "audio/mpeg"
-		})
-		const audioUrl = URL.createObjectURL(blob)
-		resData.value = audioUrl
-		historyVoice.value.unshift({
-			prompt: voiceSoundConfig.value.input,
-			audioUrl
-		})
-		loading.value = false
-	}
 
 	const pickerShow = ref(false)
 	const pickerOptions = ref([voiceSoundOptions])
