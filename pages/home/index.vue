@@ -4,7 +4,7 @@
 			<up-swiper class="bannerBox" easingFunction="easeInOutCubic" :list="list1.map((item) => item.url)" height="560" radius="0" @change="onSwiperChange"></up-swiper>
 			<view class="mainMenu">
 				<view class="menuItem leftHeight">
-					<view class="leftBox boxUp" @click="showPop = true">
+					<view class="leftBox boxUp" @click="toPage('图片创作')">
 						<view class="createIcon">
 							<img src="/static/add.svg" style="width: 48px; height: 46px; opacity: 0.9" alt="" />
 						</view>
@@ -61,14 +61,14 @@
 				</swiper>
 			</view>
 		</view>
-		<up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
+		<!-- <up-popup :show="showPop" mode="bottom" :round="8" closeOnClickOverlay @close="showPop = false" safeAreaInsetBottom>
 			<view class="createPop">
 				<view class="createItem" v-for="item in createItem" :key="item" @click="toPage(item.label), (showPop = false)">
 					<img :src="item.src" alt="" />
 					<text class="grid-text">{{ item.label }}</text>
 				</view>
 			</view>
-		</up-popup>
+		</up-popup> -->
 	</transition>
 </template>
 
