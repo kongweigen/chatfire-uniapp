@@ -11,17 +11,16 @@ export const useSend = () => {
 	const running = ref(false)
 	const content = ref("")
 	const searchContent = ref("")
-	// let controller = new AbortController()
+	let streamTask
+	
 	const send = async (data) => {
 		// 发送之前进行套餐校验
 		let controller = {}
-		// controller = new AbortController()
 		running.value = true
 		content.value = ""
 		searchContent.value = ""
-		const streamTask = chat2gpt({
+		streamTask = chat2gpt({
 			data,
-			signal: controller.signal,
 		}, () => {
 			// 结束回调
 			console.log('结束')
@@ -47,13 +46,13 @@ export const useSend = () => {
 				}, 500)
 			}
 		})
+		setTimeout(() => {
+			console.log("streamTask.about", streamTask.about)
+		}, 2000)
 	}
 
-	const handleStop = () => {
-		if (running.value) {
-			controller.abort()
-			running.value = false
-		}
+	let handleStop = () => {
+		streamTask.about()
 	}
 	return {
 		content,

@@ -2,7 +2,7 @@
 	<view class="page mine">
 		<div class="top" @click="showLogin">
 			<u-avatar :src="user.avatar" size="60"></u-avatar>
-			<span class="name">{{ name }}</span>
+			<span class="name">{{ showName }}</span>
 		</div>
 		<div class="group">
 			<div class="cell" @click="toSignIn">
@@ -31,7 +31,7 @@ import LoginPopup from '@/components/login-popup/index.vue';
 
 import { useUserStore } from '@/stores';
 const userStore = useUserStore();
-const { name, user, showLogin, toSignIn, toPay } = useMine();
+const { showName, user, showLogin, toSignIn, toPay } = useMine();
 </script>
 
 <style lang="scss" scoped>

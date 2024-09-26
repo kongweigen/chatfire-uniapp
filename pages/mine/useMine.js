@@ -5,9 +5,9 @@ import {
 import AvatarIcon from '@/assets/avatar.jpeg'
 import {
 	useUser,
-
 } from '@/hooks/useUser.js';
 import {
+	onShow,
 	onLoad,
 } from '@dcloudio/uni-app';
 
@@ -33,26 +33,25 @@ export const useMine = () => {
 		return t
 	})
 
-	const name = computed(() => {
-		const token = uni.getStorageSync("token")
-		let t = ''
-		if (!token) {
-			t = '请登录'
-		} else {
-			t = user.value.nickName || '设置昵称'
-		}
-		return t
-	})
-
 	const showLogin = async () => {
 		const token = uni.getStorageSync("token")
-		if (token) userStore.setLogin(true)
-		else await login()
+		if (!token) await login()
+		await initUser()
+
+		// 绑定昵称
+		if (!user.value.nickName) {
+			uni.showToast({
+				title: " 请绑定头像昵称",
+				icon: 'none'
+			})
+			userStore.setLogin(true)
+		}
+		initShowName()
 	}
 	const toSignIn = async () => {
 		await signIn()
 		uni.showToast({
-			icon:'none',
+			icon: 'none',
 			title: '签到成功',
 			duration: 2000
 		});
@@ -61,11 +60,24 @@ export const useMine = () => {
 		userStore.setLogin(true)
 	}
 
-	onLoad(() => {
-		initUser()
+	const showName = ref('请登录')
+	onShow(() => {
+		initShowName()
+	})
+	const initShowName = () => {
+		const token = uni.getStorageSync("token")
+		if (!token) {
+			showName.value = '请登录'
+		} else {
+			showName.value = user.value.nickName || '设置昵称'
+		}
+	}
+	onLoad(async () => {
+		await initUser()
+		initShowName()
 	})
 	return {
-		name,
+		showName,
 		user,
 		showLogin,
 		toSignIn,

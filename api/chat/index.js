@@ -4,7 +4,6 @@ import {
 } from '@/config/host.js'
 export const chat2gpt = ({
 	data,
-	signal
 }, successCall) => {
 	let token = uni.getStorageSync("token")
 

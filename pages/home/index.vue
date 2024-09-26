@@ -69,11 +69,13 @@
 				</view>
 			</view>
 		</up-popup> -->
+		<SigninPopup></SigninPopup>
 	</transition>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import SigninPopup from '@/components/signin-popup/index.vue'
 import { useHome } from './useHome.js';
 
 const { menuList, createItem, historyList, toPage, toPcedit } = useHome();

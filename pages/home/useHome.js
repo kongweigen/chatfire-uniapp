@@ -2,23 +2,25 @@ import {
 	ref,
 	onMounted
 } from 'vue';
-import {
-	useUser,
 
+import {
+	useUser
 } from '@/hooks/useUser.js';
 import {
 	onLoad,
+	onShareAppMessage
 } from '@dcloudio/uni-app';
 import {
 	menuMock,
 	createItemMock,
 	historyMock,
 	routerUrlMap
-} from '@/utils/index.js'
+} from '@/utils/index.js';
 
 export const useHome = () => {
 	const {
-		initUser
+		initUser,
+		login
 	} = useUser();
 	const menuList = ref(menuMock)
 	const createItem = ref(createItemMock)
@@ -75,8 +77,21 @@ export const useHome = () => {
 	}
 	onMounted(() => {
 		// 
-		const token = uni.getStorageSync('token')
+		const token = uni.getStorageSync('token');
 		!token && initUser()
+	})
+
+	onLoad(async () => {
+		await login()
+		initUser()
+		uni.showShareMenu()
+	})
+	onShareAppMessage(() => {
+		return {
+			title: '火宝 AI',
+			path: '/pages/home/index',
+			imageUrl: '/assets/logo.png'
+		}
 	})
 	return {
 		toPcedit,

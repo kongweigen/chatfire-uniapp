@@ -17,12 +17,12 @@ export const updateUserInfo = (params, config = {}) => {
 }
 
 // 签到
-export const signIn = () => {
-	return http.get(`/box/system/order/signIn`)
+export const signIn = (config = {}) => {
+	return http.get(`/box/system/order/signIn`, {}, config)
 }
 
 
 // 账户
-export const getAccountInfo = () => {
-	return http.get(`/box/system/account/getInfo`)
+export const getAccountInfo = (config = {}) => {
+	return http.get(`/box/system/account/getInfo`, {}, config)
 }
