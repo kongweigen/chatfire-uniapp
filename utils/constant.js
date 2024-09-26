@@ -4,26 +4,32 @@ export const menuMock = [{
 				value: 'clear',
 				label: '图片清晰',
 				subLabel: '高清修复新科技，专业修图师同款',
+				icon:'/static/clear.png'
 			},
 			{
 				value: 'watermark',
 				label: '去除水印',
 				subLabel: '水印去除新科技，专业修图师同款',
+				icon:'/static/watermark.png'
 			},
 			{
 				value: 'expand',
 				label: 'AI扩图',
 				subLabel: '神奇扩图新科技，专业修图师同款',
+				icon:'/static/expand.png'
 			},
 			{
 				value: 'draw',
 				label: 'AI重绘',
 				subLabel: 'AI重绘新科技，专业修图师同款',
+				icon:'/static/draw.png'
 			},
 			{
 				value: 'style',
 				label: '风格转换',
 				subLabel: '风格转换新科技，专业修图师同款',
+				icon:'/static/style.png'
+				
 			}
 		],
 		itemclass: '图文创意'

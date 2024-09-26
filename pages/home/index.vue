@@ -45,7 +45,7 @@
 					<swiper-item v-for="item in menuList" :key="item">
 						<view style="display: flex; margin-left: 8px; font-size: 16px; font-weight: bold; align-items: center">
 							<view class="">
-								<img src="/static/chatFireLogo.png" style="width: 30px; height: 26px" alt="" />
+								<!-- <img src="/static/chatFireLogo.png" style="width: 30px; height: 26px" alt="" /> -->
 							</view>
 							<view class="">
 								{{ item.itemclass }}
@@ -53,7 +53,7 @@
 						</view>
 						<up-grid :border="false" col="3" gap="20px">
 							<up-grid-item class="itemCard" v-for="(subItem, listIndex) in item.subItems" :key="listIndex" @click="toPcedit(subItem)">
-								<img src="/static/chatFireLogo.png" style="width: 30px; height: 30px; padding: 4px 0 4px 0" alt="" />
+								<img :src="subItem.icon" style="width: 54px; height: 54px;" alt="" />
 								<text class="grid-text">{{ subItem.label }}</text>
 							</up-grid-item>
 						</up-grid>
@@ -206,11 +206,10 @@ const onSwiperChange = ({ current }) => {
 	transition: background-color 2s ease;
 	.u-grid-item {
 		border-radius: 8px !important;
-		background-color: #eef5fb !important;
 		height: 88px;
 	}
 	.u-grid {
-		padding: 8px;
+		padding: 18px 0px 8px 0px;
 	}
 }
 .grid-text {
