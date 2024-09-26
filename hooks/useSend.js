@@ -52,7 +52,7 @@ export const useSend = () => {
 	}
 
 	let handleStop = () => {
-		streamTask.about()
+		// streamTask.about()
 	}
 	return {
 		content,

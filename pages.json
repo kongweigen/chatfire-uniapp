@@ -35,7 +35,6 @@
 				"navigationBarTitleText": "我的"
 			}
 		},
-
 		{
 			"path": "pages/design/index",
 			"style": {
@@ -45,7 +44,14 @@
 				// "navigationBarTextStyle": "#307ae4" ,
 				// "titleColor":"#307ae4" 
 			}
-		}, {
+		}, 
+		{
+			"path": "pages/idphoto/index",
+			"style": {
+				// "navigationStyle": "custom",
+				"navigationBarTitleText": "证件照"
+			}
+		},{
 			"path": "pages/pcedit/index",
 			"style": {
 				// "navigationStyle": "custom",

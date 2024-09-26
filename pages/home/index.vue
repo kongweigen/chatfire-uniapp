@@ -91,8 +91,9 @@ const list1 = ref([
 ]);
 const mainItems = ref([
 	{
-		title: '智能换脸',
-		content: '换成TA试试看',
+		title: ' 证件照',
+		path: '/pages/idphoto/index',
+		content: '多种背景挑选',
 		icon: '/static/face.png',
 		bgColor: ['rgba(69,180,233,0.3)', 'rgba(69,180,233,0.05)']
 	},

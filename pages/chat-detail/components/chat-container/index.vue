@@ -1,13 +1,15 @@
 <template>
 	<div class="chat_container">
 		<div class="body _message_list pt-10">
-			<scroll-view class="scroll-view" :scroll-top="scrollTop" scroll-y="true" @scroll="onScroll">
+			<scroll-view class="scroll-view" :scroll-into-view="scrollId" scroll-y>
 				<div>
 					<MsgItem :item="{
 					role: 'system',
 					content: '您好，我是火宝，快来提问试试吧！'
 				}" role="gpt" position="left"></MsgItem>
 					<MsgItem v-for="item in chatStore.messageList" :key="item" :item="item" :position="item.role == 'user' ? 'right' : 'left'" role="gpt"></MsgItem>
+					<!-- <div :id="scrollId"></div> -->
+					<div id="scrollBtn"></div>
 				</div>
 			</scroll-view>
 			<!-- v-if="sendRef?.running" -->
@@ -35,7 +37,7 @@
 	import Send from './Send.vue';
 	import MsgItem from './MsgItem.vue';
 	import {
-		positionDomViewBottom
+		generateUUID
 	} from '@/utils';
 	import {
 		useChatStore
@@ -54,30 +56,25 @@
 		switchAgentPanel
 	} = useAgent(sendRef);
 
-	const scrollTop = ref(0)
-	const scrollViewHeight = ref(0)
-	const scrollContentHeight = ref(0)
 
-	const onScroll = (e) => {
-		scrollViewHeight.value = e.detail.scrollHeight
-		scrollContentHeight.value = e.detail.scrollTop + e.detail.scrollHeight
+	const scrollId = ref('')
+
+	function throttle(func, limit) {
+		let inThrottle;
+		return function() {
+			const args = arguments;
+			const context = this;
+			if (!inThrottle) {
+				func.apply(context, args);
+				inThrottle = true;
+				setTimeout(() => inThrottle = false, limit);
+			}
+		};
 	}
-	
-	const instance = getCurrentInstance();
-	const scrollToBottom = () => {
-		const query = uni.createSelectorQuery().in(instance.proxy)
-		query.select('.scroll-view').boundingClientRect()
-		query.selectAll('.scroll-view view').boundingClientRect()
-		query.exec(res => {
-			scrollViewHeight.value = res[0].height
-			scrollContentHeight.value = res[1].reduce((total, item) => total + item.height, 0)
-			scrollTop.value = scrollContentHeight - scrollViewHeight
-			uni.pageScrollTo({
-				scrollTop: scrollTop,
-				duration: 300
-			})
-		})
+	const positionDomViewBottom = () => {
+		// scrollId.value = generateUUID()
 	}
+	const throttledScrollEvent = throttle(positionDomViewBottom, 300);
 
 
 	const props = defineProps({
@@ -91,7 +88,7 @@
 
 	const beforeSend = async (val) => {
 		chatStore.addMessage(val);
-		positionDomViewBottom();
+		throttledScrollEvent();
 	};
 	const onError = () => {
 		chatStore.updateLastMessage('', 'success');
@@ -102,13 +99,13 @@
 
 	const searchMsgChange = (val) => {
 		chatStore.updateLastMessage('', 'loading', val);
-		scrollToBottom();
+		throttledScrollEvent();
 	};
 
 	const msgChange = (val) => {
 		sendContent.value = val;
 		chatStore.updateLastMessage(val, 'loading');
-		scrollToBottom();
+		throttledScrollEvent();
 	};
 
 	let handleStop;
@@ -118,6 +115,9 @@
 		if (props.text) {
 			sendRef.value?.shortcut(props.text, props.isNetwork);
 		}
+		setTimeout(() => {
+			scrollId.value = 'scrollBtn'
+		}, 200)
 	});
 	onUnmounted(() => {
 		console.log('卸载');
@@ -142,8 +142,12 @@
 		}
 
 		.body {
-			flex: 1;
-			overflow: auto;
+			height: calc(100% - 60px);
+			overflow: hide;
+
+			.scroll-view {
+				height: 100%;
+			}
 		}
 
 		.actions {
@@ -154,7 +158,6 @@
 
 		.footer {
 			position: relative;
-			max-height: 145px;
 		}
 	}
 </style>

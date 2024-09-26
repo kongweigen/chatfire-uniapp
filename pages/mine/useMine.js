@@ -34,19 +34,18 @@ export const useMine = () => {
 	})
 
 	const showLogin = async () => {
-		const token = uni.getStorageSync("token")
-		if (!token) await login()
-		await initUser()
+		// const token = uni.getStorageSync("token")
+		// await login()
+		// await initUser()
 
 		// 绑定昵称
-		if (!user.value.nickName) {
-			uni.showToast({
-				title: " 请绑定头像昵称",
-				icon: 'none'
-			})
-			userStore.setLogin(true)
-		}
-		initShowName()
+		// uni.showToast({
+		// 	title: " 请头像昵称",
+		// 	icon: 'none'
+		// })
+		userStore.setLogin(true)
+		// if (!user.value.nickName) {}
+		// initShowName()
 	}
 	const toSignIn = async () => {
 		await signIn()
