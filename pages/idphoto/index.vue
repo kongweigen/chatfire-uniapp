@@ -7,22 +7,23 @@
 
 			<u--image v-if="!imageUrl && sourceImage.url" :src="sourceImage.url" height="700rpx" width="700rpx" radius="10"></u--image>
 			<u--image v-if="imageUrl" :src="imageUrl" height="700rpx" width="700rpx" radius="10"></u--image>
-			
+
 			<u-cell-group>
 				<u-cell size="large" title="选择尺寸" :value="idPhotoSettings.size" isLink @click="showSizePicker = true"></u-cell>
 			</u-cell-group>
 			<u-cell-group>
-				<u-cell size="large" title="选择背景" :value="idPhotoSettings.bgColor" isLink @click="showbgColorPicker = true"></u-cell>
+				<u-cell size="large" title="选择背景" :value="idPhotoSettings.backgroundColor" isLink @click="showbgColorPicker = true"></u-cell>
 			</u-cell-group>
-			
+
 
 		</div>
 		<div class="footer">
 			<u-button v-if="sourceImage.url" :customStyle="customStyle" text="生成图片" @click="generate"></u-button>
 			<u-button v-else :customStyle="customStyle" text="点击上传" @click="uploadImage"></u-button>
 		</div>
-		<up-picker :show="showSizePicker" :columns="sizeOptions" keyName="label" title="选择尺寸" @cancel="openModelPicker" @confirm="setModel"></up-picker>
-		<up-picker :show="showbgColorPicker" :columns="bgColorOptions" keyName="label" title="选择背景" @cancel="openModelPicker" @confirm="setModel"></up-picker>
+		<up-picker :show="showSizePicker" :columns="sizeOptions" keyName="label" title="选择尺寸" @cancel="sizePickerCancel" @confirm="sizePickerConfirm"></up-picker>
+		<up-picker :show="showbgColorPicker" :columns="bgColorOptions" keyName="label" title="选择背景" @cancel="bgColorPickerCancel"
+			@confirm="bgColorPickerConfirm"></up-picker>
 	</view>
 </template>
 
@@ -34,6 +35,7 @@
 		useIdPhoto
 	} from './useIdPhoto.js';
 	const {
+		customStyle,
 		showSizePicker,
 		showbgColorPicker,
 		sizeOptions,
@@ -43,7 +45,11 @@
 		sourceImage,
 		imageUrl,
 		uploadImage,
-		generate
+		generate,
+		sizePickerConfirm,
+		sizePickerCancel,
+		bgColorPickerCancel,
+		bgColorPickerConfirm,
 	} = useIdPhoto();
 </script>
 

@@ -70,11 +70,14 @@ export const usePcedit = () => {
 		uploadImage,
 		imageUrl: uploadImageInfo
 	} = useUpload()
+	
 	watch(() => uploadImageInfo, (data) => {
-		sourceImage.value = data
+		sourceImage.value = data.value
 	}, {
 		deep: true
 	})
+	
+	const upload = () => {}
 
 	const pceditSettings = ref({
 		type: "3",

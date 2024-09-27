@@ -12,3 +12,8 @@ export const generateImagePcedit = (params, config = {}) => {
 export const generateFaceSwap = (params, config = {}) => {
 	return http.post('/box/chat/faceSwap', params, config)
 }
+
+// 证件照
+export const generateIdPhoto = (params, config = {}) => {
+	return http.post('/box/chat/idPhoto', params, config)
+}

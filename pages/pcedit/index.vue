@@ -5,13 +5,9 @@
 			<p class="desc">{{ subTitle }}</p>
 		</div>
 		<div class="main">
-			<u--image
-				v-if="!sourceImage.url && !imageUrl"
-				src="https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/201b7bc3-c183-472c-a4bf-c8c7c2127661_0.png"
-				height="700rpx"
-				width="700rpx"
-				radius="10"
-			></u--image>
+			<u--image v-if="!sourceImage.url && !imageUrl"
+				src="https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/201b7bc3-c183-472c-a4bf-c8c7c2127661_0.png" height="700rpx" width="700rpx"
+				radius="10"></u--image>
 
 			<u--image v-if="!imageUrl && sourceImage.url" :src="sourceImage.url" height="700rpx" width="700rpx" radius="10"></u--image>
 			<u--image v-if="imageUrl" :src="imageUrl" height="700rpx" width="700rpx" radius="10"></u--image>
@@ -24,49 +20,67 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { usePcedit } from './usePcedit.js';
-const { title, subTitle, designType, customStyle, sourceImage, imageUrl, uploadImage, generate } = usePcedit();
+	import {
+		ref
+	} from 'vue';
+	import {
+		usePcedit
+	} from './usePcedit.js';
+	const {
+		title,
+		subTitle,
+		designType,
+		customStyle,
+		sourceImage,
+		imageUrl,
+		uploadImage,
+		generate
+	} = usePcedit();
 </script>
 
 <style lang="scss" scoped>
-.page {
-	padding: 0 25rpx;
-	box-sizing: border-box;
-	height: 100vh;
-	background: linear-gradient(to bottom, #ffffff, #f5ebcc);
-	position: relative;
-	overflow: auto;
+	.page {
+		padding: 0 25rpx;
+		box-sizing: border-box;
+		height: 100vh;
+		background: linear-gradient(to bottom, #ffffff, #f5ebcc);
+		position: relative;
+		overflow: auto;
 
-	.header {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-		.title {
-			margin-top: 40rpx;
-			font-size: 40rpx;
-			width: 100%;
-			text-align: center;
+		.header {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+			.title {
+				margin-top: 40rpx;
+				font-size: 40rpx;
+				width: 100%;
+				text-align: center;
+			}
+
+			.desc {
+				font-size: 24rpx;
+				font-weight: 100rpx;
+			}
 		}
-		.desc {
-			font-size: 24rpx;
-			font-weight: 100rpx;
+
+		.main {
+			margin-top: 80rpx;
+
+			:deep(.u-transition) {
+				display: flex;
+				justify-content: center;
+			}
 		}
-	}
-	.main {
-		margin-top: 80rpx;
-		:deep(.u-transition) {
+
+		.footer {
+			position: fixed;
+			bottom: 40rpx;
+			box-sizing: border-box;
 			display: flex;
 			justify-content: center;
 		}
 	}
-	.footer {
-		position: fixed;
-		bottom: 40rpx;
-		box-sizing: border-box;
-		display: flex;
-		justify-content: center;
-	}
-}
 </style>
