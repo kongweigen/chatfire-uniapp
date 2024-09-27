@@ -66,7 +66,7 @@ const request = (vm) => {
 					icon:'none',
 				})
 			}
-			return new Promise.reject()
+			return Promise.reject()
 		} else {
 
 		}

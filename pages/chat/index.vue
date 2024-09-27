@@ -11,7 +11,8 @@
 			</div>
 			<div class="hot-box">
 				<p class="title">今日热榜</p>
-				<ul class="list">
+				<u-skeleton v-if="list.length == 0" class="u-m-t-10" :loading="true" :animate="true" :rows="5"></u-skeleton>
+				<ul v-else class="list">
 					<li class="item" v-for="(item, index) in list" @click="submit(item)">
 						<span class="sequence">{{ index + 1 }}</span>
 						<span class="content u-line-2">{{ item }}</span>
@@ -35,80 +36,97 @@
 </template>
 
 <script setup>
-import { useChat } from './useChat.js';
-import History from './history/index.vue';
-const { historyShow, sendContent, list, submit, navLeftClick } = useChat();
+	import {
+		useChat
+	} from './useChat.js';
+	import History from './history/index.vue';
+	const {
+		historyShow,
+		sendContent,
+		list,
+		submit,
+		navLeftClick
+	} = useChat();
 </script>
 <style lang="scss" scoped>
-.chat {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	box-sizing: border-box;
-	height: 100vh;
-	padding: 20rpx 32rpx;
-	background-color: #eff0f6;
-	.homepage {
+	.chat {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		.logo {
-			width: 230rpx;
-			height: 200rpx;
-			image {
-				width: 230rpx;
-				height: 200rpx;
-			}
-		}
-		.hot-box {
-			margin-top: 20rpx;
-			padding: 20rpx;
-			border-radius: 20rpx;
-			width: 600rpx;
-			max-height: 500rpx;
-			overflow-y: auto;
-			background-color: #ffffff;
-			.title {
-				font-weight: bold;
-				margin-bottom: 10rpx;
-				font-size: 34rpx;
-			}
-			.item {
-				font-size: 32rpx;
-				max-height: 90rpx;
-				margin-bottom: 20rpx;
-				display: flex;
-				.sequence {
-					display: inline-block;
-					width: 20rpx;
-					margin-right: 20rpx;
-					color: #9c9c9c;
-				}
-				.content {
-				}
-			}
-		}
-	}
+		justify-content: space-between;
+		box-sizing: border-box;
+		height: 100vh;
+		padding: 20rpx 32rpx;
+		background-color: #eff0f6;
 
-	.send-box {
-		position: relative;
-		border-radius: 16px;
-		box-shadow: none;
-		background-color: #ffffff;
-		padding-left: 20rpx;
-		.send-btn {
+		.homepage {
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			box-sizing: border-box;
-			background-color: #efeef5;
-			margin: 20rpx;
-			width: 60rpx;
-			height: 60rpx;
-			border-radius: 40rpx;
-			// transform: rotate(-20deg)
+
+			.logo {
+				width: 230rpx;
+				height: 200rpx;
+
+				image {
+					width: 230rpx;
+					height: 200rpx;
+				}
+			}
+
+			.hot-box {
+				margin-top: 20rpx;
+				padding: 20rpx;
+				border-radius: 20rpx;
+				width: 600rpx;
+				min-height: 400rpx;
+				max-height: 500rpx;
+				overflow-y: auto;
+				background-color: #ffffff;
+
+				.title {
+					font-weight: bold;
+					margin-bottom: 10rpx;
+					font-size: 34rpx;
+				}
+
+				.item {
+					font-size: 32rpx;
+					max-height: 90rpx;
+					margin-bottom: 20rpx;
+					display: flex;
+
+					.sequence {
+						display: inline-block;
+						width: 20rpx;
+						margin-right: 20rpx;
+						color: #9c9c9c;
+					}
+
+					.content {}
+				}
+			}
+		}
+
+		.send-box {
+			position: relative;
+			border-radius: 16px;
+			box-shadow: none;
+			background-color: #ffffff;
+			padding-left: 20rpx;
+
+			.send-btn {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				box-sizing: border-box;
+				background-color: #efeef5;
+				margin: 20rpx;
+				width: 60rpx;
+				height: 60rpx;
+				border-radius: 40rpx;
+				// transform: rotate(-20deg)
+			}
 		}
 	}
-}
 </style>

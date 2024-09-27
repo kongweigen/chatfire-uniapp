@@ -115,9 +115,9 @@
 		if (props.text) {
 			sendRef.value?.shortcut(props.text, props.isNetwork);
 		}
-		setTimeout(() => {
-			scrollId.value = 'scrollBtn'
-		}, 200)
+		// setTimeout(() => {
+		// 	scrollId.value = 'scrollBtn'
+		// }, 200)
 	});
 	onUnmounted(() => {
 		console.log('卸载');

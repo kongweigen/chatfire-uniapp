@@ -25,130 +25,165 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import AvatarIcon from '@/assets/avatar.jpeg';
-import { useUserStore } from '@/stores';
-import { userLogin, updateUserInfo } from '@/api';
-import { useUser } from '@/hooks/useUser.js';
-import { useUpload } from '@/hooks/useUpload.js';
+	import {
+		ref,
+		computed,
+		watch
+	} from 'vue';
+	import AvatarIcon from '@/assets/avatar.jpeg';
+	import {
+		useUserStore
+	} from '@/stores';
+	import {
+		userLogin,
+		updateUserInfo
+	} from '@/api';
+	import {
+		useUser
+	} from '@/hooks/useUser.js';
+	import {
+		useUpload
+	} from '@/hooks/useUpload.js';
 
-const emit = defineEmits(['submit']);
-const userStore = useUserStore();
-const { initUser } = useUser();
-const { uploadFile } = useUpload();
+	const emit = defineEmits(['submit']);
+	const userStore = useUserStore();
+	const {
+		initUser
+	} = useUser();
+	const {
+		uploadFile
+	} = useUpload();
 
-const userInfo = ref({
-	avatar: '',
-	nickName: ''
-});
-
-const title = computed(() => {
-	const token = uni.getStorageSync('token');
-	return token ? '信息更新' : '用户登录';
-});
-
-const submit = async () => {
-	if (!userInfo.value.avatar || !userInfo.value.nickName) {
-		uni.showToast({
-			title: '请设置昵称头像',
-			icon:'none'
-		});
-		return;
-	}
-	// 更新头像昵称
-	await updateUserInfo(userInfo.value);
-	initUser();
-	uni.showToast({
-		title: '更新成功',
-		icon:'none',
-		duration: 2000
+	const userInfo = ref({
+		avatar: '',
+		nickName: ''
 	});
-	close();
-};
-const onChooseAvatar = async (data) => {
-	console.log('onChooseAvatar ', data);
-	if (data?.detail?.avatarUrl) {
-		userInfo.value.avatar = data?.detail?.avatarUrl;
-		const res = await uploadFile(userInfo.value.avatar);
-		userInfo.value.avatar = res.url;
-	}
-};
 
-const close = () => {
-	userStore.setLogin(false);
-};
+	watch(() => userStore.showLogin, (val) => {
+		userInfo.value.avatar = userStore.user.avatar
+		userInfo.value.nickName = userStore.user.nickName
+	})
+
+	const title = computed(() => {
+		const token = uni.getStorageSync('token');
+		return token ? '信息更新' : '用户登录';
+	});
+
+	const submit = async () => {
+		if (!userInfo.value.avatar || !userInfo.value.nickName) {
+			uni.showToast({
+				title: '请设置昵称头像',
+				icon: 'none'
+			});
+			return;
+		}
+		// 更新头像昵称
+		await updateUserInfo(userInfo.value);
+		initUser();
+		uni.showToast({
+			title: '更新成功',
+			icon: 'none',
+			duration: 2000
+		});
+		close();
+	};
+	const onChooseAvatar = async (data) => {
+		console.log('onChooseAvatar ', data);
+		if (data?.detail?.avatarUrl) {
+			userInfo.value.avatar = data?.detail?.avatarUrl;
+			const res = await uploadFile(userInfo.value.avatar);
+			userInfo.value.avatar = res.url;
+		}
+	};
+
+	const close = () => {
+		userStore.setLogin(false);
+	};
 </script>
 <style lang="scss" scoped>
-.info {
-	display: flex;
-	align-items: center;
-	gap: 20rpx;
-}
-.avatar-wrapper {
-	margin: 0;
-	padding: 0;
-	background-color: transparent;
-	border: none;
-	&::after {
+	.info {
+		display: flex;
+		align-items: center;
+		gap: 20rpx;
+	}
+
+	.avatar-wrapper {
+		margin: 0;
+		padding: 0;
+		background-color: transparent;
 		border: none;
-	}
-}
-.box {
-	padding: 25px;
-	height: 100%;
-	box-sizing: border-box;
-	.u-field {
-		width: 100%;
-		height: 52px;
-		background: #f4f6f9;
-		border-radius: 10px;
-		:deep(.u-field__body) {
-			height: 100%;
-		}
-	}
-	.login-form {
-		gap: 10px;
-	}
-	.img-code {
-		width: 100%;
-		position: relative;
-		img {
-			width: 100px;
-			position: absolute;
-			top: 13px;
-			right: 10px;
+
+		&::after {
+			border: none;
 		}
 	}
 
-	.agreement {
-		font-size: 14px;
-		font-weight: 500;
-		color: #7c87ae;
-		.content {
-			color: #376ee8;
+	.box {
+		padding: 25px;
+		height: 100%;
+		box-sizing: border-box;
+
+		.u-field {
+			width: 100%;
+			height: 52px;
+			background: #f4f6f9;
+			border-radius: 10px;
+
+			:deep(.u-field__body) {
+				height: 100%;
+			}
+		}
+
+		.login-form {
+			gap: 10px;
+		}
+
+		.img-code {
+			width: 100%;
+			position: relative;
+
+			img {
+				width: 100px;
+				position: absolute;
+				top: 13px;
+				right: 10px;
+			}
+		}
+
+		.agreement {
+			font-size: 14px;
+			font-weight: 500;
+			color: #7c87ae;
+
+			.content {
+				color: #376ee8;
+			}
+		}
+
+		.footer {
+			margin-top: 20px;
+
+			.cancel-btn {
+				width: 152px;
+				height: 47px;
+				color: #2b4168;
+				background: #e9f0fc;
+				border-radius: 10px;
+			}
+
+			.submit-btn {
+				width: 152px;
+				height: 47px;
+				color: #ffffff;
+				background: #246de5;
+				border-radius: 10px;
+			}
 		}
 	}
-	.footer {
-		margin-top: 20px;
-		.cancel-btn {
-			width: 152px;
-			height: 47px;
-			color: #2b4168;
-			background: #e9f0fc;
-			border-radius: 10px;
-		}
-		.submit-btn {
-			width: 152px;
-			height: 47px;
-			color: #ffffff;
-			background: #246de5;
-			border-radius: 10px;
-		}
+
+	.title {
+		color: black;
+		font-size: 18px;
+		font-weight: bold;
 	}
-}
-.title {
-	color: black;
-	font-size: 18px;
-	font-weight: bold;
-}
 </style>

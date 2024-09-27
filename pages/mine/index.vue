@@ -1,8 +1,10 @@
 <template>
 	<view class="page mine">
-		<div class="top" @click="showLogin">
+		<div class="top">
 			<u-avatar :src="user.avatar" size="60"></u-avatar>
 			<span class="name">{{ showName }}</span>
+			<u-icon size="25" name="edit-pen" @click="showLogin"></u-icon>
+
 		</div>
 		<div class="group">
 			<div class="cell" @click="toSignIn">
@@ -26,53 +28,68 @@
 </template>
 
 <script setup>
-import { useMine } from './useMine.js';
-import LoginPopup from '@/components/login-popup/index.vue';
+	import {
+		useMine
+	} from './useMine.js';
+	import LoginPopup from '@/components/login-popup/index.vue';
 
-import { useUserStore } from '@/stores';
-const userStore = useUserStore();
-const { showName, user, showLogin, toSignIn, toPay } = useMine();
+	import {
+		useUserStore
+	} from '@/stores';
+	const userStore = useUserStore();
+	const {
+		showName,
+		user,
+		showLogin,
+		toSignIn,
+		toPay
+	} = useMine();
 </script>
 
 <style lang="scss" scoped>
-.mine {
-	background-color: #eff0f6;
-	.top {
-		box-sizing: border-box;
-		display: flex;
-		align-items: center;
-		gap: 20rpx;
-		padding: 20rpx;
-		height: 200rpx;
-		width: 100%;
-		border-radius: 20rpx;
-		background: linear-gradient(to bottom, rgba(69, 180, 233, 0.3), rgba(69, 180, 233, 0.05));
-		.name {
-			font-size: 30rpx;
-			font-weight: bold;
-		}
-	}
-	.info {
-		display: flex;
-		align-items: center;
-		gap: 20rpx;
-	}
-	.group {
-		margin: 20rpx;
-		padding: 20rpx;
-		border-radius: 20rpx;
-		background-color: #ffffff;
-		.cell {
+	.mine {
+		background-color: #eff0f6;
+
+		.top {
+			box-sizing: border-box;
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
-			
-			.value {
-				color: #909399;
-				font-size: 28rpx;
+			gap: 20rpx;
+			padding: 20rpx;
+			height: 200rpx;
+			width: 100%;
+			border-radius: 20rpx;
+			background: linear-gradient(to bottom, rgba(69, 180, 233, 0.3), rgba(69, 180, 233, 0.05));
+
+			.name {
+				font-size: 30rpx;
+				font-weight: bold;
+			}
+		}
+
+		.info {
+			display: flex;
+			align-items: center;
+			gap: 20rpx;
+		}
+
+		.group {
+			margin: 20rpx;
+			padding: 20rpx;
+			border-radius: 20rpx;
+			background-color: #ffffff;
+
+			.cell {
 				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.value {
+					color: #909399;
+					font-size: 28rpx;
+					display: flex;
+				}
 			}
 		}
 	}
-}
 </style>

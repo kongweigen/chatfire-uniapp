@@ -17,10 +17,11 @@ export const useUser = () => {
 		return new Promise((resolve) => {
 			uni.login({
 				async success(res) {
-					console.log('res.code', res.code);
+					console.log('🚀🚀🚀🚀uni.login res.code', res.code);
 					const rsp = await userLogin(res.code, {
 						needToken: false
 					});
+					console.log('🚀🚀🚀userLogin rsp', rsp);
 					uni.setStorageSync('token', rsp.access_token);
 					resolve()
 				}

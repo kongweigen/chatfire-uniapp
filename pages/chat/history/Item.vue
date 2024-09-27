@@ -27,11 +27,11 @@ const selectChat = async () => {
 <style lang="scss" scoped>
 .chat-item {
 	background-color: #eff0f6;
-	border-radius: 8rpx;
-	padding: 20rpx;
+	border-radius: 16rpx;
+	padding: 40rpx 30rpx;
 	box-sizing: border-box;
-	font-size: 24rpx;
-	margin-bottom: 10rpx;
+	font-size: 28rpx;
+	margin-bottom: 20rpx;
 	.actions {
 		opacity: 0;
 	}
