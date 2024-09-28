@@ -21,6 +21,7 @@
 			</div>
 		</div>
 		<div class="send-box">
+			<u-image src="@/assets/gpt.png" :width="20" :height="20" @click="pickerShow = true"></u-image>
 			<u-input ref="inputInstRef" v-model="sendContent" border="none" placeholder="请传递你的想法">
 				<template #suffix>
 					<div class="send-btn" @tap="submit(null)">
@@ -33,6 +34,8 @@
 	<u-popup :show="historyShow" mode="left" safeAreaInsetTop @close="historyShow = CSSFontPaletteValuesRule">
 		<History></History>
 	</u-popup>
+	<u-picker :show="pickerShow" :columns="[chatStore.presetChatModels]" keyName="label" :defaultIndex="[defaultIndex]" :closeOnClickOverlay="true"
+		@confirm="confirm" @close="close" @cancel="cancel"></u-picker>
 </template>
 
 <script setup>
@@ -40,12 +43,21 @@
 		useChat
 	} from './useChat.js';
 	import History from './history/index.vue';
+	import {
+		useChatStore
+	} from '@/stores';
+	const chatStore = useChatStore()
+
 	const {
 		historyShow,
 		sendContent,
 		list,
 		submit,
-		navLeftClick
+		navLeftClick,
+		pickerShow,
+		close,
+		confirm,
+		defaultIndex
 	} = useChat();
 </script>
 <style lang="scss" scoped>
@@ -108,12 +120,19 @@
 			}
 		}
 
+
 		.send-box {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			gap: 10rpx;
+
 			position: relative;
 			border-radius: 16px;
 			box-shadow: none;
 			background-color: #ffffff;
 			padding-left: 20rpx;
+			// flex: 1;
 
 			.send-btn {
 				display: flex;

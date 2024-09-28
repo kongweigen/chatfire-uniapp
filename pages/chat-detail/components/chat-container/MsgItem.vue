@@ -105,7 +105,7 @@ const handlerAction = (type) => {
 		display: flex;
 		align-items: flex-start;
 		gap: 10rpx;
-		max-width: 80%;
+		max-width: 90%;
 		border-radius: 20rpx;
 		font-size: 32rpx;
 		.content {

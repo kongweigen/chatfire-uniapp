@@ -23,23 +23,23 @@ export const useChatStore = defineStore({
 			panelShow: false,
 			panelData: {},
 			presetChatModels: [{
-					key: "glm-3-turbo",
+					value: "glm-3-turbo",
 					label: "glm-3-turbo"
 				},
 				{
-					key: "glm-4-air",
+					value: "glm-4-air",
 					label: "glm-4-air"
 				},
 				{
-					key: "glm-4",
+					value: "glm-4",
 					label: "glm-4"
 				},
 				{
-					key: "glm-4-flash",
+					value: "glm-4-flash",
 					label: "glm-4-flash"
 				},
 				{
-					key: "glm-4-9b-chat",
+					value: "glm-4-9b-chat",
 					label: "glm-4-9b-chat"
 				},
 			], // 内置模型

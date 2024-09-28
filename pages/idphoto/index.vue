@@ -1,12 +1,9 @@
 <template>
 	<view class="page">
 		<div class="main">
-			<u--image v-if="!sourceImage.url && !imageUrl"
-				src="https://sf-maas-uat-prod.oss-cn-shanghai.aliyuncs.com/outputs/201b7bc3-c183-472c-a4bf-c8c7c2127661_0.png" height="700rpx" width="700rpx"
-				radius="10"></u--image>
-
-			<u--image v-if="!imageUrl && sourceImage.url" :src="sourceImage.url" height="700rpx" width="700rpx" radius="10"></u--image>
-			<u--image v-if="imageUrl" :src="imageUrl" height="700rpx" width="700rpx" radius="10"></u--image>
+			<image v-if="!sourceImage.url && !imageUrl" mode="aspectFit" src="@/assets/bg-image.png"></image>
+			<image v-if="!imageUrl && sourceImage.url" :src="sourceImage.url" mode="aspectFit"></image>
+			<image v-if="imageUrl" :src="imageUrl" mode="aspectFit"></image>
 
 			<u-cell-group>
 				<u-cell size="large" title="选择尺寸" :value="idPhotoSettings.size" isLink @click="showSizePicker = true"></u-cell>
@@ -87,6 +84,12 @@
 			:deep(.u-transition) {
 				display: flex;
 				justify-content: center;
+			}
+
+			image {
+				height: 400px;
+				width: 100%;
+				border-radius: 10px;
 			}
 		}
 

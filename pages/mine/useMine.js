@@ -56,7 +56,7 @@ export const useMine = () => {
 		});
 	}
 	const toPay = () => {
-		userStore.setLogin(true)
+		// userStore.setLogin(true)
 	}
 
 	const showName = ref('请登录')

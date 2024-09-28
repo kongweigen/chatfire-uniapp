@@ -41,19 +41,31 @@ export const useChat = () => {
 		let t = res.split("\n").splice(0, 10);
 		try {
 			t = t.map(val => val.replaceAll(/^\d+./g, '').trim())
-		} catch (e) {
-		}
+		} catch (e) {}
 		list.value = t
 	}
 	onShow(() => {
 		chatStore.initChat()
 		initHot()
 	})
+
+	const pickerShow = ref(false)
+	const close = () => {
+		pickerShow.value = false
+	}
+	const confirm = (val) => {
+		val.value[0].value
+		chatStore.setCurrentChatModel(val.value[0].value)
+		close()
+	}
 	return {
 		historyShow,
 		sendContent,
 		list,
 		navLeftClick,
-		submit
+		submit,
+		pickerShow,
+		close,
+		confirm,
 	}
 }

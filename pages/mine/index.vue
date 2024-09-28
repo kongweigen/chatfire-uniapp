@@ -4,7 +4,6 @@
 			<u-avatar :src="user.avatar" size="60"></u-avatar>
 			<span class="name">{{ showName }}</span>
 			<u-icon size="25" name="edit-pen" @click="showLogin"></u-icon>
-
 		</div>
 		<div class="group">
 			<div class="cell" @click="toSignIn">
